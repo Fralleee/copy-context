@@ -4,7 +4,7 @@ import * as fs from "fs/promises";
 import { minimatch } from "minimatch";
 
 export async function copyCode(uris: vscode.Uri[]) {
-  const config = vscode.workspace.getConfiguration("myCopyContext");
+  const config = vscode.workspace.getConfiguration("copyContext");
   const includeGlobs: string[] = config.get("includeGlobs") ?? [];
   const excludeGlobs: string[] = config.get("excludeGlobs") ?? [];
   const maxContentSize: number = config.get("maxContentSize") ?? 500000;

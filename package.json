@@ -14,23 +14,23 @@
   "contributes": {
     "commands": [
       {
-        "command": "extension.copyCodeContext",
+        "command": "extension.copyCode",
         "title": "Copy Code Context"
       },
       {
-        "command": "extension.copyFolderStructure",
+        "command": "extension.copyStructure",
         "title": "Copy Folder Structure"
       }
     ],
     "menus": {
       "explorer/context": [
         {
-          "command": "extension.copyCodeContext",
+          "command": "extension.copyCode",
           "when": "resourceLangId",
           "group": "navigation"
         },
         {
-          "command": "extension.copyFolderStructure",
+          "command": "extension.copyStructure",
           "when": "resourceLangId",
           "group": "navigation"
         }
@@ -40,7 +40,7 @@
       "type": "object",
       "title": "Copy Context Extension Configuration",
       "properties": {
-        "myCopyContext.includeGlobs": {
+        "copyContext.includeGlobs": {
           "type": "array",
           "default": [
             "**/*.js",
@@ -50,14 +50,14 @@
           ],
           "description": "Glob patterns for files to include in Copy Code Context"
         },
-        "myCopyContext.excludeGlobs": {
+        "copyContext.excludeGlobs": {
           "type": "array",
           "default": [
             "**/node_modules/**"
           ],
           "description": "Glob patterns for files to exclude"
         },
-        "myCopyContext.maxContentSize": {
+        "copyContext.maxContentSize": {
           "type": "number",
           "default": 500000,
           "description": "Max total content size in bytes to copy. Prevents copying extremely large files."
