@@ -20,22 +20,32 @@
     "commands": [
       {
         "command": "extension.copyCode",
-        "title": "CCC: Copy Code Context"
+        "title": "Copy Code Context"
       },
       {
         "command": "extension.copyStructure",
-        "title": "CCC: Copy Folder Structure"
+        "title": "Copy Folder Structure"
       }
     ],
     "menus": {
-      "explorer/context": [
+      "commandPalette": [
         {
           "command": "extension.copyCode",
-          "group": "navigation"
+          "when": "false"
         },
         {
           "command": "extension.copyStructure",
-          "group": "navigation"
+          "when": "false"
+        }
+      ],
+      "explorer/context": [
+        {
+          "command": "extension.copyCode",
+          "group": "6_copycodecontext@10"
+        },
+        {
+          "command": "extension.copyStructure",
+          "group": "6_copycodecontext@10"
         }
       ]
     },
