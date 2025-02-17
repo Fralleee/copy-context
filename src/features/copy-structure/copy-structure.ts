@@ -30,5 +30,5 @@ export async function copyStructure(uri: vscode.Uri) {
   ].join("\n");
 
   await vscode.env.clipboard.writeText(output);
-  vscode.window.showInformationMessage("Folder structure copied to clipboard!");
+  vscode.window.setStatusBarMessage("Folder structure copied!", 3000);
 }

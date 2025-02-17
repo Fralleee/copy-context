@@ -61,5 +61,5 @@ export async function copyCode(uris: vscode.Uri[]) {
   }
 
   await vscode.env.clipboard.writeText(output.trim());
-  vscode.window.showInformationMessage("Code context copied to clipboard!");
+  vscode.window.setStatusBarMessage("Code context copied!", 3000);
 }
