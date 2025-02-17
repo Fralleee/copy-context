@@ -3,6 +3,9 @@
   "displayName": "Copy Context Extension",
   "description": "Copies selected files/folders as Markdown code context or structure",
   "publisher": "fralle",
+  "homepage": "https://github.com/Fralleee/copy-code-context#readme",
+  "icon": "images/icon.svg",
+  "license": "MIT",
   "version": "0.0.13",
   "engines": {
     "vscode": "^1.97.0"
@@ -12,7 +15,8 @@
     "url": "https://github.com/Fralleee/copy-code-context.git"
   },
   "categories": [
-    "Other"
+    "Other",
+    "Visualization"
   ],
   "activationEvents": [],
   "main": "./out/extension.js",
