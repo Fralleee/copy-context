@@ -15,11 +15,11 @@
     "commands": [
       {
         "command": "extension.copyCode",
-        "title": "Copy Code Context"
+        "title": "CCC: Copy Code Context"
       },
       {
         "command": "extension.copyStructure",
-        "title": "Copy Folder Structure"
+        "title": "CCC: Copy Folder Structure"
       }
     ],
     "menus": {
@@ -53,9 +53,10 @@
         "copyContext.excludeGlobs": {
           "type": "array",
           "default": [
-            "**/node_modules/**"
+            "**/node_modules/**",
+            "**/.vscode/**"
           ],
-          "description": "Glob patterns for files to exclude"
+          "description": "Glob patterns for files/folders to exclude"
         },
         "copyContext.maxContentSize": {
           "type": "number",

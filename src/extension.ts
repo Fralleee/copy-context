@@ -1,6 +1,6 @@
-import * as vscode from "vscode";
-import { copyStructure } from "./structure/copy-structure";
-import { copyCode } from "./code/copy-code";
+import vscode from "vscode";
+import { copyStructure } from "./features/copy-structure/copy-structure";
+import { copyCode } from "./features/copy-code/copy-code";
 
 export function activate(context: vscode.ExtensionContext) {
   const copyCodeCommand = vscode.commands.registerCommand(
