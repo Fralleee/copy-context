@@ -2,31 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
-### 0.0.9 (2025-02-17)
-
-### 0.0.8 (2025-02-17)
-
-### 0.0.7 (2025-02-17)
-
-### 0.0.6 (2025-02-17)
-
-### 0.0.5 (2025-02-17)
-
-### 0.0.4 (2025-02-17)
-
-### 0.0.3 (2025-02-17)
-
-
 ### Features
 
-* package vsix on release workflow ([e237279](https://github.com/Fralleee/copy-code-context/commit/e237279ab076a9863f9e2e0ecdb9028b67874648))
+- package vsix on release workflow ([e237279](https://github.com/Fralleee/copy-code-context/commit/e237279ab076a9863f9e2e0ecdb9028b67874648))
 
 ### 0.0.2 (2025-02-17)
 
-
 ### Bug Fixes
 
-* release git info ([09c7ba3](https://github.com/Fralleee/copy-code-context/commit/09c7ba3a1d27ab3369687aadc86992e9423767e8))
+- release git info ([09c7ba3](https://github.com/Fralleee/copy-code-context/commit/09c7ba3a1d27ab3369687aadc86992e9423767e8))
 
 # Change Log
 
