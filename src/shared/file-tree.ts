@@ -1,6 +1,6 @@
+import * as path from "path";
 import { readdir } from "fs/promises";
 import { Dirent } from "fs";
-import path from "path";
 import { shouldExclude, shouldIncludeFile } from "./file-matching";
 
 export interface FileTreeNode {

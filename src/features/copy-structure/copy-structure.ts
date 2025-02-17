@@ -1,5 +1,5 @@
-import vscode from "vscode";
-import path from "path";
+import * as vscode from "vscode";
+import * as path from "path";
 import { fileTree } from "../../shared/file-tree";
 import { buildAsciiLines } from "./build-ascii-lines";
 

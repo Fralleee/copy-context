@@ -1,4 +1,4 @@
-import fs from "fs/promises";
+import * as fs from "fs/promises";
 import { FileTreeNode } from "../../shared/file-tree";
 import { formatAsMarkdown } from "./markdown";
 

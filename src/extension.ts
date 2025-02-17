@@ -1,4 +1,4 @@
-import vscode from "vscode";
+import * as vscode from "vscode";
 import { copyStructure } from "./features/copy-structure/copy-structure";
 import { copyCode } from "./features/copy-code/copy-code";
 

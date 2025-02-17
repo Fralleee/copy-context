@@ -1,6 +1,6 @@
-import vscode from "vscode";
-import fs from "fs/promises";
-import path from "path";
+import * as vscode from "vscode";
+import * as fs from "fs/promises";
+import * as path from "path";
 import { shouldIncludeFile } from "../../shared/file-matching";
 import { fileTree } from "../../shared/file-tree";
 import { formatAsMarkdown } from "./markdown";
