@@ -14,12 +14,19 @@
   "categories": [
     "Other"
   ],
-  "activationEvents": [
-    "onCommand:extension.copyCode",
-    "onCommand:extension.copyStructure"
-  ],
+  "activationEvents": [],
   "main": "./out/extension.js",
   "contributes": {
+    "commands": [
+      {
+        "command": "extension.copyCode",
+        "title": "CCC: Copy Code Context"
+      },
+      {
+        "command": "extension.copyStructure",
+        "title": "CCC: Copy Folder Structure"
+      }
+    ],
     "menus": {
       "explorer/context": [
         {
