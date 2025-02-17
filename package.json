@@ -4,7 +4,7 @@
   "description": "Copies selected files/folders as Markdown code context or structure",
   "publisher": "fralle",
   "homepage": "https://github.com/Fralleee/copy-code-context#readme",
-  "icon": "images/icon.svg",
+  "icon": "images/icon.png",
   "license": "MIT",
   "version": "0.0.15",
   "engines": {
