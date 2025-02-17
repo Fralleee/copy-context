@@ -31,12 +31,10 @@
       "explorer/context": [
         {
           "command": "extension.copyCode",
-          "when": "resourceLangId",
           "group": "navigation"
         },
         {
           "command": "extension.copyStructure",
-          "when": "resourceLangId",
           "group": "navigation"
         }
       ]
