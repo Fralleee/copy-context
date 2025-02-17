@@ -3,7 +3,7 @@
   "displayName": "Copy Context Extension",
   "description": "Copies selected files/folders as Markdown code context or structure",
   "publisher": "fralle",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "engines": {
     "vscode": "^1.97.0"
   },
