@@ -16,7 +16,7 @@ The generated Markdown includes file paths and syntax highlighting, making it id
   - Respects your configured include/exclude globs and file size limits.
 
   <video width="640" controls>
-    <source src="videos/Copy_Code_Context.mp4" type="video/mp4">
+    <source src="./videos/Copy_Code_Context.mp4" type="video/mp4">
     Your browser does not support the video tag.
   </video>
 
@@ -27,7 +27,7 @@ The generated Markdown includes file paths and syntax highlighting, making it id
   - Generates a Markdown-formatted tree of the folder’s contents, ignoring excluded files and folders.
 
   <video width="640" controls>
-    <source src="videos/Copy_Folder_Structure.mp4.mp4" type="video/mp4">
+    <source src="./videos/Copy_Folder_Structure.mp4.mp4" type="video/mp4">
     Your browser does not support the video tag.
   </video>
 
