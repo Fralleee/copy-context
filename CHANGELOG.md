@@ -2,9 +2,7 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
-### Features
-
-- package vsix on release workflow ([e237279](https://github.com/Fralleee/copy-code-context/commit/e237279ab076a9863f9e2e0ecdb9028b67874648))
+### 0.0.11 (2025-02-17)
 
 ### 0.0.2 (2025-02-17)
 
