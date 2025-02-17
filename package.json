@@ -2,6 +2,7 @@
   "name": "copy-code-context",
   "displayName": "Copy Context Extension",
   "description": "Copies selected files/folders as Markdown code context or structure",
+  "publisher": "fralle",
   "version": "0.0.1",
   "engines": {
     "vscode": "^1.97.0"
@@ -64,6 +65,12 @@
           "description": "Max total content size in bytes to copy. Prevents copying extremely large files."
         }
       }
+    }
+  },
+  "standard-version": {
+    "scripts": {
+      "pretag": "echo 'About to create a tag'",
+      "postchangelog": "echo 'Changelog has been updated'"
     }
   },
   "scripts": {

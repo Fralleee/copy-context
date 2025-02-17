@@ -1,0 +1,44 @@
+name: Release
+
+on:
+  workflow_dispatch:
+
+jobs:
+  release:
+    name: Release Extension
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: actions/setup-node@v3
+        with:
+          node-version: "16"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Configure Git
+        run: |
+          git config user.name "github-actions"
+          git config user.email "actions@github.com"
+
+      - name: Standard Release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          # Standard Version updates package.json and CHANGELOG.md
+          # by default, commits and creates a local tag.
+          # The GITHUB_TOKEN is used for private repos, if needed.
+          npx standard-version
+
+      - name: Push changes
+        run: |
+          git push --follow-tags origin HEAD:main
+
+      - name: Publish VSCode Extension
+        if: success()
+        run: |
+          npx vsce package
+          npx vsce publish -p $VSCE_TOKEN
+        env:
+          VSCE_TOKEN: ${{ secrets.VSCE_TOKEN }}
