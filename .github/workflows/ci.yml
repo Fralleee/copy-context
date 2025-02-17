@@ -20,6 +20,3 @@ jobs:
         run: npm run lint
       - name: Type Check
         run: npm run compile
-
-      # - name: Test
-      #   run: npm test
