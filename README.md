@@ -2,7 +2,9 @@
 
 ## Overview
 
-**Copy Code Context** is a Visual Studio Code extension that allows you to quickly copy one or more files—or entire folders—as Markdown-formatted code snippets. The generated Markdown includes file paths and syntax highlighting, making it ideal for sharing code context in documentation, AI prompts (e.g. ChatGPT), or anywhere you need to present code.
+**Copy Code Context** is a Visual Studio Code extension that allows you to quickly copy one or more files or entire folders as Markdown-formatted code snippets.
+
+The generated Markdown includes file paths and syntax highlighting, making it ideal for sharing code context in documentation, AI prompts (e.g. ChatGPT), or anywhere you need to present code.
 
 ## Features
 
@@ -13,11 +15,21 @@
   - Automatically includes the file path, code content, and language syntax in a Markdown code block.
   - Respects your configured include/exclude globs and file size limits.
 
+  <video width="640" controls>
+    <source src="videos/Copy_Code_Context.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+
 - **Copy Folder Structure**
 
   - Right-click any folder in the Explorer.
   - Choose **Copy Folder Structure**.
   - Generates a Markdown-formatted tree of the folder’s contents, ignoring excluded files and folders.
+
+  <video width="640" controls>
+    <source src="videos/Copy_Folder_Structure.mp4.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
 
 - **Built-in Language Detection**
 
