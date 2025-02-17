@@ -98,3 +98,19 @@ In Settings (File → Preferences → Settings → Extensions → “Copy Contex
   If copying exceeds this size, the extension stops to prevent overly large memory usage.
 
 You can adjust these settings directly in your `.vscode/settings.json` or through the VS Code GUI settings.
+
+## License
+
+This project is released under the MIT License.
+
+## Support
+
+For issues, questions, or feature requests, please open a GitHub issue.
+
+## Development
+
+1. Clone the repo.
+2. Compile: npm run compile.
+3. Lint: npm run lint.
+4. Test: npm test (if tests are set up).
+5. Debug: Press F5 in VS Code to run the extension in a new Extension Host window.

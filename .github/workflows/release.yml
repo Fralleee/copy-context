@@ -5,10 +5,12 @@ on:
 
 permissions:
   contents: write
+  issues: write
+  pull-requests: write
 
 jobs:
   release:
-    name: Release Extension
+    name: Release
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -60,3 +62,5 @@ jobs:
           asset_path: ./extension.vsix
           asset_name: extension.vsix
           asset_content_type: application/octet-stream
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
