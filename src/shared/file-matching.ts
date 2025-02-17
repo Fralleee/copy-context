@@ -18,6 +18,6 @@ export function shouldIncludeFile(
   return true;
 }
 
-export function shouldExclude(path: string, globs: string[]): boolean {
-  return globs.some((glob) => minimatch(path, glob));
+export function shouldExclude(relPath: string, globs: string[]): boolean {
+  return globs.some((glob) => minimatch(relPath, glob));
 }
