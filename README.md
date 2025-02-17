@@ -1,71 +1,100 @@
-# copy-code-context README
+# Copy Code Context - VS Code Extension
 
-This is the README for your extension "copy-code-context". After writing up a brief description, we recommend including the following sections.
+## Overview
+
+Copy Code Context is a Visual Studio Code extension that helps you quickly copy one or more files—or entire folders—as Markdown-formatted code snippets, complete with file paths and syntax highlighting. It’s perfect for sharing context in documentation or when working with AI tools like ChatGPT or other large language models.
 
 ## Features
 
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
+1. Copy Code Context
 
-For example if there is an image subfolder under your extension project workspace:
+   - Select files/folders in the VS Code Explorer, then right-click → CCC: Copy Code Context.
+   - Automatically includes the file path, code content, and language syntax in a Markdown code block.
+   - Respects your configured include/exclude globs and file size limits.
 
-\!\[feature X\]\(images/feature-x.png\)
+2. Copy Folder Structure
 
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
+   - Right-click any folder in the Explorer → CCC: Copy Folder Structure.
+   - Generates a Markdown-formatted tree of the folder’s contents, ignoring excluded folders/files.
 
-## Requirements
+3. Built-in Language Detection
 
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
+   - Based on file extension (.ts, .js, .tsx, .html, etc.), the snippet is wrapped with the correct syntax highlight language.
 
-## Extension Settings
+4. Configurable
+   - Adjust includeGlobs, excludeGlobs, and maxContentSize in the extension settings to fine-tune what gets copied.
 
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
+## Installation
 
-For example:
+### From VSIX File (Local Install)
 
-This extension contributes the following settings:
+1. Download the .vsix file from the GitHub Releases (if available).
+2. In VS Code, open the Extensions view (Ctrl+Shift+X or Cmd+Shift+X on macOS).
+3. Click on the ... at the top-right of the Extensions view, then choose Install from VSIX....
+4. Select the downloaded .vsix file and install.
 
-* `myExtension.enable`: Enable/disable this extension.
-* `myExtension.thing`: Set to `blah` to do something.
+### From VS Code Marketplace
 
-## Known Issues
+1. Open VS Code.
+2. Go to the Extensions view (Ctrl+Shift+X or Cmd+Shift+X on macOS).
+3. Search for “Copy Context Extension” by fralle.
+4. Click Install.
 
-Calling out known issues can help limit users opening duplicate issues against your extension.
+## Usage
 
-## Release Notes
+1. Copy Code Context
+   - In the VS Code Explorer, select one or more files or an entire folder.
+   - Right-click on your selection and choose “CCC: Copy Code Context”.
+   - The extension gathers the contents of the selected files (recursively if you chose a folder), respecting your include/exclude globs and maxContentSize.
+   - Paste the Markdown result in your AI prompt, documentation, or wherever you need it.
+2. Copy Folder Structure
+   - In the VS Code Explorer, right-click on any folder.
+   - Choose “CCC: Copy Folder Structure”.
+   - The extension generates a tree structure showing the folder’s contents (only including files/folders not excluded by your settings).
+   - Paste the result in a text/markdown file or anywhere else you want to show your project structure.
 
-Users appreciate release notes as you update your extension.
+### Example Output
 
-### 1.0.0
+Copy Code Context might produce something like:
 
-Initial release of ...
+````markdown
+### src/utils/helpers.js
 
-### 1.0.1
+```javascript
+export function greeting(name) {
+  return `Hello, ${name}!`;
+}
+```
+````
 
-Fixed issue #.
+Copy Folder Structure might produce something like:
 
-### 1.1.0
+```markdown
+# Folder Structure
 
-Added features X, Y, and Z.
+Name: my-project
 
----
+├── 📁 src
+│ ├── 📁 utils
+│ │ └── 📄 helpers.js
+│ └── 📄 index.ts
+└── 📄 package.json
+```
 
-## Following extension guidelines
+## Configuration
 
-Ensure that you've read through the extensions guidelines and follow the best practices for creating your extension.
+In Settings (File → Preferences → Settings → Extensions → “Copy Context Extension”), you can configure:
 
-* [Extension Guidelines](https://code.visualstudio.com/api/references/extension-guidelines)
+- `copyContext.includeGlobs` (Array)
+  Default: ["**/*.js", "**/*.ts", "**/*.jsx", "**/*.tsx"]
+  Files matching these patterns will be considered for copying.
 
-## Working with Markdown
+- `copyContext.excludeGlobs` (Array)
+  Default: ["**/node_modules/**", "**/.vscode/**"]
+  Files/folders matching these patterns are excluded from copying or folder structure generation.
 
-You can author your README using Visual Studio Code. Here are some useful editor keyboard shortcuts:
+- `copyContext.maxContentSize` (Number)
+  Default: 500000 (bytes)
+  If copying exceeds this size, the extension stops to prevent overly large memory usage.
 
-* Split the editor (`Cmd+\` on macOS or `Ctrl+\` on Windows and Linux).
-* Toggle preview (`Shift+Cmd+V` on macOS or `Shift+Ctrl+V` on Windows and Linux).
-* Press `Ctrl+Space` (Windows, Linux, macOS) to see a list of Markdown snippets.
-
-## For more information
-
-* [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
-* [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
-
-**Enjoy!**
+You can adjust these settings directly in your `.vscode/settings.json` or through the VS Code GUI settings.
