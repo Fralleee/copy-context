@@ -1,6 +1,6 @@
 {
   "name": "copy-code-context",
-  "displayName": "Copy Context Extension",
+  "displayName": "Copy Code Context",
   "description": "Copies selected files/folders as Markdown code context or structure",
   "publisher": "fralle",
   "homepage": "https://github.com/Fralleee/copy-code-context#readme",
