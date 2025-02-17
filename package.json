@@ -14,19 +14,12 @@
   "categories": [
     "Other"
   ],
-  "activationEvents": [],
+  "activationEvents": [
+    "onCommand:extension.copyCode",
+    "onCommand:extension.copyStructure"
+  ],
   "main": "./out/extension.js",
   "contributes": {
-    "commands": [
-      {
-        "command": "extension.copyCode",
-        "title": "CCC: Copy Code Context"
-      },
-      {
-        "command": "extension.copyStructure",
-        "title": "CCC: Copy Folder Structure"
-      }
-    ],
     "menus": {
       "explorer/context": [
         {
@@ -69,12 +62,6 @@
           "description": "Max total content size in bytes to copy. Prevents copying extremely large files."
         }
       }
-    }
-  },
-  "standard-version": {
-    "scripts": {
-      "pretag": "echo 'About to create a tag'",
-      "postchangelog": "echo 'Changelog has been updated'"
     }
   },
   "scripts": {
