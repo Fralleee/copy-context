@@ -42,7 +42,7 @@ jobs:
           echo "VERSION=$VERSION" >> $GITHUB_ENV
 
       - name: Package Extension
-        run: npx vsce package --out extension.vsix
+        run: npx vsce package --out copy-code-context.vsix
 
       - name: Create Release
         id: create_release
@@ -59,8 +59,8 @@ jobs:
         uses: actions/upload-release-asset@v1
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./extension.vsix
-          asset_name: extension.vsix
+          asset_path: ./copy-code-context.vsix
+          asset_name: copy-code-context.vsix
           asset_content_type: application/octet-stream
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
