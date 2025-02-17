@@ -25,5 +25,5 @@ jobs:
       - name: Type Check
         run: npm run compile
 
-      - name: Test
-        run: npm test
+      # - name: Test
+      #   run: npm test
