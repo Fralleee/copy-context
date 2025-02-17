@@ -15,7 +15,8 @@ The generated Markdown includes file paths and syntax highlighting, making it id
   - Automatically includes the file path, code content, and language syntax in a Markdown code block.
   - Respects your configured include/exclude globs and file size limits.
 
-    https://github.com/user-attachments/assets/ee8d29c0-f9c6-41d1-8ca8-aba432a88b3f
+    
+  ![413995470-ee8d29c0-f9c6-41d1-8ca8-aba432a88b3f](https://github.com/user-attachments/assets/df9f0912-eaba-4fab-8962-a311ae39c2c6)
 
 
 
@@ -25,7 +26,7 @@ The generated Markdown includes file paths and syntax highlighting, making it id
   - Choose **Copy Folder Structure**.
   - Generates a Markdown-formatted tree of the folder’s contents, ignoring excluded files and folders.
   
-    https://github.com/user-attachments/assets/a2340345-8bd9-4a24-91d7-1c0d5eb05a2c
+  ![413995553-a2340345-8bd9-4a24-91d7-1c0d5eb05a2c](https://github.com/user-attachments/assets/ac74e4d3-d6f0-41b9-9f2b-ed76d642e19a)
 
 - **Built-in Language Detection**
 
