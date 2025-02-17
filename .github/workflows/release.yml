@@ -35,10 +35,10 @@ jobs:
         run: |
           git push --follow-tags origin HEAD:main
 
-      - name: Publish VSCode Extension
-        if: success()
-        run: |
-          npx vsce package
-          npx vsce publish -p $VSCE_TOKEN
-        env:
-          VSCE_TOKEN: ${{ secrets.VSCE_TOKEN }}
+      # - name: Publish VSCode Extension
+      #   if: success()
+      #   run: |
+      #     npx vsce package
+      #     npx vsce publish -p $VSCE_TOKEN
+      #   env:
+      #     VSCE_TOKEN: ${{ secrets.VSCE_TOKEN }}
