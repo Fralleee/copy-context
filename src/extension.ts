@@ -32,6 +32,4 @@ export function activate(context: vscode.ExtensionContext) {
   context.subscriptions.push(copyStructureCommand);
 }
 
-export function deactivate(context: vscode.ExtensionContext) {
-  context.subscriptions.forEach((disposable) => disposable.dispose());
-}
+export function deactivate() {}
