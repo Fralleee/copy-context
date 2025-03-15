@@ -3,6 +3,7 @@
 **Copy Code Context** lets you quickly copy one or more files or entire folders as Markdown-formatted code snippets.
 
 ## Features
+
 - **Copy Code Context**
 
   - Select one or more files or folders in the VS Code Explorer.
@@ -22,4 +23,3 @@
 
 - **Configurable**
   - Adjust `copyContext.includeGlobs`, `copyContext.excludeGlobs`, and `copyContext.maxContentSize` in the extension settings to fine-tune what gets copied.
-

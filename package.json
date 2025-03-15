@@ -1,111 +1,101 @@
 {
-  "name": "copy-code-context",
-  "displayName": "Copy Code Context",
-  "description": "Copies selected files/folders as Markdown code context or structure",
-  "publisher": "fralle",
-  "homepage": "https://github.com/Fralleee/copy-code-context#readme",
-  "icon": "images/icon.png",
-  "license": "MIT",
-  "version": "0.0.22",
-  "engines": {
-    "vscode": "^1.97.0"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/Fralleee/copy-code-context.git"
-  },
-  "categories": [
-    "Other",
-    "Visualization"
-  ],
-  "activationEvents": [],
-  "main": "./out/extension.js",
-  "contributes": {
-    "commands": [
-      {
-        "command": "extension.copyCode",
-        "title": "Copy Code Context"
-      },
-      {
-        "command": "extension.copyStructure",
-        "title": "Copy Folder Structure"
-      }
-    ],
-    "menus": {
-      "commandPalette": [
-        {
-          "command": "extension.copyCode",
-          "when": "false"
-        },
-        {
-          "command": "extension.copyStructure",
-          "when": "false"
-        }
-      ],
-      "explorer/context": [
-        {
-          "command": "extension.copyCode",
-          "group": "6_copycodecontext@10"
-        },
-        {
-          "command": "extension.copyStructure",
-          "group": "6_copycodecontext@10"
-        }
-      ]
-    },
-    "configuration": {
-      "type": "object",
-      "title": "Copy Context Extension Configuration",
-      "properties": {
-        "copyContext.includeGlobs": {
-          "type": "array",
-          "default": [
-            "**/*.js",
-            "**/*.ts",
-            "**/*.jsx",
-            "**/*.tsx"
-          ],
-          "description": "Glob patterns for files to include in Copy Code Context"
-        },
-        "copyContext.excludeGlobs": {
-          "type": "array",
-          "default": [
-            "**/node_modules/**",
-            "**/.vscode/**"
-          ],
-          "description": "Glob patterns for files/folders to exclude"
-        },
-        "copyContext.maxContentSize": {
-          "type": "number",
-          "default": 500000,
-          "description": "Max total content size in bytes to copy. Prevents copying extremely large files."
-        }
-      }
-    }
-  },
-  "scripts": {
-    "vscode:prepublish": "npm run compile",
-    "compile": "tsc -p ./",
-    "watch": "tsc -watch -p ./",
-    "pretest": "npm run compile && npm run lint",
-    "lint": "eslint src",
-    "test": "vscode-test"
-  },
-  "dependencies": {
-    "minimatch": "^5.1.2"
-  },
-  "devDependencies": {
-    "@types/fs-extra": "^11.0.4",
-    "@types/minimatch": "^5.1.2",
-    "@types/mocha": "^10.0.10",
-    "@types/node": "20.x",
-    "@types/vscode": "^1.97.0",
-    "@typescript-eslint/eslint-plugin": "^8.17.0",
-    "@typescript-eslint/parser": "^8.17.0",
-    "@vscode/test-cli": "^0.0.10",
-    "@vscode/test-electron": "^2.4.1",
-    "eslint": "^9.16.0",
-    "fs-extra": "^11.3.0",
-    "typescript": "^5.7.2"
-  }
+	"name": "copy-code-context",
+	"displayName": "Copy Code Context",
+	"description": "Copies selected files/folders as Markdown code context or structure",
+	"publisher": "fralle",
+	"homepage": "https://github.com/Fralleee/copy-code-context#readme",
+	"icon": "images/icon.png",
+	"license": "MIT",
+	"version": "0.0.22",
+	"engines": {
+		"vscode": "^1.97.0"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/Fralleee/copy-code-context.git"
+	},
+	"categories": ["Other", "Visualization"],
+	"activationEvents": [],
+	"main": "./out/extension.js",
+	"contributes": {
+		"commands": [
+			{
+				"command": "extension.copyCode",
+				"title": "Copy Code Context"
+			},
+			{
+				"command": "extension.copyStructure",
+				"title": "Copy Folder Structure"
+			}
+		],
+		"menus": {
+			"commandPalette": [
+				{
+					"command": "extension.copyCode",
+					"when": "false"
+				},
+				{
+					"command": "extension.copyStructure",
+					"when": "false"
+				}
+			],
+			"explorer/context": [
+				{
+					"command": "extension.copyCode",
+					"group": "6_copycodecontext@10"
+				},
+				{
+					"command": "extension.copyStructure",
+					"group": "6_copycodecontext@10"
+				}
+			]
+		},
+		"configuration": {
+			"type": "object",
+			"title": "Copy Context Extension Configuration",
+			"properties": {
+				"copyContext.includeGlobs": {
+					"type": "array",
+					"default": ["**/*.js", "**/*.ts", "**/*.jsx", "**/*.tsx"],
+					"description": "Glob patterns for files to include in Copy Code Context"
+				},
+				"copyContext.excludeGlobs": {
+					"type": "array",
+					"default": ["**/node_modules/**", "**/.vscode/**"],
+					"description": "Glob patterns for files/folders to exclude"
+				},
+				"copyContext.maxContentSize": {
+					"type": "number",
+					"default": 500000,
+					"description": "Max total content size in bytes to copy. Prevents copying extremely large files."
+				}
+			}
+		}
+	},
+	"scripts": {
+		"vscode:prepublish": "npm run compile",
+		"compile": "tsc -p ./",
+		"watch": "tsc -watch -p ./",
+		"pretest": "npm run compile && npm run lint",
+		"lint": "eslint src",
+		"test": "vscode-test"
+	},
+	"dependencies": {
+		"minimatch": "^5.1.2"
+	},
+	"devDependencies": {
+		"@biomejs/biome": "1.9.4",
+		"@types/fs-extra": "^11.0.4",
+		"@types/minimatch": "^5.1.2",
+		"@types/mocha": "^10.0.10",
+		"@types/node": "20.x",
+		"@types/vscode": "^1.97.0",
+		"@typescript-eslint/eslint-plugin": "^8.17.0",
+		"@typescript-eslint/parser": "^8.17.0",
+		"@vscode/test-cli": "^0.0.10",
+		"@vscode/test-electron": "^2.4.1",
+		"eslint": "^9.16.0",
+		"fs-extra": "^11.3.0",
+		"typescript": "^5.7.2"
+	}
 }
