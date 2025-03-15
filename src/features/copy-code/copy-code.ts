@@ -21,30 +21,31 @@ export async function copyCode(uris: vscode.Uri[]) {
 	const rootPath = workspaceFolders[0].uri.fsPath;
 	const visitedFiles = new Set<string>();
 	let totalSize = 0;
-	let output = "";
 
-	for (const uri of uris) {
-		const stat = await vscode.workspace.fs.stat(uri);
-		if (stat.type === vscode.FileType.Directory) {
-			const tree = await fileTree(
-				uri.fsPath,
-				rootPath,
-				includeGlobs,
-				excludeGlobs,
-				true,
-			);
-			output += await fileContents(tree, visitedFiles, maxContentSize, (sz) => {
-				totalSize += sz;
-				if (totalSize > maxContentSize) {
-					throw new Error(
-						`Exceeded maximum content size of ${maxContentSize} bytes`,
-					);
-				}
-			});
-		} else {
+	const outputs = await Promise.all(
+		uris.map(async (uri) => {
+			const stat = await vscode.workspace.fs.stat(uri);
+			if (stat.type === vscode.FileType.Directory) {
+				const tree = await fileTree(
+					uri.fsPath,
+					rootPath,
+					includeGlobs,
+					excludeGlobs,
+					true,
+				);
+				return await fileContents(tree, visitedFiles, maxContentSize, (sz) => {
+					totalSize += sz;
+					if (totalSize > maxContentSize) {
+						throw new Error(
+							`Exceeded maximum content size of ${maxContentSize} bytes`,
+						);
+					}
+				});
+			}
+
 			const relPath = path.relative(rootPath, uri.fsPath);
 			if (!shouldIncludeFile(relPath, includeGlobs, excludeGlobs)) {
-				continue;
+				return "";
 			}
 			if (!visitedFiles.has(relPath)) {
 				visitedFiles.add(relPath);
@@ -55,11 +56,13 @@ export async function copyCode(uris: vscode.Uri[]) {
 						`Exceeded maximum content size of ${maxContentSize} bytes`,
 					);
 				}
-				output += formatAsMarkdown(relPath, fileContent);
+				return formatAsMarkdown(relPath, fileContent);
 			}
-		}
-	}
+			return "";
+		}),
+	);
 
+	const output = outputs.join("");
 	await vscode.env.clipboard.writeText(output.trim());
 	vscode.window.setStatusBarMessage("Code context copied!", 3000);
 }

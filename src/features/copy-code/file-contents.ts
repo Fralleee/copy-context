@@ -8,23 +8,26 @@ export async function fileContents(
 	maxContentSize: number,
 	addSizeCallback: (size: number) => void,
 ): Promise<string> {
-	let result = "";
-	for (const node of nodes) {
+	const promises = nodes.map(async (node) => {
 		if (node.isDirectory && node.children) {
-			result += await fileContents(
+			return await fileContents(
 				node.children,
 				visitedFiles,
 				maxContentSize,
 				addSizeCallback,
 			);
-		} else if (!node.isDirectory) {
-			if (!visitedFiles.has(node.relativePath)) {
-				visitedFiles.add(node.relativePath);
-				const content = await fs.readFile(node.fullPath, "utf-8");
-				addSizeCallback(content.length);
-				result += formatAsMarkdown(node.relativePath, content);
-			}
 		}
-	}
-	return result;
+
+		if (!visitedFiles.has(node.relativePath)) {
+			visitedFiles.add(node.relativePath);
+			const content = await fs.readFile(node.fullPath, "utf-8");
+			addSizeCallback(content.length);
+			return formatAsMarkdown(node.relativePath, content);
+		}
+
+		return "";
+	});
+
+	const results = await Promise.all(promises);
+	return results.join("");
 }
