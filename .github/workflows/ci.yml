@@ -18,5 +18,7 @@ jobs:
         run: npm install
       - name: Lint
         run: npm run lint
+      - name: Run knip
+        run: npm run knip
       - name: Type Check
         run: npm run compile

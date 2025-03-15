@@ -56,12 +56,21 @@
 			"properties": {
 				"copyContext.includeGlobs": {
 					"type": "array",
-					"default": ["**/*", ".*/*"],
+					"default": [
+						"**/*.{js,cjs,mjs,jsx,ts,tsx,html,css,scss,less,md,json,yaml,yml,xml,c,cpp,cc,cxx,h,hpp,cs,java,py,rb,php,go,rs,swift,kt,kts,sh,ps1,sql,scala,hs,pl,pm,lua,erl,ex,exs,r,cshtml,m,mm,coffee,fs,fsi,fsx,vue,svelte,jsonc}"
+					],
 					"description": "Glob patterns for files to include in Copy Code Context"
 				},
 				"copyContext.excludeGlobs": {
 					"type": "array",
-					"default": ["**/node_modules/**", "**/.vscode/**"],
+					"default": [
+						"**/node_modules/**",
+						"**/.vscode/**",
+						"**/.git/**",
+						"**/.next/**",
+						"**/package-lock.json",
+						"**/yarn.lock"
+					],
 					"description": "Glob patterns for files/folders to exclude"
 				},
 				"copyContext.maxContentSize": {
@@ -78,21 +87,26 @@
 		"watch": "tsc -watch -p ./",
 		"pretest": "npm run compile && npm run lint",
 		"lint": "biome lint .",
-		"test": "vscode-test"
+		"test": "vscode-test",
+		"knip": "knip"
 	},
 	"dependencies": {
 		"minimatch": "^5.1.2"
 	},
 	"devDependencies": {
 		"@biomejs/biome": "1.9.4",
-		"@types/fs-extra": "^11.0.4",
+		"@semantic-release/changelog": "^6.0.3",
+		"@semantic-release/commit-analyzer": "^13.0.1",
+		"@semantic-release/github": "^11.0.1",
+		"@semantic-release/release-notes-generator": "^14.0.3",
 		"@types/minimatch": "^5.1.2",
 		"@types/mocha": "^10.0.10",
-		"@types/node": "20.x",
+		"@types/node": "^20.17.24",
 		"@types/vscode": "^1.97.0",
 		"@vscode/test-cli": "^0.0.10",
 		"@vscode/test-electron": "^2.4.1",
-		"fs-extra": "^11.3.0",
-		"typescript": "^5.7.2"
+		"knip": "^5.46.0",
+		"semantic-release": "^24.2.3",
+		"typescript": "^5.8.2"
 	}
 }

@@ -56,6 +56,10 @@ const languageMap: { [ext: string]: string } = {
 	jsonc: "jsonc",
 };
 
+function guessLanguageFromExtension(ext: string): string {
+	return languageMap[ext] || "plaintext";
+}
+
 export function formatAsMarkdown(
 	relativePath: string,
 	content: string,
@@ -63,8 +67,4 @@ export function formatAsMarkdown(
 	const ext = path.extname(relativePath).replace(".", "").toLowerCase();
 	const lang = guessLanguageFromExtension(ext);
 	return `### ${relativePath}\n\`\`\`${lang}\n${content}\n\`\`\`\n\n`;
-}
-
-export function guessLanguageFromExtension(ext: string): string {
-	return languageMap[ext] || "plaintext";
 }

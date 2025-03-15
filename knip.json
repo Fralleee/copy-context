@@ -1,0 +1,10 @@
+{
+	"$schema": "https://unpkg.com/knip@5/schema.json",
+	"entry": ["src/extension.ts"],
+	"project": ["src/**"],
+	"rules": {
+		"devDependencies": "off"
+	},
+	"ignore": ["out/**"],
+	"ignoreBinaries": ["vsce"]
+}
