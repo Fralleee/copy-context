@@ -6,7 +6,7 @@
 	"homepage": "https://github.com/Fralleee/copy-code-context#readme",
 	"icon": "images/icon.png",
 	"license": "MIT",
-	"version": "0.0.23",
+	"version": "0.0.24",
 	"engines": {
 		"vscode": "^1.97.0"
 	},
@@ -14,10 +14,7 @@
 		"type": "git",
 		"url": "https://github.com/Fralleee/copy-code-context.git"
 	},
-	"categories": [
-		"Other",
-		"Visualization"
-	],
+	"categories": ["Other", "Visualization"],
 	"activationEvents": [],
 	"main": "./out/extension.js",
 	"contributes": {
@@ -59,20 +56,12 @@
 			"properties": {
 				"copyContext.includeGlobs": {
 					"type": "array",
-					"default": [
-						"**/*.js",
-						"**/*.ts",
-						"**/*.jsx",
-						"**/*.tsx"
-					],
+					"default": ["**/*.js", "**/*.ts", "**/*.jsx", "**/*.tsx"],
 					"description": "Glob patterns for files to include in Copy Code Context"
 				},
 				"copyContext.excludeGlobs": {
 					"type": "array",
-					"default": [
-						"**/node_modules/**",
-						"**/.vscode/**"
-					],
+					"default": ["**/node_modules/**", "**/.vscode/**"],
 					"description": "Glob patterns for files/folders to exclude"
 				},
 				"copyContext.maxContentSize": {
