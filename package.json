@@ -56,7 +56,7 @@
 			"properties": {
 				"copyContext.includeGlobs": {
 					"type": "array",
-					"default": ["**/*.js", "**/*.ts", "**/*.jsx", "**/*.tsx"],
+					"default": ["**/*", ".*/*"],
 					"description": "Glob patterns for files to include in Copy Code Context"
 				},
 				"copyContext.excludeGlobs": {

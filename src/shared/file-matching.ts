@@ -5,16 +5,24 @@ export function shouldIncludeFile(
 	includeGlobs: string[],
 	excludeGlobs: string[],
 ): boolean {
-	const included = includeGlobs.some((glob) => minimatch(relPath, glob));
+	console.log("shouldIncludeFile", relPath, includeGlobs);
+	const included = includeGlobs.some((glob) =>
+		minimatch(relPath, glob, { dot: true }),
+	);
 	if (!included) {
+		console.log("not included", relPath);
 		return false;
 	}
 
-	const excluded = excludeGlobs.some((glob) => minimatch(relPath, glob));
+	const excluded = excludeGlobs.some((glob) =>
+		minimatch(relPath, glob, { dot: true }),
+	);
 	if (excluded) {
+		console.log("excluded", relPath);
 		return false;
 	}
 
+	console.log("included", relPath);
 	return true;
 }
 

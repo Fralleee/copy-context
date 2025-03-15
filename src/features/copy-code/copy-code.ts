@@ -64,7 +64,6 @@ export async function copyCode(uris: vscode.Uri[]) {
 						rootPath,
 						includeGlobs,
 						excludeGlobs,
-						true,
 					);
 					const fileCount = countFiles(tree);
 					totalFiles += fileCount;

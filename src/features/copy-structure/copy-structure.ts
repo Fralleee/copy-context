@@ -29,7 +29,6 @@ export async function copyStructure(uri: vscode.Uri) {
 		workspaceFolders[0].uri.fsPath,
 		["**"],
 		excludeGlobs,
-		true,
 	);
 
 	await vscode.window.withProgress(

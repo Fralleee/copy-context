@@ -16,17 +16,12 @@ export async function fileTree(
 	rootPath: string,
 	includeGlobs: string[],
 	excludeGlobs: string[],
-	skipHidden = true,
 ): Promise<FileTreeNode[]> {
 	let dirents: Dirent[];
 	try {
 		dirents = await readdir(dirPath, { withFileTypes: true });
 	} catch {
 		return [];
-	}
-
-	if (skipHidden) {
-		dirents = dirents.filter((d) => !d.name.startsWith("."));
 	}
 
 	const results: FileTreeNode[] = [];
@@ -52,7 +47,6 @@ export async function fileTree(
 				rootPath,
 				includeGlobs,
 				excludeGlobs,
-				skipHidden,
 			);
 			if (children.length > 0) {
 				results.push({
