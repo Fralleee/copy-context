@@ -4,5 +4,5 @@
 
 ### 🚀 Features
 
-- Added support for more languages
-- Added progress and cancel when executing
+- Extend language support for numerous file extensions to improve syntax highlighting in Markdown.
+- Add progress indicator and cancellation option
