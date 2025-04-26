@@ -1,7 +1,26 @@
 import fs from "node:fs/promises";
 import type { FileTreeNode } from "../../shared/file-tree";
-import { formatAsMarkdown } from "./markdown";
+import { formatAsMarkdown, formatBinaryAsMarkdown } from "./markdown";
 import type * as vscode from "vscode";
+import { detectBinary } from "./detect-binary";
+import { fileTypeFromFile } from "file-type";
+import type { BinaryMetadata } from "./binary-metadata";
+
+export async function getFileMetadata(
+	fullPath: string,
+): Promise<BinaryMetadata> {
+	const stat = await fs.stat(fullPath);
+	const meta: BinaryMetadata = { size: stat.size };
+
+	try {
+		const ft = await fileTypeFromFile(fullPath);
+		if (ft?.mime) {
+			meta.mime = ft.mime;
+		}
+	} catch {}
+
+	return meta;
+}
 
 export async function fileContents(
 	nodes: FileTreeNode[],
@@ -29,9 +48,22 @@ export async function fileContents(
 		} else if (!node.isDirectory) {
 			if (!visitedFiles.has(node.relativePath)) {
 				visitedFiles.add(node.relativePath);
-				const content = await fs.readFile(node.fullPath, "utf-8");
-				addSizeCallback(content.length);
-				result += formatAsMarkdown(node.relativePath, content);
+
+				try {
+					const isBinary = await detectBinary(node.fullPath);
+					if (isBinary) {
+						const { size, mime } = await getFileMetadata(node.fullPath);
+						addSizeCallback(size);
+						result += formatBinaryAsMarkdown(node.relativePath, { size, mime });
+					} else {
+						const content = await fs.readFile(node.fullPath, "utf-8");
+						addSizeCallback(Buffer.byteLength(content, "utf-8"));
+						result += formatAsMarkdown(node.relativePath, content);
+					}
+				} catch (err) {
+					result += `### ${node.relativePath}\n- **error reading file metadata**\n\n`;
+				}
+
 				progressCallback();
 			}
 		}

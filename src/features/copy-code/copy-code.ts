@@ -1,9 +1,7 @@
 import * as vscode from "vscode";
-import fs from "node:fs/promises";
 import path from "node:path";
 import { shouldIncludeFile } from "../../shared/file-matching";
 import { fileTree, type FileTreeNode } from "../../shared/file-tree";
-import { formatAsMarkdown } from "./markdown";
 import { fileContents } from "./file-contents";
 
 type Directory = {
@@ -84,45 +82,46 @@ export async function copyCode(uris: vscode.Uri[]) {
 			}
 
 			let output = "";
+
 			for (const item of items) {
 				if (token.isCancellationRequested) {
 					throw new Error("Operation cancelled");
 				}
 
+				let nodes: FileTreeNode[];
 				if (item.type === "directory") {
-					output += await fileContents(
-						item.tree,
-						visitedFiles,
-						maxContentSize,
-						(sz) => {
-							totalSize += sz;
-							if (totalSize > maxContentSize) {
-								throw new Error(
-									`Exceeded maximum content size of ${maxContentSize} bytes`,
-								);
-							}
-						},
-						token,
-						updateProgress,
-					);
+					nodes = item.tree;
 				} else {
 					const relPath = path.relative(rootPath, item.uri.fsPath);
 					if (!shouldIncludeFile(relPath, includeGlobs, excludeGlobs)) {
 						continue;
 					}
-					if (!visitedFiles.has(relPath)) {
-						visitedFiles.add(relPath);
-						const fileContent = await fs.readFile(item.uri.fsPath, "utf-8");
-						totalSize += fileContent.length;
+
+					nodes = [
+						{
+							name: path.basename(item.uri.fsPath),
+							fullPath: item.uri.fsPath,
+							relativePath: relPath,
+							isDirectory: false,
+						},
+					];
+				}
+
+				output += await fileContents(
+					nodes,
+					visitedFiles,
+					maxContentSize,
+					(sz) => {
+						totalSize += sz;
 						if (totalSize > maxContentSize) {
 							throw new Error(
 								`Exceeded maximum content size of ${maxContentSize} bytes`,
 							);
 						}
-						output += formatAsMarkdown(relPath, fileContent);
-						updateProgress();
-					}
-				}
+					},
+					token,
+					updateProgress,
+				);
 			}
 
 			const outputChannel = vscode.window.createOutputChannel("CopyContext");

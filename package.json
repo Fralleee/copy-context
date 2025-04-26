@@ -7,6 +7,7 @@
 	"icon": "images/icon.png",
 	"license": "MIT",
 	"version": "0.1.1",
+	"type": "module",
 	"engines": {
 		"vscode": "^1.97.0"
 	},
@@ -14,7 +15,10 @@
 		"type": "git",
 		"url": "https://github.com/Fralleee/copy-code-context.git"
 	},
-	"categories": ["Other", "Visualization"],
+	"categories": [
+		"Other",
+		"Visualization"
+	],
 	"activationEvents": [],
 	"main": "./out/extension.js",
 	"contributes": {
@@ -91,6 +95,8 @@
 		"knip": "knip"
 	},
 	"dependencies": {
+		"file-type": "^20.4.1",
+		"istextorbinary": "^9.5.0",
 		"minimatch": "^5.1.2"
 	},
 	"devDependencies": {
