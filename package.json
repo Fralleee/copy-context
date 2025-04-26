@@ -66,13 +66,17 @@
 				},
 				"copyContext.includeGlobs": {
 					"type": "array",
-					"items": { "type": "string" },
+					"items": {
+						"type": "string"
+					},
 					"default": [],
 					"description": "Additional glob patterns to always include when copying context, even if other filters would exclude them."
 				},
 				"copyContext.excludeGlobs": {
 					"type": "array",
-					"items": { "type": "string" },
+					"items": {
+						"type": "string"
+					},
 					"default": [],
 					"description": "Additional glob patterns to always exclude when copying context, even if other filters would include them."
 				},
@@ -95,6 +99,7 @@
 	},
 	"dependencies": {
 		"file-type": "^16.5.4",
+		"ignore": "^7.0.4",
 		"istextorbinary": "^9.5.0",
 		"minimatch": "^5.1.2"
 	},

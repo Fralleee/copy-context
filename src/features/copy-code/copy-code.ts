@@ -1,8 +1,9 @@
 import * as vscode from "vscode";
 import path from "node:path";
-import { shouldIncludeFile } from "../../shared/file-matching";
 import { fileTree, type FileTreeNode } from "../../shared/file-tree";
 import { fileContents } from "./file-contents";
+import { getSettings } from "../../config";
+import { shouldIncludePath } from "../../shared/filter";
 
 type Directory = {
 	type: "directory";
@@ -19,10 +20,7 @@ type File = {
 type Item = Directory | File;
 
 export async function copyCode(uris: vscode.Uri[]) {
-	const config = vscode.workspace.getConfiguration("copyContext");
-	const includeGlobs: string[] = config.get("includeGlobs") ?? [];
-	const excludeGlobs: string[] = config.get("excludeGlobs") ?? [];
-	const maxContentSize: number = config.get("maxContentSize") ?? 500000;
+	const { maxContentSize } = getSettings();
 
 	const workspaceFolders = vscode.workspace.workspaceFolders;
 	if (!workspaceFolders || workspaceFolders.length === 0) {
@@ -57,12 +55,7 @@ export async function copyCode(uris: vscode.Uri[]) {
 			for (const uri of uris) {
 				const stat = await vscode.workspace.fs.stat(uri);
 				if (stat.type === vscode.FileType.Directory) {
-					const tree = await fileTree(
-						uri.fsPath,
-						rootPath,
-						includeGlobs,
-						excludeGlobs,
-					);
+					const tree = await fileTree(uri.fsPath, rootPath);
 					const fileCount = countFiles(tree);
 					totalFiles += fileCount;
 					items.push({ type: "directory", uri, tree, fileCount });
@@ -93,7 +86,7 @@ export async function copyCode(uris: vscode.Uri[]) {
 					nodes = item.tree;
 				} else {
 					const relPath = path.relative(rootPath, item.uri.fsPath);
-					if (!shouldIncludeFile(relPath, includeGlobs, excludeGlobs)) {
+					if (!shouldIncludePath(relPath)) {
 						continue;
 					}
 
