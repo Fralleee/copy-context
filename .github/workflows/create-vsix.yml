@@ -1,0 +1,32 @@
+name: Create VSIX
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  package:
+    name: Package VSIX
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Package VSIX
+        run: npx vsce package --out copy-code-context.vsix
+
+      - name: Upload VSIX artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: vsix
+          path: copy-code-context.vsix
