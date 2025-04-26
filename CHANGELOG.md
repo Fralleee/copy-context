@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.2.0 (2025-04-26)
+
+### 🚀 Features
+* Support binary files and output metadata (size, mime)
+
 ## 0.1.1 (2025-03-15)
 
 ### 🐛 Bug Fixes
