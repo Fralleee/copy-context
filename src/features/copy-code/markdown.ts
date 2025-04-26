@@ -1,4 +1,5 @@
 import path from "node:path";
+import type { BinaryMetadata } from "./binary-metadata";
 
 const languageMap: { [ext: string]: string } = {
 	js: "javascript",
@@ -67,4 +68,20 @@ export function formatAsMarkdown(
 	const ext = path.extname(relativePath).replace(".", "").toLowerCase();
 	const lang = guessLanguageFromExtension(ext);
 	return `### ${relativePath}\n\`\`\`${lang}\n${content}\n\`\`\`\n\n`;
+}
+
+export function formatBinaryAsMarkdown(
+	relativePath: string,
+	meta: BinaryMetadata,
+): string {
+	const lines: string[] = [];
+
+	const sizeKB = (meta.size / 1024).toFixed(1);
+	lines.push(`- **size:** ${sizeKB} KB (${meta.size.toLocaleString()} bytes)`);
+
+	if (meta.mime) {
+		lines.push(`- **mime:** ${meta.mime}`);
+	}
+
+	return `### ${relativePath}\n${lines.join("\n")}\n\n`;
 }
