@@ -29,10 +29,10 @@ jobs:
           git config user.name "github-actions"
           git config user.email "actions@github.com"
 
-      - name: Package VSIX
-        run: npx vsce package --out copy-code-context.vsix
-
       - name: Run semantic-release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: npx semantic-release
+
+      - name: Package VSIX
+        run: npx vsce package --out copy-code-context.vsix
