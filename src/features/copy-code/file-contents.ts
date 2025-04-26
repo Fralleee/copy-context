@@ -6,9 +6,7 @@ import { detectBinary } from "./detect-binary";
 import { fromFile } from "file-type";
 import type { BinaryMetadata } from "./binary-metadata";
 
-export async function getFileMetadata(
-	fullPath: string,
-): Promise<BinaryMetadata> {
+async function getFileMetadata(fullPath: string): Promise<BinaryMetadata> {
 	const stat = await fs.stat(fullPath);
 	const meta: BinaryMetadata = { size: stat.size };
 
