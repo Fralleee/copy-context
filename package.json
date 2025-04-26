@@ -54,24 +54,27 @@
 			"type": "object",
 			"title": "Copy Context Extension Configuration",
 			"properties": {
+				"copyContext.respectVSCodeExplorerExclude": {
+					"type": "boolean",
+					"default": true,
+					"description": "Skip any files or folders hidden in the VS Code Explorer (i.e. respect your `files.exclude` settings)."
+				},
+				"copyContext.respectGitIgnore": {
+					"type": "boolean",
+					"default": false,
+					"description": "Skip files matching your project's `.gitignore`. Turn this on to avoid accidentally copying ignored build artifacts."
+				},
 				"copyContext.includeGlobs": {
 					"type": "array",
-					"default": [
-						"**/*.{js,cjs,mjs,jsx,ts,tsx,html,css,scss,less,md,json,yaml,yml,xml,c,cpp,cc,cxx,h,hpp,cs,java,py,rb,php,go,rs,swift,kt,kts,sh,ps1,sql,scala,hs,pl,pm,lua,erl,ex,exs,r,cshtml,m,mm,coffee,fs,fsi,fsx,vue,svelte,jsonc}"
-					],
-					"description": "Glob patterns for files to include in Copy Code Context"
+					"items": { "type": "string" },
+					"default": [],
+					"description": "Additional glob patterns to always include when copying context, even if other filters would exclude them."
 				},
 				"copyContext.excludeGlobs": {
 					"type": "array",
-					"default": [
-						"**/node_modules/**",
-						"**/.vscode/**",
-						"**/.git/**",
-						"**/.next/**",
-						"**/package-lock.json",
-						"**/yarn.lock"
-					],
-					"description": "Glob patterns for files/folders to exclude"
+					"items": { "type": "string" },
+					"default": [],
+					"description": "Additional glob patterns to always exclude when copying context, even if other filters would include them."
 				},
 				"copyContext.maxContentSize": {
 					"type": "number",
