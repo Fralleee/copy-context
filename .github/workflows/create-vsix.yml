@@ -26,7 +26,7 @@ jobs:
         run: npx vsce package --out copy-code-context.vsix
 
       - name: Upload VSIX artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v2   # ← use v2 here
         with:
           name: vsix
           path: copy-code-context.vsix
