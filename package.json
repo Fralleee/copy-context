@@ -1,22 +1,6 @@
 {
-	"name": "copy-code-context",
-	"displayName": "Copy Code Context",
-	"description": "Copies selected files/folders as Markdown code context or structure",
-	"publisher": "fralle",
-	"homepage": "https://github.com/Fralleee/copy-code-context#readme",
-	"icon": "images/icon.png",
-	"license": "MIT",
-	"version": "0.2.0",
-	"engines": {
-		"vscode": "^1.97.0"
-	},
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/Fralleee/copy-code-context.git"
-	},
-	"categories": ["Other", "Visualization"],
 	"activationEvents": [],
-	"main": "./out/extension.js",
+	"categories": ["Other", "Visualization"],
 	"contributes": {
 		"commands": [
 			{
@@ -28,6 +12,40 @@
 				"title": "Copy Folder Structure"
 			}
 		],
+		"configuration": {
+			"properties": {
+				"copyContext.excludeGlobs": {
+					"default": [],
+					"description": "Glob patterns to always exclude (highest priority), even if they match `includeGlobs`.",
+					"items": { "type": "string" },
+					"type": "array"
+				},
+				"copyContext.includeGlobs": {
+					"default": [],
+					"description": "Glob patterns to always include, unless explicitly excluded by `excludeGlobs`.",
+					"items": { "type": "string" },
+					"type": "array"
+				},
+
+				"copyContext.maxContentSize": {
+					"default": 500000,
+					"description": "Max total content size in bytes to copy. Prevents copying extremely large files.",
+					"type": "number"
+				},
+				"copyContext.respectGitIgnore": {
+					"default": false,
+					"description": "Skip any files matching `.gitignore` (opt-in).",
+					"type": "boolean"
+				},
+				"copyContext.respectVSCodeExplorerExclude": {
+					"default": true,
+					"description": "Skip any files or folders hidden in the VS Code Explorer (i.e. respect your `files.exclude`).",
+					"type": "boolean"
+				}
+			},
+			"title": "Copy Context Extension Configuration",
+			"type": "object"
+		},
 		"menus": {
 			"commandPalette": [
 				{
@@ -49,52 +67,7 @@
 					"group": "6_copycodecontext@10"
 				}
 			]
-		},
-		"configuration": {
-			"type": "object",
-			"title": "Copy Context Extension Configuration",
-			"properties": {
-				"copyContext.respectVSCodeExplorerExclude": {
-					"type": "boolean",
-					"default": true,
-					"description": "Skip any files or folders hidden in the VS Code Explorer (i.e. respect your `files.exclude` settings)."
-				},
-				"copyContext.respectGitIgnore": {
-					"type": "boolean",
-					"default": false,
-					"description": "Skip files matching your project's `.gitignore`. Turn this on to avoid accidentally copying ignored build artifacts."
-				},
-				"copyContext.includeGlobs": {
-					"type": "array",
-					"items": {
-						"type": "string"
-					},
-					"default": [],
-					"description": "Additional glob patterns to always include when copying context, even if other filters would exclude them."
-				},
-				"copyContext.excludeGlobs": {
-					"type": "array",
-					"items": {
-						"type": "string"
-					},
-					"default": [],
-					"description": "Additional glob patterns to always exclude when copying context, even if other filters would include them."
-				},
-				"copyContext.maxContentSize": {
-					"type": "number",
-					"default": 500000,
-					"description": "Max total content size in bytes to copy. Prevents copying extremely large files."
-				}
-			}
 		}
-	},
-	"scripts": {
-		"vscode:prepublish": "npm run compile",
-		"compile": "tsc -p ./",
-		"watch": "tsc -watch -p ./",
-		"lint": "biome lint .",
-		"test": "vitest",
-		"knip": "knip"
 	},
 	"dependencies": {
 		"file-type": "^16.5.4",
@@ -102,6 +75,7 @@
 		"istextorbinary": "^9.5.0",
 		"minimatch": "^5.1.2"
 	},
+	"description": "Copies selected files/folders as Markdown code context or structure",
 	"devDependencies": {
 		"@biomejs/biome": "1.9.4",
 		"@semantic-release/changelog": "^6.0.3",
@@ -121,5 +95,28 @@
 		"semantic-release": "^24.2.3",
 		"typescript": "^5.8.2",
 		"vitest": "^3.1.2"
-	}
+	},
+	"displayName": "Copy Code Context",
+	"engines": {
+		"vscode": "^1.97.0"
+	},
+	"homepage": "https://github.com/Fralleee/copy-code-context#readme",
+	"icon": "images/icon.png",
+	"license": "MIT",
+	"main": "./out/extension.js",
+	"name": "copy-code-context",
+	"publisher": "fralle",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/Fralleee/copy-code-context.git"
+	},
+	"scripts": {
+		"compile": "tsc -p ./",
+		"knip": "knip",
+		"lint": "biome lint .",
+		"test": "vitest",
+		"vscode:prepublish": "npm run compile",
+		"watch": "tsc -watch -p ./"
+	},
+	"version": "0.2.0"
 }
