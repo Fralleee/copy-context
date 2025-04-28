@@ -1,9 +1,6 @@
 {
 	"activationEvents": [],
-	"categories": [
-		"Other",
-		"Visualization"
-	],
+	"categories": ["Other", "Visualization"],
 	"contributes": {
 		"commands": [
 			{
