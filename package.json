@@ -100,7 +100,7 @@
 	"homepage": "https://github.com/Fralleee/copy-code-context#readme",
 	"icon": "images/icon.png",
 	"license": "MIT",
-	"main": "./out/extension.js",
+	"main": "./extension/out/extension.js",
 	"name": "copy-code-context",
 	"publisher": "fralle",
 	"repository": {
