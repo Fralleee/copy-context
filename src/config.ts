@@ -1,40 +1,15 @@
-import { workspace, type ExtensionContext } from "vscode";
-import { updateFiltersForWorkspace } from "./shared/filter";
+import * as vscode from "vscode";
 
-export interface CopyContextSettings {
-	respectVSCodeExplorerExclude: boolean;
-	respectGitIgnore: boolean;
-	includeGlobs: string[];
-	excludeGlobs: string[];
-	maxContentSize: number;
-}
-
-export function initializeConfig(ctx: ExtensionContext) {
-	loadSettings();
-
-	ctx.subscriptions.push(
-		workspace.onDidChangeConfiguration((e) => {
-			if (e.affectsConfiguration("copyContext")) {
-				loadSettings();
-				updateFiltersForWorkspace();
-			}
-		}),
-	);
-}
-
-let settings: CopyContextSettings;
-
-export function getSettings(): CopyContextSettings {
-	return settings;
-}
-
-function loadSettings() {
-	const cfg = workspace.getConfiguration("copyContext");
-	settings = {
-		respectVSCodeExplorerExclude: cfg.get("respectVSCodeExplorerExclude", true),
-		respectGitIgnore: cfg.get("respectGitIgnore", false),
-		includeGlobs: cfg.get<string[]>("includeGlobs") ?? [],
-		excludeGlobs: cfg.get<string[]>("excludeGlobs") ?? [],
-		maxContentSize: cfg.get<number>("maxContentSize", 500_000),
+export function getSettings() {
+	const config = vscode.workspace.getConfiguration("copyContext");
+	return {
+		includeGlobs: config.get<string[]>("includeGlobs", []),
+		excludeGlobs: config.get<string[]>("excludeGlobs", []),
+		respectGitIgnore: config.get<boolean>("respectGitIgnore", true),
+		respectVSCodeExplorerExclude: config.get<boolean>(
+			"respectVSCodeExplorerExclude",
+			true,
+		),
+		maxContentSize: config.get<number>("maxContentSize", 500_000),
 	};
 }

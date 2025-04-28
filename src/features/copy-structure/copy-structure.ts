@@ -2,6 +2,7 @@ import * as vscode from "vscode";
 import path from "node:path";
 import { fileTree, type FileTreeNode } from "../../shared/file-tree";
 import { buildAsciiLines } from "./build-ascii-lines";
+import { makeFilterContext } from "../../shared/make-filter-context";
 
 function countNodes(nodes: FileTreeNode[]): number {
 	let count = 0;
@@ -21,14 +22,12 @@ export async function copyStructure(uri: vscode.Uri) {
 		return;
 	}
 
-	const config = vscode.workspace.getConfiguration("copyContext");
-	const excludeGlobs: string[] = config.get("excludeGlobs") || [];
+	const filterContext = await makeFilterContext();
 	const folderName = path.basename(uri.fsPath);
 	const tree = await fileTree(
 		uri.fsPath,
 		workspaceFolders[0].uri.fsPath,
-		["**"],
-		excludeGlobs,
+		filterContext,
 	);
 
 	await vscode.window.withProgress(

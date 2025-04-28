@@ -5,6 +5,7 @@
 		"target": "ES2022",
 		"resolveJsonModule": true,
 		"esModuleInterop": true,
+		"skipLibCheck": true,
 		"outDir": "out",
 		"lib": ["ES2022"],
 		"sourceMap": true,

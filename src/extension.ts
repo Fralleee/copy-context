@@ -1,19 +1,8 @@
 import * as vscode from "vscode";
 import { copyStructure } from "./features/copy-structure/copy-structure";
 import { copyCode } from "./features/copy-code/copy-code";
-import { initializeConfig } from "./config";
-import { updateFiltersForWorkspace } from "./shared/filter";
 
 export async function activate(context: vscode.ExtensionContext) {
-	initializeConfig(context);
-	await updateFiltersForWorkspace();
-
-	context.subscriptions.push(
-		vscode.workspace.onDidChangeWorkspaceFolders(() => {
-			updateFiltersForWorkspace();
-		}),
-	);
-
 	const copyCodeCommand = vscode.commands.registerCommand(
 		"extension.copyCode",
 		async (uri: vscode.Uri, uris?: vscode.Uri[]) => {
