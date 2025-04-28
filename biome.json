@@ -18,8 +18,22 @@
 	"linter": {
 		"enabled": true,
 		"rules": {
-			"recommended": true
+			"recommended": true,
+			"correctness": {
+				"noUnusedImports": {
+					"fix": "safe",
+					"level": "error"
+				}
+			},
+			"suspicious": {
+				"noConsole": "error",
+				"useAwait": "error"
+			}
 		}
+	},
+	"assists": {
+		"enabled": true,
+		"actions": { "source": { "useSortedKeys": "on" } }
 	},
 	"javascript": {
 		"formatter": {

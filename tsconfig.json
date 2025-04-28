@@ -1,16 +1,16 @@
 {
 	"compilerOptions": {
+		"esModuleInterop": true,
+		"lib": ["ES2022"],
 		"module": "Node16",
 		"moduleResolution": "node16",
-		"target": "ES2022",
-		"resolveJsonModule": true,
-		"esModuleInterop": true,
-		"skipLibCheck": true,
 		"outDir": "out",
-		"lib": ["ES2022"],
+		"resolveJsonModule": true,
+		"rootDir": ".",
+		"skipLibCheck": true,
 		"sourceMap": true,
-		"rootDir": "src",
-		"strict": true
+		"strict": true,
+		"target": "ES2022"
 	},
 	"exclude": ["node_modules", "out", "**/*.test.ts"]
 }

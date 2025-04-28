@@ -2,7 +2,7 @@ import * as vscode from "vscode";
 import { copyStructure } from "./features/copy-structure/copy-structure";
 import { copyCode } from "./features/copy-code/copy-code";
 
-export async function activate(context: vscode.ExtensionContext) {
+export function activate(context: vscode.ExtensionContext) {
 	const copyCodeCommand = vscode.commands.registerCommand(
 		"extension.copyCode",
 		async (uri: vscode.Uri, uris?: vscode.Uri[]) => {
