@@ -1,35 +1,33 @@
 import * as vscode from "vscode";
 import path from "node:path";
-import { shouldIncludeFile } from "../../shared/file-matching";
 import { fileTree, type FileTreeNode } from "../../shared/file-tree";
 import { fileContents } from "./file-contents";
+import { getSettings } from "../../config";
+import {
+	type FilterContext,
+	makeFilterContext,
+} from "../../shared/make-filter-context";
+import { shouldIncludePath } from "../../shared/filter";
 
 type Directory = {
 	type: "directory";
 	uri: vscode.Uri;
 	tree: FileTreeNode[];
 	fileCount: number;
+	rootPath: string;
 };
 
 type File = {
 	type: "file";
 	uri: vscode.Uri;
+	rootPath: string;
 };
 
 type Item = Directory | File;
 
 export async function copyCode(uris: vscode.Uri[]) {
-	const config = vscode.workspace.getConfiguration("copyContext");
-	const includeGlobs: string[] = config.get("includeGlobs") ?? [];
-	const excludeGlobs: string[] = config.get("excludeGlobs") ?? [];
-	const maxContentSize: number = config.get("maxContentSize") ?? 500000;
-
-	const workspaceFolders = vscode.workspace.workspaceFolders;
-	if (!workspaceFolders || workspaceFolders.length === 0) {
-		vscode.window.showErrorMessage("No workspace folder found.");
-		return;
-	}
-	const rootPath = workspaceFolders[0].uri.fsPath;
+	const filterContext = await makeFilterContext();
+	const { maxContentSize } = getSettings();
 	const visitedFiles = new Set<string>();
 	let totalSize = 0;
 
@@ -40,46 +38,14 @@ export async function copyCode(uris: vscode.Uri[]) {
 			cancellable: true,
 		},
 		async (progress, token) => {
-			function countFiles(nodes: FileTreeNode[]): number {
-				return nodes.reduce((acc, node) => {
-					if (node.isDirectory && node.children) {
-						return acc + countFiles(node.children);
-					}
-					if (!node.isDirectory) {
-						return acc + 1;
-					}
-					return acc;
-				}, 0);
-			}
-
-			const items: Item[] = [];
-			let totalFiles = 0;
-			for (const uri of uris) {
-				const stat = await vscode.workspace.fs.stat(uri);
-				if (stat.type === vscode.FileType.Directory) {
-					const tree = await fileTree(
-						uri.fsPath,
-						rootPath,
-						includeGlobs,
-						excludeGlobs,
-					);
-					const fileCount = countFiles(tree);
-					totalFiles += fileCount;
-					items.push({ type: "directory", uri, tree, fileCount });
-				} else {
-					totalFiles += 1;
-					items.push({ type: "file", uri });
-				}
-			}
+			const { items, totalFiles } = await collectCopyItems(uris, filterContext);
 
 			let processedCount = 0;
-			function updateProgress() {
-				processedCount++;
+			const updateProgress = () =>
 				progress.report({
 					increment: (1 / totalFiles) * 100,
-					message: `${processedCount} of ${totalFiles} files processed`,
+					message: `${++processedCount} of ${totalFiles} files processed`,
 				});
-			}
 
 			let output = "";
 
@@ -92,10 +58,10 @@ export async function copyCode(uris: vscode.Uri[]) {
 				if (item.type === "directory") {
 					nodes = item.tree;
 				} else {
-					const relPath = path.relative(rootPath, item.uri.fsPath);
-					if (!shouldIncludeFile(relPath, includeGlobs, excludeGlobs)) {
-						continue;
-					}
+					const relPath = path
+						.relative(item.rootPath, item.uri.fsPath)
+						.split(path.sep)
+						.join("/");
 
 					nodes = [
 						{
@@ -134,4 +100,49 @@ export async function copyCode(uris: vscode.Uri[]) {
 			vscode.window.setStatusBarMessage("Code context copied!", 3000);
 		},
 	);
+}
+
+async function collectCopyItems(
+	uris: vscode.Uri[],
+	filterContext: FilterContext,
+): Promise<{ items: Item[]; totalFiles: number }> {
+	const items: Item[] = [];
+	let totalFiles = 0;
+
+	for (const uri of uris) {
+		const ws = vscode.workspace.getWorkspaceFolder(uri);
+		const rootPath = ws?.uri.fsPath ?? uri.fsPath;
+		const relPath = path
+			.relative(rootPath, uri.fsPath)
+			.split(path.sep)
+			.join("/");
+
+		if (!shouldIncludePath(relPath, filterContext)) {
+			continue;
+		}
+
+		const stat = await vscode.workspace.fs.stat(uri);
+		if (stat.type === vscode.FileType.Directory) {
+			const tree = await fileTree(uri.fsPath, rootPath, filterContext);
+			const fileCount = countFiles(tree);
+			if (fileCount > 0) {
+				totalFiles += fileCount;
+				items.push({ type: "directory", uri, tree, fileCount, rootPath });
+			}
+		} else {
+			totalFiles++;
+			items.push({ type: "file", uri, rootPath });
+		}
+	}
+
+	return { items, totalFiles };
+}
+
+function countFiles(nodes: FileTreeNode[]): number {
+	return nodes.reduce((acc, node) => {
+		if (node.isDirectory && node.children) {
+			return acc + countFiles(node.children);
+		}
+		return acc + (node.isDirectory ? 0 : 1);
+	}, 0);
 }

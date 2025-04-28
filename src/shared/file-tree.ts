@@ -1,7 +1,8 @@
 import * as path from "node:path";
 import { readdir } from "node:fs/promises";
 import type { Dirent } from "node:fs";
-import { shouldExclude, shouldIncludeFile } from "./file-matching";
+import { shouldIncludePath } from "./filter";
+import type { FilterContext } from "./make-filter-context";
 
 export interface FileTreeNode {
 	name: string;
@@ -14,8 +15,7 @@ export interface FileTreeNode {
 export async function fileTree(
 	dirPath: string,
 	rootPath: string,
-	includeGlobs: string[],
-	excludeGlobs: string[],
+	filterContext: FilterContext,
 ): Promise<FileTreeNode[]> {
 	let dirents: Dirent[];
 	try {
@@ -35,19 +35,17 @@ export async function fileTree(
 
 	for (const entry of sorted) {
 		const entryFullPath = path.join(dirPath, entry.name);
-		const relPath = path.relative(rootPath, entryFullPath);
+		const relPath = path
+			.relative(rootPath, entryFullPath)
+			.split(path.sep)
+			.join("/");
 
 		if (entry.isDirectory()) {
-			if (shouldExclude(relPath, excludeGlobs)) {
+			if (!shouldIncludePath(relPath, filterContext)) {
 				continue;
 			}
 
-			const children = await fileTree(
-				entryFullPath,
-				rootPath,
-				includeGlobs,
-				excludeGlobs,
-			);
+			const children = await fileTree(entryFullPath, rootPath, filterContext);
 			if (children.length > 0) {
 				results.push({
 					name: entry.name,
@@ -58,7 +56,7 @@ export async function fileTree(
 				});
 			}
 		} else {
-			if (!shouldIncludeFile(relPath, includeGlobs, excludeGlobs)) {
+			if (!shouldIncludePath(relPath, filterContext)) {
 				continue;
 			}
 			results.push({

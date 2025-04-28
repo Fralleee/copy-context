@@ -8,5 +8,5 @@ export async function detectBinary(fullPath: string): Promise<boolean> {
 	}
 
 	const itb = await import("istextorbinary");
-	return !(await itb.isText(fullPath, await fs.readFile(fullPath)));
+	return !itb.isText(fullPath, await fs.readFile(fullPath));
 }
