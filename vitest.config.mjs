@@ -5,9 +5,5 @@ export default defineConfig({
 		globals: true,
 		environment: "node",
 		setupFiles: ["./vitest.setup.js"],
-		coverage: {
-			provider: "v8",
-			reporter: ["text", "html"],
-		},
 	},
 });
