@@ -5,7 +5,7 @@ export function getSettings() {
 	return {
 		includeGlobs: config.get<string[]>("includeGlobs", []),
 		excludeGlobs: config.get<string[]>("excludeGlobs", []),
-		respectGitIgnore: config.get<boolean>("respectGitIgnore", true),
+		respectGitIgnore: config.get<boolean>("respectGitIgnore", false),
 		respectVSCodeExplorerExclude: config.get<boolean>(
 			"respectVSCodeExplorerExclude",
 			true,

@@ -16,19 +16,11 @@ function countNodes(nodes: FileTreeNode[]): number {
 }
 
 export async function copyStructure(uri: vscode.Uri) {
-	const workspaceFolders = vscode.workspace.workspaceFolders;
-	if (!workspaceFolders || workspaceFolders.length === 0) {
-		vscode.window.showErrorMessage("No workspace folder found.");
-		return;
-	}
-
 	const filterContext = await makeFilterContext();
 	const folderName = path.basename(uri.fsPath);
-	const tree = await fileTree(
-		uri.fsPath,
-		workspaceFolders[0].uri.fsPath,
-		filterContext,
-	);
+	const folder = vscode.workspace.getWorkspaceFolder(uri);
+	const rootPath = folder?.uri.fsPath || uri.fsPath;
+	const tree = await fileTree(uri.fsPath, rootPath, filterContext);
 
 	await vscode.window.withProgress(
 		{

@@ -35,7 +35,10 @@ export async function fileTree(
 
 	for (const entry of sorted) {
 		const entryFullPath = path.join(dirPath, entry.name);
-		const relPath = path.relative(rootPath, entryFullPath);
+		const relPath = path
+			.relative(rootPath, entryFullPath)
+			.split(path.sep)
+			.join("/");
 
 		if (entry.isDirectory()) {
 			if (!shouldIncludePath(relPath, filterContext)) {
