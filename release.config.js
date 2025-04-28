@@ -14,7 +14,7 @@ module.exports = {
 			{
 				prepareCmd: [
 					"npm version ${nextRelease.version} --no-git-tag-version",
-					"npx vsce package --out copy-code-context.vsix",
+					"npx @vscode/vsce package --out copy-code-context.vsix",
 				].join(" && "),
 			},
 		],

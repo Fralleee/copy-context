@@ -87,7 +87,7 @@
 		"@types/minimatch": "^5.1.2",
 		"@types/mocha": "^10.0.10",
 		"@types/node": "^20.17.24",
-		"@types/vscode": "^1.97.0",
+		"@types/vscode": "^1.99.1",
 		"knip": "^5.46.0",
 		"semantic-release": "^24.2.3",
 		"typescript": "^5.8.2",
@@ -95,7 +95,7 @@
 	},
 	"displayName": "Copy Code Context",
 	"engines": {
-		"vscode": "^1.97.0"
+		"vscode": "^1.99.2"
 	},
 	"homepage": "https://github.com/Fralleee/copy-code-context#readme",
 	"icon": "images/icon.png",
