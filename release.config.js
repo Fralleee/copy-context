@@ -3,39 +3,19 @@ module.exports = {
 	plugins: [
 		"@semantic-release/commit-analyzer",
 		"@semantic-release/release-notes-generator",
-		[
-			"@semantic-release/changelog",
-			{
-				changelogFile: "CHANGELOG.md",
-			},
-		],
+		["@semantic-release/changelog", { changelogFile: "CHANGELOG.md" }],
 		[
 			"@semantic-release/exec",
-			{
-				prepareCmd: [
-					"npm version ${nextRelease.version} --no-git-tag-version",
-					"npx @vscode/vsce package --out copy-code-context.vsix",
-				].join(" && "),
-			},
+			{ prepareCmd: "npm version ${nextRelease.version} --no-git-tag-version" },
 		],
 		[
 			"@semantic-release/git",
 			{
-				assets: ["package.json", "CHANGELOG.md", "copy-code-context.vsix"],
+				assets: ["package.json", "CHANGELOG.md"],
 				message:
 					"chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}",
 			},
 		],
-		[
-			"@semantic-release/github",
-			{
-				assets: [
-					{
-						path: "copy-code-context.vsix",
-						label: "VS Code Extension",
-					},
-				],
-			},
-		],
+		"@semantic-release/github",
 	],
 };
