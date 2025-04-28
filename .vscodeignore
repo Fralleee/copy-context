@@ -9,3 +9,11 @@ vsc-extension-quickstart.md
 **/*.map
 **/*.ts
 **/.vscode-test.*
+CODEOWNERS
+knip.json
+release.config.js
+vitest.config.mjs
+vitest.setup.js
+.github
+node_modules
+
