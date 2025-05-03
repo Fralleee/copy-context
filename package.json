@@ -1,5 +1,8 @@
 {
-	"categories": ["Other", "Visualization"],
+	"categories": [
+		"Other",
+		"Visualization"
+	],
 	"contributes": {
 		"commands": [
 			{
@@ -59,7 +62,9 @@
 		"menus": {
 			"editor/title/context": [
 				{
-					"arguments": ["${resourceUri}"],
+					"arguments": [
+						"${resourceUri}"
+					],
 					"command": "extension.copyCode.thisTab",
 					"group": "1_copycode"
 				},
@@ -99,6 +104,7 @@
 		"@types/mocha": "^10.0.10",
 		"@types/node": "^20.17.24",
 		"@types/vscode": "^1.99.1",
+		"conventional-changelog-conventionalcommits": "^8.0.0",
 		"knip": "^5.46.0",
 		"semantic-release": "^24.2.3",
 		"typescript": "^5.8.2",

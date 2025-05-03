@@ -58,7 +58,7 @@ export async function fileContents(
 						result += formatAsMarkdown(node.relativePath, content);
 					}
 				} catch (err) {
-					result += `\`\`\`\n// ${node.relativePath}\n- **Failed reading file metadata:** ${err}\n\`\`\`\n\n`;
+					result += `\`\`\`text\n// ${node.relativePath}\n- **Failed reading file metadata:** ${err}\n\`\`\`\n\n`;
 				}
 
 				progressCallback();
