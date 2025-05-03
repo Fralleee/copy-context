@@ -1,3 +1,9 @@
+## [0.4.1](https://github.com/Fralleee/copy-code-context/compare/v0.4.0...v0.4.1) (2025-05-03)
+
+### Chores
+
+* change markdown format for binary files to use the new formatting ([b408d01](https://github.com/Fralleee/copy-code-context/commit/b408d01709eb5cd114aa255916aeea048283ed6c))
+
 # [0.4.0](https://github.com/Fralleee/copy-code-context/compare/v0.3.0...v0.4.0) (2025-05-03)
 
 
