@@ -52,7 +52,6 @@ export async function copyStructure(uri: vscode.Uri) {
 			vscode.window.setStatusBarMessage("Folder structure copied!", 3000);
 
 			const outputChannel = vscode.window.createOutputChannel("CopyStructure");
-			outputChannel.show(true);
 			outputChannel.appendLine(
 				"Copy Code Context: Folder structure copy complete.",
 			);

@@ -91,7 +91,6 @@ export async function copyCode(uris: vscode.Uri[]) {
 			}
 
 			const outputChannel = vscode.window.createOutputChannel("CopyContext");
-			outputChannel.show(true);
 			outputChannel.appendLine(
 				`Copy Code Context: Finished processing ${totalFiles} files.`,
 			);
