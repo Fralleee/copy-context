@@ -1,5 +1,4 @@
-import * as vscode from "vscode";
-import { workspace } from "vscode";
+import { workspace, type WorkspaceFolder } from "vscode";
 import ignore, { type Ignore } from "ignore";
 import fs from "node:fs/promises";
 import path from "node:path";
@@ -13,44 +12,33 @@ export interface FilterContext {
 }
 
 export async function makeFilterContext(): Promise<FilterContext> {
-	const folders = vscode.workspace.workspaceFolders;
-	const folder = folders && folders.length > 0 ? folders[0] : null;
 	const {
 		includeGlobs,
 		excludeGlobs,
 		respectGitIgnore,
 		respectVSCodeExplorerExclude,
 	} = getSettings();
+	const folder: WorkspaceFolder | undefined = workspace.workspaceFolders?.[0];
+	const filesConfig = workspace.getConfiguration("files", folder?.uri);
+	const allExcludes = filesConfig.get<Record<string, boolean>>("exclude", {});
+	const vscodeExcludes = respectVSCodeExplorerExclude
+		? Object.entries(allExcludes)
+				.filter(([, hidden]) => hidden)
+				.map(([pattern]) => pattern)
+		: [];
 
-	if (!folder) {
-		return {
-			includeGlobs,
-			excludeGlobs,
-			gitIgnore: null,
-			vscodeExcludes: [],
-		};
-	}
-
-	let gitIgnore: ignore.Ignore | null = null;
-	if (respectGitIgnore) {
+	let gitIgnore: Ignore | null = null;
+	if (folder && respectGitIgnore) {
 		gitIgnore = ignore();
 		try {
-			const ig = await fs.readFile(
+			const text = await fs.readFile(
 				path.join(folder.uri.fsPath, ".gitignore"),
 				"utf8",
 			);
-			gitIgnore.add(ig);
-		} catch {}
-	}
-
-	let vscodeExcludes: string[] = [];
-	if (respectVSCodeExplorerExclude) {
-		const fe = workspace
-			.getConfiguration("files", folder.uri)
-			.get<Record<string, boolean>>("exclude", {});
-		vscodeExcludes = Object.entries(fe || {})
-			.filter(([, hidden]) => hidden)
-			.map(([pattern]) => pattern);
+			gitIgnore.add(text);
+		} catch {
+			// .gitignore file not found
+		}
 	}
 
 	return {
