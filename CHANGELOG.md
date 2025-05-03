@@ -1,3 +1,9 @@
+## [0.4.2](https://github.com/Fralleee/copy-code-context/compare/v0.4.1...v0.4.2) (2025-05-03)
+
+### Bug Fixes
+
+* issue with missing dependencies ([f8c9131](https://github.com/Fralleee/copy-code-context/commit/f8c9131c6a848672104d6e22ce1d2d8bf577e649))
+
 ## [0.4.1](https://github.com/Fralleee/copy-code-context/compare/v0.4.0...v0.4.1) (2025-05-03)
 
 ### Chores
