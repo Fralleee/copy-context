@@ -83,5 +83,5 @@ export function formatBinaryAsMarkdown(
 		lines.push(`- **mime:** ${meta.mime}`);
 	}
 
-	return `### ${relativePath}\n${lines.join("\n")}\n\n`;
+	return `\`\`\`\n// ${relativePath}\n${lines.join("\n")}\n\`\`\`\n\n`;
 }
