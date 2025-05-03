@@ -1,3 +1,9 @@
+## [0.4.4](https://github.com/Fralleee/copy-code-context/compare/v0.4.3...v0.4.4) (2025-05-03)
+
+### Chores
+
+* update icon ([1d06a09](https://github.com/Fralleee/copy-code-context/commit/1d06a09d834d1ea24393f390b6aa22b4b14daa34))
+
 ## [0.4.3](https://github.com/Fralleee/copy-code-context/compare/v0.4.2...v0.4.3) (2025-05-03)
 
 ### Chores
