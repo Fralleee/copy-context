@@ -67,7 +67,7 @@ export function formatAsMarkdown(
 ): string {
 	const ext = path.extname(relativePath).replace(".", "").toLowerCase();
 	const lang = guessLanguageFromExtension(ext);
-	return `### ${relativePath}\n\`\`\`${lang}\n${content}\n\`\`\`\n\n`;
+	return `\`\`\`${lang}\n// ${relativePath}\n${content}\n\`\`\`\n\n`;
 }
 
 export function formatBinaryAsMarkdown(
