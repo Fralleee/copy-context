@@ -8,6 +8,14 @@
 				"title": "Copy Code Context"
 			},
 			{
+				"command": "extension.copyCode.thisTab",
+				"title": "Copy Code Context (This Tab)"
+			},
+			{
+				"command": "extension.copyCode.allTabs",
+				"title": "Copy Code Context (All Open Tabs)"
+			},
+			{
 				"command": "extension.copyStructure",
 				"title": "Copy Folder Structure"
 			}
@@ -50,14 +58,15 @@
 			"type": "object"
 		},
 		"menus": {
-			"commandPalette": [
+			"editor/title/context": [
 				{
-					"command": "extension.copyCode",
-					"when": "false"
+					"arguments": ["${resourceUri}"],
+					"command": "extension.copyCode.thisTab",
+					"group": "1_copycode"
 				},
 				{
-					"command": "extension.copyStructure",
-					"when": "false"
+					"command": "extension.copyCode.allTabs",
+					"group": "1_copycode"
 				}
 			],
 			"explorer/context": [

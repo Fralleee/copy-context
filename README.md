@@ -4,13 +4,20 @@
 
 ## Features
 
-- **Copy Code Context**
+- **Copy Code Context (Explorer)**
 
   - Select one or more files or folders in the VS Code Explorer.
   - Right-click and choose **Copy Code Context**.
   - **Copies** the file path, code content, and language syntax **to your clipboard** in a Markdown code block.
 
   ![413995470-ee8d29c0-f9c6-41d1-8ca8-aba432a88b3f](https://github.com/user-attachments/assets/df9f0912-eaba-4fab-8962-a311ae39c2c6)
+
+- **Copy Code Context (Editor Tab)**
+
+  - Right-click any open editor tab.
+  - Choose **Copy Code Context (This Tab)** to copy the current file, or **Copy Code Context (All Open Tabs)** to copy all files you have open.
+  - **Copies** each file’s path and content **directly to your clipboard** as Markdown.
+  - **Note:** Only works for files saved on disk, unsaved (Untitled) buffers are not supported.
 
 - **Copy Folder Structure**
 
