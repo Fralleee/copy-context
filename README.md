@@ -40,7 +40,7 @@ Copy files or folder trees into your clipboard as Markdown—ready to paste into
 
 | Setting                                   | Default    | Description                                                                                           |
 | ----------------------------------------- | ---------- | ----------------------------------------------------------------------------------------------------- |
-| `copyContext.template`                    | <pre>```${language}\n// ${path}\n${content}\n```\n\n</pre> | Markdown template for text files (`{language}`, `{path}`, `{content}`).               |
+| `copyContext.template`                    | <code>```${language}\n// ${path}\n${content}\n```\n\n</code> | Markdown template for text files (`{language}`, `{path}`, `{content}`).               |
 | `copyContext.excludeGlobs`                | `[]`       | **Always exclude** these glob patterns (highest priority).                                             |
 | `copyContext.includeGlobs`                | `[]`       | **Always include** these glob patterns, even if Explorer or `.gitignore` would skip them.             |
 | `copyContext.maxContentSize`              | `500000`   | Max total size (bytes) of all file contents to copy.                                                  |
