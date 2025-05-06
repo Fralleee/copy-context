@@ -1,6 +1,10 @@
 import fs from "node:fs/promises";
 import type { FileTreeNode } from "../../shared/file-tree";
-import { formatAsMarkdown, formatBinaryAsMarkdown } from "./markdown";
+import {
+	formatCodeAsMarkdown,
+	formatBinaryAsMarkdown,
+	applyTemplate,
+} from "./markdown";
 import type * as vscode from "vscode";
 import { detectBinary } from "./detect-binary";
 import { fromFile } from "file-type";
@@ -55,10 +59,11 @@ export async function fileContents(
 					} else {
 						const content = await fs.readFile(node.fullPath, "utf-8");
 						addSizeCallback(Buffer.byteLength(content, "utf-8"));
-						result += formatAsMarkdown(node.relativePath, content);
+						result += formatCodeAsMarkdown(node.relativePath, content);
 					}
 				} catch (err) {
-					result += `\`\`\`text\n// ${node.relativePath}\n- **Failed reading file metadata:** ${err}\n\`\`\`\n\n`;
+					const content = `- Failed reading file metadata: ${err}`;
+					result += applyTemplate({ language: "text", path: node.relativePath, content });
 				}
 
 				progressCallback();

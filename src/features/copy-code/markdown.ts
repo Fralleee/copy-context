@@ -1,5 +1,6 @@
 import path from "node:path";
 import type { BinaryMetadata } from "./binary-metadata";
+import { getSettings } from "../../config";
 
 const languageMap: { [ext: string]: string } = {
 	js: "javascript",
@@ -61,13 +62,14 @@ function guessLanguageFromExtension(ext: string): string {
 	return languageMap[ext] || "plaintext";
 }
 
-export function formatAsMarkdown(
+export function formatCodeAsMarkdown(
 	relativePath: string,
 	content: string,
 ): string {
 	const ext = path.extname(relativePath).replace(".", "").toLowerCase();
-	const lang = guessLanguageFromExtension(ext);
-	return `\`\`\`${lang}\n// ${relativePath}\n${content}\n\`\`\`\n\n`;
+	const language = guessLanguageFromExtension(ext);
+
+	return applyTemplate({ language, path: relativePath, content });
 }
 
 export function formatBinaryAsMarkdown(
@@ -77,11 +79,19 @@ export function formatBinaryAsMarkdown(
 	const lines: string[] = [];
 
 	const sizeKB = (meta.size / 1024).toFixed(1);
-	lines.push(`- **size:** ${sizeKB} KB (${meta.size.toLocaleString()} bytes)`);
+	lines.push(`- size: ${sizeKB} KB (${meta.size.toLocaleString()} bytes)`);
 
 	if (meta.mime) {
-		lines.push(`- **mime:** ${meta.mime}`);
+		lines.push(`- mime: ${meta.mime}`);
 	}
 
-	return `\`\`\`text\n// ${relativePath}\n${lines.join("\n")}\n\`\`\`\n\n`;
+	return applyTemplate({ language: "text", path: relativePath, content: lines.join("\n") });
+}
+
+export function applyTemplate(vars: { language: string; path: string; content: string }) {
+	const template = getSettings().template;
+	return template
+		.replace(/\$\{language\}/g, vars.language)
+		.replace(/\$\{path\}/g, vars.path)
+		.replace(/\$\{content\}/g, vars.content);
 }

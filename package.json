@@ -25,6 +25,10 @@
 		],
 		"configuration": {
 			"properties": {
+				"copyContext.template": {
+					"description": "Template for the copied code context. Variables are: `{language}`, `{path}` and `{content}`. E.g. ```${language}\n// ${path}\n${content}\n```\n\n.",
+					"type": "string"
+				},
 				"copyContext.excludeGlobs": {
 					"default": [],
 					"description": "Glob patterns to always exclude (highest priority), even if they match `includeGlobs`.",
