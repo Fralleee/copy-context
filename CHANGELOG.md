@@ -1,9 +1,5 @@
 ## [0.5.0](https://github.com/Fralleee/copy-code-context/compare/v0.4.4...v0.5.0) (2025-05-06)
 
-### ⚠ BREAKING CHANGES
-
-* initial 1.0.0 release
-
 ### Features
 
 * add support for custom template ([48768d7](https://github.com/Fralleee/copy-code-context/commit/48768d7948234fd8f09a1a96430d0f080b1c58a6))
