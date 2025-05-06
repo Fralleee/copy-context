@@ -27,7 +27,7 @@ type Item = Directory | File;
 
 export async function copyCode(uris: vscode.Uri[]) {
 	const filterContext = await makeFilterContext();
-	const { maxContentSize, template } = getSettings();
+	const { maxContentSize } = getSettings();
 	const visitedFiles = new Set<string>();
 	let totalSize = 0;
 

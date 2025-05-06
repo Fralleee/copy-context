@@ -1,9 +1,6 @@
 {
 	"activationEvents": [],
-	"categories": [
-		"Other",
-		"Visualization"
-	],
+	"categories": ["Other", "Visualization"],
 	"contributes": {
 		"commands": [
 			{
@@ -23,59 +20,76 @@
 				"title": "Copy Folder Structure"
 			}
 		],
-		"configuration": {
-			"properties": {
-				"copyContext.template": {
-					"description": "Template for the copied code context. Variables are: `{language}`, `{path}` and `{content}`. E.g. ```${language}\n// ${path}\n${content}\n```\n\n.",
-					"type": "string"
-				},
-				"copyContext.excludeGlobs": {
-					"default": [],
-					"description": "Glob patterns to always exclude (highest priority), even if they match `includeGlobs`.",
-					"items": {
+		"configuration": [
+			{
+				"additionalProperties": false,
+				"markdownDescription": "Settings that control the output of the copied content.",
+				"order": 0,
+				"properties": {
+					"copyContext.template": {
+						"default": "```${language}\n// ${path}\n${content}\n```\n\n",
+						"markdownDescription": "**Markdown template** for text files. Available placeholders:\n\n- `{language}` – the code block language\n- `{path}` – the file’s relative path\n- `{content}` – the file contents\n\n**Example:**\n```json\n\"```{language}\\n// {path}\\n{content}\\n```\"\n```",
+						"title": "Markdown Template",
 						"type": "string"
-					},
-					"type": "array"
+					}
 				},
-				"copyContext.includeGlobs": {
-					"default": [],
-					"description": "Glob patterns to always include, unless explicitly excluded by `excludeGlobs`.",
-					"items": {
-						"type": "string"
-					},
-					"type": "array"
-				},
-				"copyContext.maxContentSize": {
-					"default": 500000,
-					"description": "Max total content size in bytes to copy. Prevents copying extremely large files.",
-					"type": "number"
-				},
-				"copyContext.respectGitIgnore": {
-					"default": false,
-					"description": "Skip any files matching `.gitignore` (opt-in).",
-					"type": "boolean"
-				},
-				"copyContext.respectVSCodeExplorerExclude": {
-					"default": true,
-					"description": "Skip any files or folders hidden in the VS Code Explorer (i.e. respect your `files.exclude`).",
-					"type": "boolean"
-				}
+				"title": "Output"
 			},
-			"title": "Copy Context Extension Configuration",
-			"type": "object"
-		},
+			{
+				"additionalProperties": false,
+				"markdownDescription": "Settings that control the filtering of the files.",
+				"order": 1,
+				"properties": {
+					"copyContext.excludeGlobs": {
+						"default": [],
+						"items": {
+							"type": "string"
+						},
+						"markdownDescription": "**Always exclude** these glob patterns (highest priority). Even if they match your include list, they will be skipped.",
+						"title": "Exclude Globs",
+						"type": "array"
+					},
+					"copyContext.includeGlobs": {
+						"default": [],
+						"items": {
+							"type": "string"
+						},
+						"markdownDescription": "**Always include** these glob patterns, overriding Explorer or gitignore exclusions.",
+						"title": "Include Globs",
+						"type": "array"
+					},
+					"copyContext.maxContentSize": {
+						"default": 500000,
+						"markdownDescription": "Maximum total size **in bytes** of all file contents to copy. Prevents dumping very large files into your prompt.",
+						"title": "Max Content Size",
+						"type": "number"
+					},
+					"copyContext.respectGitIgnore": {
+						"default": false,
+						"markdownDescription": "When **true**, skips files matching your project’s `.gitignore` (opt-in).",
+						"title": "Respect .gitignore",
+						"type": "boolean"
+					},
+					"copyContext.respectVSCodeExplorerExclude": {
+						"default": true,
+						"markdownDescription": "When **true**, skips files/folders hidden in the VS Code Explorer (respects your `files.exclude`).",
+						"title": "Respect VSCode Explorer Excludes",
+						"type": "boolean"
+					}
+				},
+				"title": "Filter"
+			}
+		],
 		"menus": {
 			"editor/title/context": [
 				{
-					"arguments": [
-						"${resourceUri}"
-					],
+					"arguments": ["${resourceUri}"],
 					"command": "extension.copyCode.thisTab",
-					"group": "1_copycode"
+					"group": "1_copycode@1"
 				},
 				{
 					"command": "extension.copyCode.allTabs",
-					"group": "1_copycode"
+					"group": "1_copycode@2"
 				}
 			],
 			"explorer/context": [

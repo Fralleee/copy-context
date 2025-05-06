@@ -11,6 +11,7 @@ export function getSettings() {
 			true,
 		),
 		maxContentSize: config.get<number>("maxContentSize", 500_000),
-		template: config.get<string>("template") || "```${language}\n// ${path}\n${content}\n```\n\n",
+		// biome-ignore lint/style/noNonNullAssertion: settings uses default
+		template: config.get<string>("template")!,
 	};
 }
