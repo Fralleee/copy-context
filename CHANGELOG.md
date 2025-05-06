@@ -1,3 +1,9 @@
+## [0.5.1](https://github.com/Fralleee/copy-code-context/compare/v0.5.0...v0.5.1) (2025-05-06)
+
+### Chores
+
+* update readme ([c93ac68](https://github.com/Fralleee/copy-code-context/commit/c93ac684e9005d81cbb43b41f5a079ba9135aa36))
+
 ## [0.5.0](https://github.com/Fralleee/copy-code-context/compare/v0.4.4...v0.5.0) (2025-05-06)
 
 ### Features
