@@ -1,3 +1,9 @@
+## [0.5.2](https://github.com/Fralleee/copy-code-context/compare/v0.5.1...v0.5.2) (2025-05-07)
+
+### Chores
+
+* simplify the templating ([9b2312c](https://github.com/Fralleee/copy-code-context/commit/9b2312c26d25f6c437f275481edb00ae9e04dc6d))
+
 ## [0.5.1](https://github.com/Fralleee/copy-code-context/compare/v0.5.0...v0.5.1) (2025-05-06)
 
 ### Chores
