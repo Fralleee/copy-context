@@ -102,6 +102,6 @@ export function applyTemplate(vars: {
 		.replace(/\{path\}/g, vars.path)
 		.replace(/\{content\}/g, vars.content);
 
-	const result = `\`\`\`${vars.language}\n${filled}\n\`\`\``;
+	const result = `\`\`\`${vars.language}\n${filled}\n\`\`\`\n\n`;
 	return result;
 }
