@@ -1,3 +1,14 @@
+## [0.5.3](https://github.com/Fralleee/copy-code-context/compare/v0.5.2...v0.5.3) (2025-05-07)
+
+### Bug Fixes
+
+* issue with templating prefixing with $ ([efd6033](https://github.com/Fralleee/copy-code-context/commit/efd6033169c4b9424a8c9ba62fef040a7de219af))
+
+### Chores
+
+* update README.md ([7b96099](https://github.com/Fralleee/copy-code-context/commit/7b96099fb397cb07ea9f3b63ed1abbdefe643851))
+* update README.md ([a74f3db](https://github.com/Fralleee/copy-code-context/commit/a74f3db78955c697e2bdf4cb7dfbae5d6726bbcf))
+
 ## [0.5.2](https://github.com/Fralleee/copy-code-context/compare/v0.5.1...v0.5.2) (2025-05-07)
 
 ### Chores
