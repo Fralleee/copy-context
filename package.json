@@ -1,6 +1,9 @@
 {
 	"activationEvents": [],
-	"categories": ["Other", "Visualization"],
+	"categories": [
+		"Other",
+		"Visualization"
+	],
 	"contributes": {
 		"commands": [
 			{
@@ -83,7 +86,9 @@
 		"menus": {
 			"editor/title/context": [
 				{
-					"arguments": ["${resourceUri}"],
+					"arguments": [
+						"${resourceUri}"
+					],
 					"command": "extension.copyCode.thisTab",
 					"group": "1_copycode@1"
 				},
@@ -151,5 +156,5 @@
 		"vscode:prepublish": "npm run compile",
 		"watch": "tsc -watch -p ./"
 	},
-	"version": "0.5.3"
+	"version": "0.5.4"
 }

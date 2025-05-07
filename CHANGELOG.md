@@ -1,3 +1,9 @@
+## [0.5.4](https://github.com/Fralleee/copy-code-context/compare/v0.5.3...v0.5.4) (2025-05-07)
+
+### Chores
+
+* update settings properties to correctly reflect the template values ([07ba100](https://github.com/Fralleee/copy-code-context/commit/07ba100ed9833c5703af54428f91b62b6ea7daf0))
+
 ## [0.5.3](https://github.com/Fralleee/copy-code-context/compare/v0.5.2...v0.5.3) (2025-05-07)
 
 ### Bug Fixes
