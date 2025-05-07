@@ -85,13 +85,23 @@ export function formatBinaryAsMarkdown(
 		lines.push(`- mime: ${meta.mime}`);
 	}
 
-	return applyTemplate({ language: "text", path: relativePath, content: lines.join("\n") });
+	return applyTemplate({
+		language: "text",
+		path: relativePath,
+		content: lines.join("\n"),
+	});
 }
 
-export function applyTemplate(vars: { language: string; path: string; content: string }) {
-	const template = getSettings().template;
-	return template
-		.replace(/\$\{language\}/g, vars.language)
-		.replace(/\$\{path\}/g, vars.path)
-		.replace(/\$\{content\}/g, vars.content);
+export function applyTemplate(vars: {
+	language: string;
+	path: string;
+	content: string;
+}) {
+	const template = getSettings().template.replace(/\\n/g, "\n");
+	const filled = template
+		.replace(/\{path\}/g, vars.path)
+		.replace(/\{content\}/g, vars.content);
+
+	const result = `\`\`\`${vars.language}\n${filled}\n\`\`\``;
+	return result;
 }

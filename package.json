@@ -1,9 +1,6 @@
 {
 	"activationEvents": [],
-	"categories": [
-		"Other",
-		"Visualization"
-	],
+	"categories": ["Other", "Visualization"],
 	"contributes": {
 		"commands": [
 			{
@@ -30,8 +27,8 @@
 				"order": 0,
 				"properties": {
 					"copyContext.template": {
-						"default": "```${language}\n// ${path}\n${content}\n```\n\n",
-						"markdownDescription": "**Markdown template** for text files. Available placeholders:\n\n- `{language}` – the code block language\n- `{path}` – the file’s relative path\n- `{content}` – the file contents\n\n**Example:**\n```json\n\"```{language}\\n// {path}\\n{content}\\n```\"\n```",
+						"default": "// {path}\n{content}",
+						"markdownDescription": "**Markdown template** for text files. Available placeholders:\n\n- `{path}` – the file’s relative path\n- `{content}` – the file contents\n\n**Example:**\n```json\n\"// {path}\n{content}\"\n```",
 						"title": "Markdown Template",
 						"type": "string"
 					}
@@ -86,9 +83,7 @@
 		"menus": {
 			"editor/title/context": [
 				{
-					"arguments": [
-						"${resourceUri}"
-					],
+					"arguments": ["${resourceUri}"],
 					"command": "extension.copyCode.thisTab",
 					"group": "1_copycode@1"
 				},
