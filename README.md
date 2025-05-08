@@ -25,14 +25,23 @@ Copy files or folder trees into your clipboard as Markdown—ready to paste into
 - _Tabs_: copy the active file or all open files at once (_Unsaved buffers (Untitled)_ are skipped)
 - Respects include/exclude globs, VS Code Explorer excludes & (opt-in) `.gitignore` 
 
-![413995470-ee8d29c0-f9c6-41d1-8ca8-aba432a88b3f](https://github.com/user-attachments/assets/df9f0912-eaba-4fab-8962-a311ae39c2c6)
+**Copy Code (Explorer)**
+
+![copy-code-explorer](https://github.com/user-attachments/assets/9c2bb633-b1dc-4585-97ab-76edd61e1e87)
+
+**Copy Code (Tabs)**
+
+![copy-code-editor](https://github.com/user-attachments/assets/f011e5e8-6776-4b27-bad5-bd24caa40383)
 
 ### 📂 Copy Folder Structure
 
 - Generates a Markdown tree of your folder’s contents  
 - Respects the same filters (globs, Explorer excludes, `.gitignore`)
 
-![413995553-a2340345-8bd9-4a24-91d7-1c0d5eb05a2c](https://github.com/user-attachments/assets/ac74e4d3-d6f0-41b9-9f2b-ed76d642e19a)
+**Copy Folder Structure**
+
+![copy-folder-structure](https://github.com/user-attachments/assets/860a0ad7-22af-46b2-85b6-cb06b873769d)
+
 
 ---
 
