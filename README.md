@@ -7,11 +7,11 @@ Copy files or folder trees into your clipboard as Markdown—ready to paste into
 ## 🚀 Usage
 
 1. **Explorer**  
-   Select one or more **files or folders** → right-click → **Copy Code Context**  
-   Select a root **folder** → right-click → **Copy Folder Structure**
+   - Select one or more **files or folders** → right-click → **Copy Code Context**  
+   - Select a root **folder** → right-click → **Copy Folder Structure**
 
 2. **Editor Tab**  
-   Right-click a tab title → **Copy Code Context (This Tab)** or **… (All Open Tabs)**.
+   - Right-click a tab title → **Copy Code Context (This Tab)** or **… (All Open Tabs)**.
 
 3. **Paste** anywhere and your Markdown snippet or tree is on the clipboard
 
