@@ -58,15 +58,6 @@ Copy files or folder trees into your clipboard as Markdown—ready to paste into
 
 ---
 
-## 🔍 Filtering Behavior
-
-1. **excludeGlobs** — highest priority, always skipped  
-2. **includeGlobs** — next, always kept (unless excluded above)  
-3. **Explorer excludes** (`files.exclude`) — on by default  
-4. **.gitignore** — off by default (opt-in via setting)
-
----
-
 ## 📜 License
 
 This extension is released under the [MIT License](./LICENSE).
