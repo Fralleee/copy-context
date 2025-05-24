@@ -1,3 +1,9 @@
+## [0.6.1](https://github.com/Fralleee/copy-code-context/compare/v0.6.0...v0.6.1) (2025-05-24)
+
+### Bug Fixes
+
+* copy this tab issue always copied active tab ([0fc0901](https://github.com/Fralleee/copy-code-context/commit/0fc0901a300d9f74b67f12e8a4ffc0ec5043a2b0))
+
 ## [0.6.0](https://github.com/Fralleee/copy-code-context/compare/v0.5.4...v0.6.0) (2025-05-24)
 
 ### Features
