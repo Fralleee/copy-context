@@ -9,7 +9,7 @@
 
   [Usage](#-usage) •
   [Features](#-features) •
-  [Settings](#-settings) •
+  [Settings](#-settings)
 
 </div>
 
