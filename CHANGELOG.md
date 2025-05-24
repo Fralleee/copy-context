@@ -1,3 +1,26 @@
+## [0.6.0](https://github.com/Fralleee/copy-code-context/compare/v0.5.4...v0.6.0) (2025-05-24)
+
+### Features
+
+* add analytics ([3f63ebf](https://github.com/Fralleee/copy-code-context/commit/3f63ebfb070672166976919267d66f7ac78d8230))
+
+### Bug Fixes
+
+* knip ([f63b6cc](https://github.com/Fralleee/copy-code-context/commit/f63b6cc6f31cf90b68a2c3a1282a6dfa471180c8))
+
+### Chores
+
+* add tests ([78e2707](https://github.com/Fralleee/copy-code-context/commit/78e27076b05df5f6275a1c41e469565296f902bd))
+* explicitly install biome runner ([6390b52](https://github.com/Fralleee/copy-code-context/commit/6390b52284b58cf0e0728295bc7954bd3416ab14))
+* fix rollup dep ([f106e9c](https://github.com/Fralleee/copy-code-context/commit/f106e9c35be0b85fa57ac8f9de14445a6e8e8965))
+* readme formatting ([0ee381c](https://github.com/Fralleee/copy-code-context/commit/0ee381c42268ed06b05cccf261d0acd2be03af61))
+* reinstall deps ([ed8cc08](https://github.com/Fralleee/copy-code-context/commit/ed8cc084b5fb2fec2f47cfb07563ccdf50634989))
+* remove redundant Filtering section of README.md ([24aeb9a](https://github.com/Fralleee/copy-code-context/commit/24aeb9ae67b7dc1119049a5c711a94a34f904e45))
+* update README.md ([cf50a13](https://github.com/Fralleee/copy-code-context/commit/cf50a13e0a469f1c696c728a3a1d5811c77ee6e8))
+* update usage ([3554603](https://github.com/Fralleee/copy-code-context/commit/355460312b30697794d09cb3fd4de80de150f89e))
+* update videos in readme ([e879d3a](https://github.com/Fralleee/copy-code-context/commit/e879d3ab5841ab46307e6bee47ef84e1d78b5b05))
+* upgrade biome and fix fallout ([8e288cf](https://github.com/Fralleee/copy-code-context/commit/8e288cf9ff555c94be5244875e33266cb4c42449))
+
 ## [0.5.4](https://github.com/Fralleee/copy-code-context/compare/v0.5.3...v0.5.4) (2025-05-07)
 
 ### Chores
