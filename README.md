@@ -1,20 +1,6 @@
-<div align="center">
-  
 # Copy Code Context
-
-
-  ![GitHub issues](https://img.shields.io/github/issues/fralleee/copy-code-context)
   
-  Copy files or folder trees into your clipboard as Markdown—ready to paste into chats, docs, or code reviews.
-
-  [Usage](#-usage) •
-  [Features](#-features) •
-  [Settings](#-settings)
-
-</div>
-
-
-
+Copy files or folder trees into your clipboard as Markdown—ready to paste into chats, docs, or code reviews.
 
 ---
 
