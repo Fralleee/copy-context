@@ -1,13 +1,13 @@
-import * as vscode from "vscode";
 import path from "node:path";
-import { fileTree, type FileTreeNode } from "../../shared/file-tree";
-import { fileContents } from "./file-contents";
+import * as vscode from "vscode";
 import { getSettings } from "../../config";
+import { type FileTreeNode, fileTree } from "../../shared/file-tree";
+import { shouldIncludePath } from "../../shared/filter";
 import {
 	type FilterContext,
 	makeFilterContext,
 } from "../../shared/make-filter-context";
-import { shouldIncludePath } from "../../shared/filter";
+import { fileContents } from "./file-contents";
 
 type Directory = {
 	type: "directory";
@@ -33,9 +33,9 @@ export async function copyCode(uris: vscode.Uri[]) {
 
 	await vscode.window.withProgress(
 		{
+			cancellable: true,
 			location: vscode.ProgressLocation.Notification,
 			title: "Copying code context...",
-			cancellable: true,
 		},
 		async (progress, token) => {
 			const { items, totalFiles } = await collectCopyItems(uris, filterContext);
@@ -65,10 +65,10 @@ export async function copyCode(uris: vscode.Uri[]) {
 
 					nodes = [
 						{
-							name: path.basename(item.uri.fsPath),
 							fullPath: item.uri.fsPath,
-							relativePath: relPath,
 							isDirectory: false,
+							name: path.basename(item.uri.fsPath),
+							relativePath: relPath,
 						},
 					];
 				}
@@ -127,11 +127,11 @@ async function collectCopyItems(
 			const fileCount = countFiles(tree);
 			if (fileCount > 0) {
 				totalFiles += fileCount;
-				items.push({ type: "directory", uri, tree, fileCount, rootPath });
+				items.push({ fileCount, rootPath, tree, type: "directory", uri });
 			}
 		} else {
 			totalFiles++;
-			items.push({ type: "file", uri, rootPath });
+			items.push({ rootPath, type: "file", uri });
 		}
 	}
 

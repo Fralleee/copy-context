@@ -1,14 +1,14 @@
 import fs from "node:fs/promises";
-import type { FileTreeNode } from "../../shared/file-tree";
-import {
-	formatCodeAsMarkdown,
-	formatBinaryAsMarkdown,
-	applyTemplate,
-} from "./markdown";
-import type * as vscode from "vscode";
-import { detectBinary } from "./detect-binary";
 import { fromFile } from "file-type";
+import type * as vscode from "vscode";
+import type { FileTreeNode } from "../../shared/file-tree";
 import type { BinaryMetadata } from "./binary-metadata";
+import { detectBinary } from "./detect-binary";
+import {
+	applyTemplate,
+	formatBinaryAsMarkdown,
+	formatCodeAsMarkdown,
+} from "./markdown";
 
 async function getFileMetadata(fullPath: string): Promise<BinaryMetadata> {
 	const stat = await fs.stat(fullPath);
@@ -55,7 +55,7 @@ export async function fileContents(
 					const isBinary = await detectBinary(node.fullPath);
 					if (isBinary) {
 						const { size, mime } = await getFileMetadata(node.fullPath);
-						result += formatBinaryAsMarkdown(node.relativePath, { size, mime });
+						result += formatBinaryAsMarkdown(node.relativePath, { mime, size });
 					} else {
 						const content = await fs.readFile(node.fullPath, "utf-8");
 						addSizeCallback(Buffer.byteLength(content, "utf-8"));
@@ -63,7 +63,11 @@ export async function fileContents(
 					}
 				} catch (err) {
 					const content = `- Failed reading file metadata: ${err}`;
-					result += applyTemplate({ language: "text", path: node.relativePath, content });
+					result += applyTemplate({
+						content,
+						language: "text",
+						path: node.relativePath,
+					});
 				}
 
 				progressCallback();

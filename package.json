@@ -139,7 +139,7 @@
 	},
 	"description": "Copies selected files/folders as Markdown code context or structure",
 	"devDependencies": {
-		"@biomejs/biome": "1.9.4",
+		"@biomejs/biome": "^2.0.0-beta.3",
 		"@semantic-release/changelog": "^6.0.3",
 		"@semantic-release/commit-analyzer": "^13.0.1",
 		"@semantic-release/exec": "^7.0.3",
@@ -176,8 +176,8 @@
 		"knip": "knip",
 		"lint": "biome lint .",
 		"test": "vitest run",
-		"test:watch": "vitest",
 		"test:coverage": "vitest run --coverage",
+		"test:watch": "vitest",
 		"vscode:prepublish": "npm run compile",
 		"watch": "tsc -watch -p ./"
 	},

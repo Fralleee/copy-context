@@ -1,3 +1,4 @@
+/** biome-ignore-all lint/suspicious/noTemplateCurlyInString: uses specific templating */
 module.exports = {
 	branches: ["main"],
 	plugins: [
@@ -5,7 +6,7 @@ module.exports = {
 			"@semantic-release/commit-analyzer",
 			{
 				preset: "conventionalcommits",
-				releaseRules: [{ type: "chore", release: "patch" }],
+				releaseRules: [{ release: "patch", type: "chore" }],
 			},
 		],
 		[
@@ -14,9 +15,9 @@ module.exports = {
 				preset: "conventionalcommits",
 				presetConfig: {
 					types: [
-						{ type: "feat", section: "Features" },
-						{ type: "fix", section: "Bug Fixes" },
-						{ type: "chore", section: "Chores" },
+						{ section: "Features", type: "feat" },
+						{ section: "Bug Fixes", type: "fix" },
+						{ section: "Chores", type: "chore" },
 					],
 				},
 			},

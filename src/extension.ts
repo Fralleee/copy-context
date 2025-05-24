@@ -1,6 +1,6 @@
 import * as vscode from "vscode";
-import { copyStructure } from "./features/copy-structure/copy-structure";
 import { copyCode } from "./features/copy-code/copy-code";
+import { copyStructure } from "./features/copy-structure/copy-structure";
 import { initAnalytics, shutdown, track } from "./monitoring/analytics";
 
 export function activate(context: vscode.ExtensionContext) {

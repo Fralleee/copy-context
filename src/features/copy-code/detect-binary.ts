@@ -1,5 +1,5 @@
-import { fromFile } from "file-type";
 import fs from "node:fs/promises";
+import { fromFile } from "file-type";
 
 export async function detectBinary(fullPath: string): Promise<boolean> {
 	const ft = await fromFile(fullPath);

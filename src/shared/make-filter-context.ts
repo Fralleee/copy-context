@@ -1,7 +1,7 @@
-import { workspace, type WorkspaceFolder } from "vscode";
-import ignore, { type Ignore } from "ignore";
 import fs from "node:fs/promises";
 import path from "node:path";
+import ignore, { type Ignore } from "ignore";
+import { type WorkspaceFolder, workspace } from "vscode";
 import { getSettings } from "../config";
 
 export interface FilterContext {
@@ -42,9 +42,9 @@ export async function makeFilterContext(): Promise<FilterContext> {
 	}
 
 	return {
-		includeGlobs,
 		excludeGlobs,
 		gitIgnore,
+		includeGlobs,
 		vscodeExcludes,
 	};
 }

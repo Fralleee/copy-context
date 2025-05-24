@@ -1,6 +1,6 @@
-import * as path from "node:path";
-import { readdir } from "node:fs/promises";
 import type { Dirent } from "node:fs";
+import { readdir } from "node:fs/promises";
+import * as path from "node:path";
 import { shouldIncludePath } from "./filter";
 import type { FilterContext } from "./make-filter-context";
 
@@ -48,11 +48,11 @@ export async function fileTree(
 			const children = await fileTree(entryFullPath, rootPath, filterContext);
 			if (children.length > 0) {
 				results.push({
-					name: entry.name,
-					fullPath: entryFullPath,
-					relativePath: relPath,
-					isDirectory: true,
 					children,
+					fullPath: entryFullPath,
+					isDirectory: true,
+					name: entry.name,
+					relativePath: relPath,
 				});
 			}
 		} else {
@@ -60,10 +60,10 @@ export async function fileTree(
 				continue;
 			}
 			results.push({
-				name: entry.name,
 				fullPath: entryFullPath,
-				relativePath: relPath,
 				isDirectory: false,
+				name: entry.name,
+				relativePath: relPath,
 			});
 		}
 	}

@@ -1,8 +1,8 @@
-import * as vscode from "vscode";
 import path from "node:path";
-import { fileTree, type FileTreeNode } from "../../shared/file-tree";
-import { buildAsciiLines } from "./build-ascii-lines";
+import * as vscode from "vscode";
+import { type FileTreeNode, fileTree } from "../../shared/file-tree";
 import { makeFilterContext } from "../../shared/make-filter-context";
+import { buildAsciiLines } from "./build-ascii-lines";
 
 function countNodes(nodes: FileTreeNode[]): number {
 	let count = 0;
@@ -24,9 +24,9 @@ export async function copyStructure(uri: vscode.Uri) {
 
 	await vscode.window.withProgress(
 		{
+			cancellable: true,
 			location: vscode.ProgressLocation.Notification,
 			title: "Copying folder structure...",
-			cancellable: true,
 		},
 		async (progress, token) => {
 			const totalNodes = countNodes(tree);

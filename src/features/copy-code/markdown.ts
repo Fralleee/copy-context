@@ -1,61 +1,61 @@
 import path from "node:path";
-import type { BinaryMetadata } from "./binary-metadata";
 import { getSettings } from "../../config";
+import type { BinaryMetadata } from "./binary-metadata";
 
 const languageMap: { [ext: string]: string } = {
-	js: "javascript",
-	cjs: "javascript",
-	mjs: "javascript",
-	jsx: "javascriptreact",
-	ts: "typescript",
-	tsx: "typescriptreact",
-	html: "html",
-	css: "css",
-	scss: "scss",
-	less: "less",
-	md: "markdown",
-	json: "json",
-	yaml: "yaml",
-	yml: "yaml",
-	xml: "xml",
 	c: "c",
-	cpp: "cpp",
 	cc: "cpp",
-	cxx: "cpp",
-	h: "cpp",
-	hpp: "cpp",
+	cjs: "javascript",
+	coffee: "coffeescript",
+	cpp: "cpp",
 	cs: "csharp",
-	java: "java",
-	py: "python",
-	rb: "ruby",
-	php: "php",
-	go: "go",
-	rs: "rust",
-	swift: "swift",
-	kt: "kotlin",
-	kts: "kotlin",
-	sh: "shellscript",
-	ps1: "powershell",
-	sql: "sql",
-	scala: "scala",
-	hs: "haskell",
-	pl: "perl",
-	pm: "perl",
-	lua: "lua",
+	cshtml: "razor",
+	css: "css",
+	cxx: "cpp",
 	erl: "erlang",
 	ex: "elixir",
 	exs: "elixir",
-	r: "r",
-	cshtml: "razor",
-	m: "objective-c",
-	mm: "objective-cpp",
-	coffee: "coffeescript",
 	fs: "fsharp",
 	fsi: "fsharp",
 	fsx: "fsharp",
-	vue: "vue",
-	svelte: "svelte",
+	go: "go",
+	h: "cpp",
+	hpp: "cpp",
+	hs: "haskell",
+	html: "html",
+	java: "java",
+	js: "javascript",
+	json: "json",
 	jsonc: "jsonc",
+	jsx: "javascriptreact",
+	kt: "kotlin",
+	kts: "kotlin",
+	less: "less",
+	lua: "lua",
+	m: "objective-c",
+	md: "markdown",
+	mjs: "javascript",
+	mm: "objective-cpp",
+	php: "php",
+	pl: "perl",
+	pm: "perl",
+	ps1: "powershell",
+	py: "python",
+	r: "r",
+	rb: "ruby",
+	rs: "rust",
+	scala: "scala",
+	scss: "scss",
+	sh: "shellscript",
+	sql: "sql",
+	svelte: "svelte",
+	swift: "swift",
+	ts: "typescript",
+	tsx: "typescriptreact",
+	vue: "vue",
+	xml: "xml",
+	yaml: "yaml",
+	yml: "yaml",
 };
 
 function guessLanguageFromExtension(ext: string): string {
@@ -69,7 +69,7 @@ export function formatCodeAsMarkdown(
 	const ext = path.extname(relativePath).replace(".", "").toLowerCase();
 	const language = guessLanguageFromExtension(ext);
 
-	return applyTemplate({ language, path: relativePath, content });
+	return applyTemplate({ content, language, path: relativePath });
 }
 
 export function formatBinaryAsMarkdown(
@@ -86,9 +86,9 @@ export function formatBinaryAsMarkdown(
 	}
 
 	return applyTemplate({
+		content: lines.join("\n"),
 		language: "text",
 		path: relativePath,
-		content: lines.join("\n"),
 	});
 }
 

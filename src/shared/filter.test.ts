@@ -1,15 +1,15 @@
-import { describe, it, beforeEach, afterEach, expect, vi } from "vitest";
 import ignore from "ignore";
-import { shouldIncludePath } from "./filter";
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import * as config from "../config";
+import { shouldIncludePath } from "./filter";
 import type { FilterContext } from "./make-filter-context";
 
 describe("shouldIncludePath()", () => {
 	let cfgStub: ReturnType<typeof vi.spyOn>;
 	const filterContext: FilterContext = {
-		includeGlobs: [],
 		excludeGlobs: [],
 		gitIgnore: null,
+		includeGlobs: [],
 		vscodeExcludes: [],
 	};
 
@@ -45,9 +45,9 @@ describe("shouldIncludePath()", () => {
 	it("respects gitignore when enabled", () => {
 		filterContext.gitIgnore = ignore().add("**/build/**");
 		cfgStub.mockReturnValue({
+			maxContentSize: 0,
 			respectGitIgnore: true,
 			respectVSCodeExplorerExclude: false,
-			maxContentSize: 0,
 		});
 
 		expect(shouldIncludePath("build/index.js", filterContext)).toBe(false);
@@ -57,9 +57,9 @@ describe("shouldIncludePath()", () => {
 	it("respects VS Code explorer excludes when enabled", () => {
 		filterContext.vscodeExcludes = ["**/*.secret"];
 		cfgStub.mockReturnValue({
+			maxContentSize: 0,
 			respectGitIgnore: false,
 			respectVSCodeExplorerExclude: true,
-			maxContentSize: 0,
 		});
 
 		expect(shouldIncludePath("notes.secret", filterContext)).toBe(false);
