@@ -1,10 +1,12 @@
 import { PostHog } from "posthog-node";
 import * as vscode from "vscode";
+import { randomUUID } from 'node:crypto';
 
 const POSTHOG_API_KEY = 'phc_aGLAZHuUP5ifMnNdd7AyVtAoCbLJCnEXgpvrmkKp3oJ'; // public API key
 const POSTHOG_HOST = 'https://eu.i.posthog.com';
 
 let posthog: PostHog | null = null;
+let userId: string | null = null;
 let context: vscode.ExtensionContext | null = null;
 
 export async function initAnalytics(extensionContext: vscode.ExtensionContext) {
@@ -17,23 +19,22 @@ export async function initAnalytics(extensionContext: vscode.ExtensionContext) {
     try {
         const { PostHog } = await import('posthog-node');
         posthog = new PostHog(POSTHOG_API_KEY, { host: POSTHOG_HOST })
+        userId = getOrCreateUserId();
         
         track('extension_activated', {
             version: extensionContext.extension.packageJSON.version,
             vscode_version: vscode.version,
         });
-    } catch (error) {
-        console.warn('Analytics initialization failed:', error);
-    }
+    } catch { }
 }
 
 export function track(event: string, properties?: Record<string, any>) {
     const config = vscode.workspace.getConfiguration('copyContext');
-    const enabled = config.get<boolean>('enableAnalytics', true);    
+    const enabled = config.get<boolean>('enableAnalytics', true);
     if (!enabled || !posthog) return;
 
     posthog.capture({
-        distinctId: 'anonymous-user',
+        distinctId: userId || 'anonymous-user',
         event,
         properties: {
             ...sanitizeProperties(properties),
@@ -48,6 +49,20 @@ export async function shutdown() {
     if (posthog) {
         await posthog.shutdown();
     }
+}
+
+function getOrCreateUserId(): string {
+    if (!context) throw new Error('Analytics not initialized');
+    
+    const key = 'copyContext.userId';
+    let id = context.globalState.get<string>(key);
+    
+    if (!id) {
+        id = randomUUID();
+        context.globalState.update(key, id);
+    }
+    
+    return id;
 }
 
 function sanitizeProperties(props?: Record<string, any>): Record<string, any> {
