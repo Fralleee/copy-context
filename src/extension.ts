@@ -25,21 +25,27 @@ export function activate(context: vscode.ExtensionContext) {
 
 	const copyCodeThisTab = vscode.commands.registerCommand(
 		"extension.copyCode.thisTab",
-		async () => {
-			const activeEditor = vscode.window.activeTextEditor;
-			if (!activeEditor) {
-				vscode.window.showErrorMessage("No active tab to copy.");
-				return;
-			}
+		async (uri?: vscode.Uri) => {
+			let targetUri: vscode.Uri;
+			
+			if (uri && uri.scheme === "file") {
+				targetUri = uri;
+			} else {
+				const activeEditor = vscode.window.activeTextEditor;
+				if (!activeEditor) {
+					vscode.window.showErrorMessage("No active tab to copy.");
+					return;
+				}
 
-			const uri = activeEditor.document.uri;
-			if (uri.scheme !== "file") {
-				vscode.window.showErrorMessage("Can only copy saved files.");
-				return;
+				targetUri = activeEditor.document.uri;
+				if (targetUri.scheme !== "file") {
+					vscode.window.showErrorMessage("Can only copy saved files.");
+					return;
+				}
 			}
 
 			try {
-				await copyCode([uri]);
+				await copyCode([targetUri]);
 				track("copy_code", { command: "this_tab_context" });
 			} catch (error) {
 				track("error", { operation: "copy_code_this_tab_context" });
