@@ -22,8 +22,10 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Install Biome CLI for Linux
-        run: npm install @biomejs/cli-linux-x64@1.9.4 --no-save
+      - name: Install platform-specific dependencies
+        run: |
+          npm install @biomejs/cli-linux-x64@1.9.4 --no-save
+          npm install @rollup/rollup-linux-x64-gnu --no-save
 
       - name: Lint
         run: npm run lint
