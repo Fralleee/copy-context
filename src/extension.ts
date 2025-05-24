@@ -1,15 +1,23 @@
 import * as vscode from "vscode";
 import { copyStructure } from "./features/copy-structure/copy-structure";
 import { copyCode } from "./features/copy-code/copy-code";
+import { initAnalytics, shutdown, track } from "./monitoring/analytics";
 
 export function activate(context: vscode.ExtensionContext) {
+	initAnalytics(context);
+
 	const copyCodeCommand = vscode.commands.registerCommand(
 		"extension.copyCode",
 		async (uri: vscode.Uri, uris?: vscode.Uri[]) => {
 			try {
 				const allUris = uris && uris.length > 0 ? uris : [uri];
 				await copyCode(allUris);
+				track("copy_code", {
+					command: "context_menu",
+					file_count: allUris.length,
+				});
 			} catch (error) {
+				track("error", { operation: "copy_code_context_menu" });
 				vscode.window.showErrorMessage(`Failed to copy code context: ${error}`);
 			}
 		},
@@ -17,35 +25,60 @@ export function activate(context: vscode.ExtensionContext) {
 
 	const copyCodeThisTab = vscode.commands.registerCommand(
 		"extension.copyCode.thisTab",
-		async (uri: vscode.Uri) => {
-			if (!uri) {
-				vscode.window.showErrorMessage("No tab URI provided.");
+		async () => {
+			const activeEditor = vscode.window.activeTextEditor;
+			if (!activeEditor) {
+				vscode.window.showErrorMessage("No active tab to copy.");
 				return;
 			}
-			await copyCode([uri]);
+
+			const uri = activeEditor.document.uri;
+			if (uri.scheme !== "file") {
+				vscode.window.showErrorMessage("Can only copy saved files.");
+				return;
+			}
+
+			try {
+				await copyCode([uri]);
+				track("copy_code", { command: "this_tab_context" });
+			} catch (error) {
+				track("error", { operation: "copy_code_this_tab_context" });
+				vscode.window.showErrorMessage(`Failed to copy code context: ${error}`);
+			}
 		},
 	);
 
 	const copyCodeAllTabs = vscode.commands.registerCommand(
 		"extension.copyCode.allTabs",
 		async () => {
-			const allTabs = vscode.window.tabGroups.all.flatMap((g) => g.tabs);
-			const fileUris = allTabs
-				.map((tab) => {
-					const input = tab.input as { uri: vscode.Uri | undefined };
-					return input?.uri as vscode.Uri | undefined;
-				})
-				.filter((u): u is vscode.Uri => !!u && u.scheme === "file");
+			try {
+				const allTabs = vscode.window.tabGroups.all.flatMap((g) => g.tabs);
+				const fileUris = allTabs
+					.map((tab) => {
+						const input = tab.input as { uri: vscode.Uri | undefined };
+						return input?.uri as vscode.Uri | undefined;
+					})
+					.filter((u): u is vscode.Uri => !!u && u.scheme === "file");
 
-			if (!fileUris.length) {
-				return vscode.window.showErrorMessage("No open file tabs to copy.");
+				if (!fileUris.length) {
+					return vscode.window.showErrorMessage("No open file tabs to copy.");
+				}
+
+				await copyCode(
+					Array.from(new Set(fileUris.map((u) => u.toString()))).map((s) =>
+						vscode.Uri.parse(s),
+					),
+				);
+				track("copy_code", {
+					command: "all_tabs",
+					file_count: fileUris.length,
+				});
+			} catch (error) {
+				track("error", { operation: "copy_code_all_tabs" });
+				vscode.window.showErrorMessage(
+					`Failed to copy code context from all tabs: ${error}`,
+				);
 			}
-
-			await copyCode(
-				Array.from(new Set(fileUris.map((u) => u.toString()))).map((s) =>
-					vscode.Uri.parse(s),
-				),
-			);
 		},
 	);
 
@@ -54,7 +87,9 @@ export function activate(context: vscode.ExtensionContext) {
 		async (uri: vscode.Uri) => {
 			try {
 				await copyStructure(uri);
+				track("copy_structure");
 			} catch (error) {
+				track("error", { operation: "copy_structure" });
 				vscode.window.showErrorMessage(
 					`Failed to copy folder structure: ${error}`,
 				);
@@ -68,4 +103,6 @@ export function activate(context: vscode.ExtensionContext) {
 	context.subscriptions.push(copyStructureCommand);
 }
 
-export function deactivate() {}
+export async function deactivate() {
+	await shutdown();
+}

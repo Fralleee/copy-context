@@ -81,14 +81,35 @@
 					}
 				},
 				"title": "Filter"
+			},
+			{
+				"additionalProperties": false,
+				"markdownDescription": "Settings for user analytics.",
+				"order": 2,
+				"properties": {
+					"copyContext.enableAnalytics": {
+						"default": true,
+						"markdownDescription": "Help improve the extension by sending **anonymous** usage statistics.",
+						"title": "Enable Analytics",
+						"type": "boolean"
+					}
+				},
+				"title": "Analytics"
 			}
 		],
 		"menus": {
+			"commandPalette": [
+				{
+					"command": "extension.copyCode",
+					"when": "false"
+				},
+				{
+					"command": "extension.copyStructure",
+					"when": "false"
+				}
+			],
 			"editor/title/context": [
 				{
-					"arguments": [
-						"${resourceUri}"
-					],
 					"command": "extension.copyCode.thisTab",
 					"group": "1_copycode@1"
 				},
@@ -113,7 +134,8 @@
 		"file-type": "^16.5.4",
 		"ignore": "^7.0.4",
 		"istextorbinary": "^9.5.0",
-		"minimatch": "^5.1.2"
+		"minimatch": "^5.1.2",
+		"posthog-node": "^4.17.2"
 	},
 	"description": "Copies selected files/folders as Markdown code context or structure",
 	"devDependencies": {
