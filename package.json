@@ -153,6 +153,7 @@
 		"@types/vscode": "^1.99.1",
 		"@vitest/coverage-v8": "^3.1.4",
 		"conventional-changelog-conventionalcommits": "^8.0.0",
+		"esbuild": "^0.25.4",
 		"knip": "^5.46.0",
 		"semantic-release": "^24.2.3",
 		"typescript": "^5.8.2",
@@ -173,14 +174,16 @@
 		"url": "https://github.com/Fralleee/copy-code-context.git"
 	},
 	"scripts": {
-		"compile": "tsc -p ./",
+		"build": "npm run esbuild-base",
+		"check-types": "tsc --noEmit",
+		"esbuild-base": "node esbuild.js",
 		"knip": "knip",
 		"lint": "biome lint .",
 		"test": "vitest run",
 		"test:coverage": "vitest run --coverage",
 		"test:watch": "vitest",
-		"vscode:prepublish": "npm run compile",
-		"watch": "tsc -watch -p ./"
+		"vscode:prepublish": "npm run esbuild-base -- --production",
+		"watch": "npm run esbuild-base -- --watch"
 	},
 	"version": "0.6.1"
 }

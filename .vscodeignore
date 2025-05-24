@@ -1,17 +1,44 @@
+
+# Source files
+src/**
 .vscode/**
 .vscode-test/**
-src/**
-.gitignore
-.yarnrc
-vsc-extension-quickstart.md
-**/tsconfig.json
-**/biome.json
-**/*.map
-**/*.ts
-**/.vscode-test.*
-CODEOWNERS
-knip.json
+**/.js.map
+
+# Build files
+tsconfig.json
+biome.json
+esbuild.js
+.eslintrc.js
+.prettierrc
+.prettierignore
 release.config.js
 vitest.config.mjs
 vitest.setup.js
-.github
+CODEOWNERS
+knip.json
+
+# Test files
+**/*.test.ts
+**/*.spec.ts
+coverage/**
+
+# Development files
+node_modules/**
+.gitignore
+.gitattributes
+.github/**
+
+# Documentation (keep README.md and CHANGELOG.md)
+*.md
+!README.md
+!CHANGELOG.md
+
+# Package files
+package-lock.json
+*.vsix
+
+# Other
+.DS_Store
+Thumbs.db
+*.log

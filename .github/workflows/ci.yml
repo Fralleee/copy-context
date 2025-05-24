@@ -29,10 +29,13 @@ jobs:
         run: npm run knip
 
       - name: Type Check
-        run: npm run compile
+        run: npm run check-types
 
       - name: Test with coverage
         run: npm run test:coverage
+
+      - name: Build Extension (bundled)
+        run: npm run build
 
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v3
