@@ -1,3 +1,9 @@
+## [0.6.3](https://github.com/Fralleee/copy-code-context/compare/v0.6.2...v0.6.3) (2025-05-25)
+
+### Bug Fixes
+
+* organize package.json ([ea8bc92](https://github.com/Fralleee/copy-code-context/commit/ea8bc92e5a37c3559be6bb41f3132dbaada62a2b))
+
 ## [0.6.2](https://github.com/Fralleee/copy-code-context/compare/v0.6.1...v0.6.2) (2025-05-25)
 
 ### Bug Fixes
