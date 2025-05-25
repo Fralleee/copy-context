@@ -1,3 +1,10 @@
+## [0.6.2](https://github.com/Fralleee/copy-code-context/compare/v0.6.1...v0.6.2) (2025-05-25)
+
+### Bug Fixes
+
+* make it work with vscode 1.96.0 ([ec44506](https://github.com/Fralleee/copy-code-context/commit/ec44506e115905609f1cc55d7962c2b2c7f0498f))
+* revert version ([5febfc9](https://github.com/Fralleee/copy-code-context/commit/5febfc9b8372513d1550923e77a408fac8f6ac5d))
+
 ## [0.6.1](https://github.com/Fralleee/copy-code-context/compare/v0.6.0...v0.6.1) (2025-05-24)
 
 ### Bug Fixes
