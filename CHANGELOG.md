@@ -1,3 +1,13 @@
+## [0.6.4](https://github.com/Fralleee/copy-context/compare/v0.6.3...v0.6.4) (2025-05-28)
+
+### Bug Fixes
+
+* bump version ([8c30a04](https://github.com/Fralleee/copy-context/commit/8c30a04f4d85a1e566bb86eb5170b584c489c835))
+
+### Chores
+
+* change name to Copy Context ([a1b59b8](https://github.com/Fralleee/copy-context/commit/a1b59b8e9ee0bb78ce76f97d804181db9ba72034))
+
 ## [0.6.3](https://github.com/Fralleee/copy-context/compare/v0.6.2...v0.6.3) (2025-05-25)
 
 ### Bug Fixes
