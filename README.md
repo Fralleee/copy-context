@@ -1,4 +1,4 @@
-# Copy Code Context
+# Copy Context
   
 Copy files or folder trees into your clipboard as Markdown—ready to paste into chats, docs, or code reviews.
 
@@ -7,11 +7,11 @@ Copy files or folder trees into your clipboard as Markdown—ready to paste into
 ## 🚀 Usage
 
 1. **Explorer**  
-   - Select one or more **files or folders** → right-click → **Copy Code Context**  
+   - Select one or more **files or folders** → right-click → **Copy Context**  
    - Select a root **folder** → right-click → **Copy Folder Structure**
 
 2. **Editor Tab**  
-   - Right-click a tab title → **Copy Code Context (This Tab)** or **… (All Open Tabs)**.
+   - Right-click a tab title → **Copy Context (This Tab)** or **… (All Open Tabs)**.
 
 3. **Paste** anywhere and your Markdown snippet or tree is on the clipboard
 
@@ -19,17 +19,17 @@ Copy files or folder trees into your clipboard as Markdown—ready to paste into
 
 ## ✨ Features
 
-### 📄 Copy Code Context  
+### 📄 Copy Context  
 
 - _Explorer_: grab paths + syntax-highlighted code blocks  
 - _Tabs_: copy the active file or all open files at once (_Unsaved buffers (Untitled)_ are skipped)
 - Respects include/exclude globs, VS Code Explorer excludes & (opt-in) `.gitignore` 
 
-**Copy Code (Explorer)**
+**Copy Context (Explorer)**
 
 ![copy-code-explorer](https://github.com/user-attachments/assets/9c2bb633-b1dc-4585-97ab-76edd61e1e87)
 
-**Copy Code (Tabs)**
+**Copy Context (Tabs)**
 
 ![copy-code-editor](https://github.com/user-attachments/assets/f011e5e8-6776-4b27-bad5-bd24caa40383)
 

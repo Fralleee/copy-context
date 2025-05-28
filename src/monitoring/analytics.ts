@@ -39,6 +39,7 @@ export function track(event: string, properties?: Record<string, unknown>) {
 		properties: {
 			...sanitizeProperties(properties),
 			platform: process.platform,
+			session_id: vscode.env.sessionId,
 			ui_kind: vscode.env.uiKind === vscode.UIKind.Desktop ? "desktop" : "web",
 			vscode_version: vscode.version,
 		},

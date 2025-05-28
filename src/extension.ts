@@ -18,7 +18,7 @@ export function activate(context: vscode.ExtensionContext) {
 				});
 			} catch (error) {
 				track("error", { operation: "copy_code_context_menu" });
-				vscode.window.showErrorMessage(`Failed to copy code context: ${error}`);
+				vscode.window.showErrorMessage(`Failed to copy context: ${error}`);
 			}
 		},
 	);
@@ -27,7 +27,7 @@ export function activate(context: vscode.ExtensionContext) {
 		"extension.copyCode.thisTab",
 		async (uri?: vscode.Uri) => {
 			let targetUri: vscode.Uri;
-			
+
 			if (uri && uri.scheme === "file") {
 				targetUri = uri;
 			} else {
@@ -49,7 +49,7 @@ export function activate(context: vscode.ExtensionContext) {
 				track("copy_code", { command: "this_tab_context" });
 			} catch (error) {
 				track("error", { operation: "copy_code_this_tab_context" });
-				vscode.window.showErrorMessage(`Failed to copy code context: ${error}`);
+				vscode.window.showErrorMessage(`Failed to copy context: ${error}`);
 			}
 		},
 	);
@@ -80,9 +80,9 @@ export function activate(context: vscode.ExtensionContext) {
 					file_count: fileUris.length,
 				});
 			} catch (error) {
-				track("error", { operation: "copy_code_all_tabs" });
+				track("error", { error, operation: "copy_code_all_tabs" });
 				vscode.window.showErrorMessage(
-					`Failed to copy code context from all tabs: ${error}`,
+					`Failed to copy context from all tabs: ${error}`,
 				);
 			}
 		},

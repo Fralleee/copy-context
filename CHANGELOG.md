@@ -19,10 +19,6 @@
 
 ## [0.6.0](https://github.com/Fralleee/copy-code-context/compare/v0.5.4...v0.6.0) (2025-05-24)
 
-### Features
-
-* add analytics ([3f63ebf](https://github.com/Fralleee/copy-code-context/commit/3f63ebfb070672166976919267d66f7ac78d8230))
-
 ### Bug Fixes
 
 * allow command palette usage on this tab command ([3f63ebf](https://github.com/Fralleee/copy-code-context/commit/3f63ebfb070672166976919267d66f7ac78d8230))
@@ -107,7 +103,7 @@
 
 ### Features
 
-* Copy Code Context for editor tabs ([e7562e8](https://github.com/Fralleee/copy-code-context/commit/e7562e853d53e79b39866c00b42e98fe8138c78d))
+* Copy Context for editor tabs ([e7562e8](https://github.com/Fralleee/copy-code-context/commit/e7562e853d53e79b39866c00b42e98fe8138c78d))
 
 # [0.3.0](https://github.com/Fralleee/copy-code-context/compare/v0.2.0...v0.3.0) (2025-04-28)
 
@@ -125,7 +121,7 @@
 
 ### Bug Fixes
 
-* Fix issue with copy code context on hidden files and folders
+* Fix issue with copy context on hidden files and folders
 
 ## 0.1.0 (2025-03-15)
 
