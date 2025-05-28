@@ -27,11 +27,11 @@ Copy files or folder trees into your clipboard as Markdown—ready to paste into
 
 **Copy Context (Explorer)**
 
-![copy-code-explorer](https://github.com/user-attachments/assets/9c2bb633-b1dc-4585-97ab-76edd61e1e87)
+![copy-context](https://github.com/user-attachments/assets/5a1a14bd-0fd8-4792-a1a2-00530503c6cf)
 
 **Copy Context (Tabs)**
 
-![copy-code-editor](https://github.com/user-attachments/assets/f011e5e8-6776-4b27-bad5-bd24caa40383)
+![copy-context-tabs](https://github.com/user-attachments/assets/2483793c-b0ec-4c96-a633-74c5a5fcea8f)
 
 ### 📂 Copy Folder Structure
 
@@ -40,8 +40,7 @@ Copy files or folder trees into your clipboard as Markdown—ready to paste into
 
 **Copy Folder Structure**
 
-![copy-folder-structure](https://github.com/user-attachments/assets/860a0ad7-22af-46b2-85b6-cb06b873769d)
-
+![copy-structure](https://github.com/user-attachments/assets/d30c0f79-c978-4e4d-980d-ca55fa2e0fda)
 
 ---
 
