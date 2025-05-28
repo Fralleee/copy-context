@@ -162,7 +162,7 @@
 	"engines": {
 		"vscode": "^1.96.0"
 	},
-	"homepage": "https://github.com/Fralleee/copy-code-context#readme",
+	"homepage": "https://github.com/Fralleee/copy-context#readme",
 	"icon": "images/icon.png",
 	"license": "MIT",
 	"main": "./out/extension.js",
@@ -170,7 +170,7 @@
 	"publisher": "fralle",
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/Fralleee/copy-code-context.git"
+		"url": "https://github.com/Fralleee/copy-context.git"
 	},
 	"scripts": {
 		"build": "npm run esbuild-base",

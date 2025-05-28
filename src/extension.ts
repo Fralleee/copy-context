@@ -1,5 +1,5 @@
 import * as vscode from "vscode";
-import { copyCode } from "./features/copy-code/copy-code";
+import { copyCode } from "./features/copy-context/copy-context";
 import { copyStructure } from "./features/copy-structure/copy-structure";
 import { initAnalytics, shutdown, track } from "./monitoring/analytics";
 
