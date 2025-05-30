@@ -17,7 +17,7 @@ export function activate(context: vscode.ExtensionContext) {
 					file_count: allUris.length,
 				});
 			} catch (error) {
-				track("error", { operation: "copy_code_context_menu" });
+				track("error", { error, operation: "copy_code_context_menu" });
 				vscode.window.showErrorMessage(`Failed to copy context: ${error}`);
 			}
 		},
@@ -48,7 +48,7 @@ export function activate(context: vscode.ExtensionContext) {
 				await copyCode([targetUri]);
 				track("copy_code", { command: "this_tab_context" });
 			} catch (error) {
-				track("error", { operation: "copy_code_this_tab_context" });
+				track("error", { error, operation: "copy_code_this_tab_context" });
 				vscode.window.showErrorMessage(`Failed to copy context: ${error}`);
 			}
 		},
@@ -95,7 +95,7 @@ export function activate(context: vscode.ExtensionContext) {
 				await copyStructure(uri);
 				track("copy_structure");
 			} catch (error) {
-				track("error", { operation: "copy_structure" });
+				track("error", { error, operation: "copy_structure" });
 				vscode.window.showErrorMessage(
 					`Failed to copy folder structure: ${error}`,
 				);
