@@ -1,3 +1,9 @@
+## [0.6.5](https://github.com/Fralleee/copy-context/compare/v0.6.4...v0.6.5) (2025-05-30)
+
+### Chores
+
+* add error object to analytics ([b256321](https://github.com/Fralleee/copy-context/commit/b2563217c1d8fe592bf8c37017b0484233575e9c))
+
 ## [0.6.4](https://github.com/Fralleee/copy-context/compare/v0.6.3...v0.6.4) (2025-05-28)
 
 ### Bug Fixes
