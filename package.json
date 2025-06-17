@@ -138,7 +138,7 @@
 	},
 	"description": "Copies selected files/folders as Markdown code context or structure",
 	"devDependencies": {
-		"@biomejs/biome": "^2.0.0-beta.3",
+		"@biomejs/biome": "^2.0.0",
 		"@semantic-release/changelog": "^6.0.3",
 		"@semantic-release/commit-analyzer": "^13.0.1",
 		"@semantic-release/exec": "^7.0.3",
@@ -195,7 +195,7 @@
 		"check-types": "tsc --noEmit",
 		"esbuild-base": "node esbuild.js",
 		"knip": "knip",
-		"lint": "biome lint .",
+		"lint": "biome lint . && knip",
 		"test": "vitest run",
 		"test:coverage": "vitest run --coverage",
 		"test:watch": "vitest",
