@@ -1,4 +1,8 @@
 # Copy Context
+
+![Visual Studio Marketplace Installs](https://img.shields.io/visual-studio-marketplace/i/Fralle.copy-code-context)
+![Visual Studio Marketplace Version](https://img.shields.io/visual-studio-marketplace/v/Fralle.copy-code-context)
+![Visual Studio Marketplace Last Updated](https://img.shields.io/visual-studio-marketplace/last-updated/Fralle.copy-code-context)
   
 Copy files or folder trees into your clipboard as Markdown—ready to paste into chats, docs, or code reviews.
 
