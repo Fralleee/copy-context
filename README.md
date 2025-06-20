@@ -23,7 +23,7 @@ Copy files or folder trees into your clipboard as Markdown—ready to paste into
 
 ## ✨ Features
 
-### 📄 Copy Context  
+### Copy Context  
 
 - _Explorer_: grab paths + syntax-highlighted code blocks  
 - _Tabs_: copy the active file or all open files at once (_Unsaved buffers (Untitled)_ are skipped)
@@ -37,7 +37,7 @@ Copy files or folder trees into your clipboard as Markdown—ready to paste into
 
 ![copy-context-tabs](https://github.com/user-attachments/assets/2483793c-b0ec-4c96-a633-74c5a5fcea8f)
 
-### 📂 Copy Folder Structure
+### Copy Folder Structure
 
 - Generates a Markdown tree of your folder’s contents  
 - Respects the same filters (globs, Explorer excludes, `.gitignore`)
