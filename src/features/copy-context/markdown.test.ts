@@ -27,7 +27,7 @@ describe("Markdown Formatting", () => {
 				'console.log("hello");',
 			);
 
-			expect(result).toContain("```javascript");
+			expect(result).toContain("```js");
 			expect(result).toContain("// src/test.js");
 			expect(result).toContain('console.log("hello");');
 			expect(result).toContain("```");
@@ -39,7 +39,7 @@ describe("Markdown Formatting", () => {
 				"const x: number = 42;",
 			);
 
-			expect(result).toContain("```typescript");
+			expect(result).toContain("```ts");
 			expect(result).toContain("// src/utils.ts");
 			expect(result).toContain("const x: number = 42;");
 		});
@@ -100,13 +100,13 @@ describe("Markdown Formatting", () => {
 		it("should apply default template correctly", () => {
 			const vars = {
 				content: 'console.log("test");',
-				language: "javascript",
+				language: "js",
 				path: "src/test.js",
 			};
 
 			const result = applyTemplate(vars);
 
-			expect(result).toContain("```javascript");
+			expect(result).toContain("```js");
 			expect(result).toContain("// src/test.js");
 			expect(result).toContain('console.log("test");');
 			expect(result).toContain("```");
