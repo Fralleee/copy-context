@@ -16,10 +16,16 @@ function countNodes(nodes: FileTreeNode[]): number {
 }
 
 export async function copyStructure(uri: vscode.Uri) {
+	const stat = await vscode.workspace.fs.stat(uri);
+	if (stat.type !== vscode.FileType.Directory) {
+		uri = vscode.Uri.file(path.dirname(uri.fsPath));
+	}
+
 	const filterContext = await makeFilterContext();
-	const folderName = path.basename(uri.fsPath);
 	const folder = vscode.workspace.getWorkspaceFolder(uri);
 	const rootPath = folder?.uri.fsPath || uri.fsPath;
+	const relPath = path.relative(rootPath, uri.fsPath).split(path.sep).join("/");
+	const folderName = path.basename(uri.fsPath);
 	const tree = await fileTree(uri.fsPath, rootPath, filterContext);
 
 	await vscode.window.withProgress(
@@ -42,10 +48,10 @@ export async function copyStructure(uri: vscode.Uri) {
 
 			const lines = await buildAsciiLines(tree, "", token, updateProgress);
 			const output = [
-				"# Project Structure",
-				`Name: ${folderName}`,
-				"",
+				"```text",
+				`📁 ${relPath || folderName}`,
 				...lines,
+				"```",
 			].join("\n");
 
 			await vscode.env.clipboard.writeText(output);

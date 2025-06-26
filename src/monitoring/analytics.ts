@@ -18,7 +18,10 @@ export async function initAnalytics(extensionContext: vscode.ExtensionContext) {
 
 	try {
 		const { PostHog } = await import("posthog-node");
-		posthog = new PostHog(POSTHOG_API_KEY, { host: POSTHOG_HOST });
+		posthog = new PostHog(POSTHOG_API_KEY, {
+			disableGeoip: false,
+			host: POSTHOG_HOST,
+		});
 		userId = getOrCreateUserId();
 
 		track("extension_activated", {
