@@ -90,9 +90,10 @@ export function activate(context: vscode.ExtensionContext) {
 
 	const copyStructureCommand = vscode.commands.registerCommand(
 		"extension.copyStructure",
-		async (uri: vscode.Uri) => {
+		async (uri: vscode.Uri, uris?: vscode.Uri[]) => {
 			try {
-				await copyStructure(uri);
+				const selected = uris && uris.length > 0 ? uris : [uri];
+				await copyStructure(selected);
 				track("copy_structure");
 			} catch (error) {
 				track("error", { error, operation: "copy_structure" });
