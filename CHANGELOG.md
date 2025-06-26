@@ -1,3 +1,18 @@
+## [0.7.0](https://github.com/Fralleee/copy-context/compare/v0.6.5...v0.7.0) (2025-06-26)
+
+### Features
+
+* support multiple folders in copy structure ([ac53391](https://github.com/Fralleee/copy-context/commit/ac533911f04b4942f15e22f518ec2ad01654f0a9))
+
+### Chores
+
+* add keywords ([a209305](https://github.com/Fralleee/copy-context/commit/a209305d2904002d42989252a1011bed31b28a2f))
+* improve language support ([f7b9ae5](https://github.com/Fralleee/copy-context/commit/f7b9ae550f745303ac2a853da8ba61b8ced23051))
+* update biome ([a25f843](https://github.com/Fralleee/copy-context/commit/a25f84303f702a1987622ea447fafc863a1a947f))
+* update biome schema ([26ab4ee](https://github.com/Fralleee/copy-context/commit/26ab4ee0f7c72c668973a218a7f2de339df5b2a6))
+* update tests ([7dc707a](https://github.com/Fralleee/copy-context/commit/7dc707a6315073f9cf74da8ff75e05936a3230ff))
+* use relative path if possible for copy structure name ([1702ded](https://github.com/Fralleee/copy-context/commit/1702ded1dc1b4f1a0abef24ec9d766ecef400c65))
+
 ## [0.6.5](https://github.com/Fralleee/copy-context/compare/v0.6.4...v0.6.5) (2025-05-30)
 
 ### Chores
