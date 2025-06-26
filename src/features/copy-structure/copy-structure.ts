@@ -72,9 +72,12 @@ export async function copyStructure(uris: vscode.Uri[]) {
 					});
 				});
 
-				const block = ["```text", `📁 ${info.relPath}`, ...lines, "```"].join(
-					"\n",
-				);
+				const block = [
+					"```plaintext",
+					`📁 ${info.relPath}`,
+					...lines,
+					"```",
+				].join("\n");
 				sections.push(block);
 			}
 		},

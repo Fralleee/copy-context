@@ -65,7 +65,7 @@ export async function fileContents(
 					const content = `- Failed reading file metadata: ${err}`;
 					result += applyTemplate({
 						content,
-						language: "text",
+						language: "plaintext",
 						path: node.relativePath,
 					});
 				}

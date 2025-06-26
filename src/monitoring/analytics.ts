@@ -1,4 +1,3 @@
-import { randomUUID } from "node:crypto";
 import type { PostHog } from "posthog-node";
 import * as vscode from "vscode";
 
@@ -6,7 +5,6 @@ const POSTHOG_API_KEY = "phc_aGLAZHuUP5ifMnNdd7AyVtAoCbLJCnEXgpvrmkKp3oJ"; // pu
 const POSTHOG_HOST = "https://eu.i.posthog.com";
 
 let posthog: PostHog | null = null;
-let userId: string | null = null;
 let context: vscode.ExtensionContext | null = null;
 
 export async function initAnalytics(extensionContext: vscode.ExtensionContext) {
@@ -22,7 +20,13 @@ export async function initAnalytics(extensionContext: vscode.ExtensionContext) {
 			disableGeoip: false,
 			host: POSTHOG_HOST,
 		});
-		userId = getOrCreateUserId();
+		posthog.identify({
+			distinctId: vscode.env.machineId,
+			properties: {
+				language: vscode.env.language,
+				platform: process.platform,
+			},
+		});
 
 		track("extension_activated", {
 			version: extensionContext.extension.packageJSON.version,
@@ -37,7 +41,7 @@ export function track(event: string, properties?: Record<string, unknown>) {
 	if (!enabled || !posthog) return;
 
 	posthog.capture({
-		distinctId: userId || "anonymous-user",
+		distinctId: vscode.env.machineId || "anonymous-user",
 		event,
 		properties: {
 			...sanitizeProperties(properties),
@@ -53,20 +57,6 @@ export async function shutdown() {
 	if (posthog) {
 		await posthog.shutdown();
 	}
-}
-
-function getOrCreateUserId(): string {
-	if (!context) throw new Error("Analytics not initialized");
-
-	const key = "copyContext.userId";
-	let id = context.globalState.get<string>(key);
-
-	if (!id) {
-		id = randomUUID();
-		context.globalState.update(key, id);
-	}
-
-	return id;
 }
 
 function sanitizeProperties(

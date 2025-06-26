@@ -74,7 +74,7 @@ describe("Markdown Formatting", () => {
 			const meta = { mime: "image/png", size: 2048 };
 			const result = formatBinaryAsMarkdown("assets/logo.png", meta);
 
-			expect(result).toContain("```text");
+			expect(result).toContain("```plaintext");
 			expect(result).toContain("// assets/logo.png");
 			expect(result).toContain("- size: 2.0 KB");
 			expect(result).toContain("- mime: image/png");
@@ -124,7 +124,7 @@ describe("Markdown Formatting", () => {
 
 			const vars = {
 				content: "Hello world",
-				language: "text",
+				language: "plaintext",
 				path: "test.txt",
 			};
 
@@ -146,7 +146,7 @@ describe("Markdown Formatting", () => {
 
 			const result = applyTemplate({
 				content: "content",
-				language: "text",
+				language: "plaintext",
 				path: "test.txt",
 			});
 
