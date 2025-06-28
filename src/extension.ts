@@ -5,13 +5,14 @@ import { initAnalytics, shutdown, track } from "./monitoring/analytics";
 
 export function activate(context: vscode.ExtensionContext) {
 	initAnalytics(context);
+	const outputChannel = vscode.window.createOutputChannel("CopyContext");
 
 	const copyCodeCommand = vscode.commands.registerCommand(
 		"extension.copyCode",
 		async (uri: vscode.Uri, uris?: vscode.Uri[]) => {
 			try {
 				const allUris = uris && uris.length > 0 ? uris : [uri];
-				await copyCode(allUris);
+				await copyCode(allUris, outputChannel);
 				track("copy_code", {
 					command: "context_menu",
 					file_count: allUris.length,
@@ -45,7 +46,7 @@ export function activate(context: vscode.ExtensionContext) {
 			}
 
 			try {
-				await copyCode([targetUri]);
+				await copyCode([targetUri], outputChannel);
 				track("copy_code", { command: "this_tab_context" });
 			} catch (error) {
 				track("error", { error, operation: "copy_code_this_tab_context" });
@@ -70,11 +71,10 @@ export function activate(context: vscode.ExtensionContext) {
 					return vscode.window.showErrorMessage("No open file tabs to copy.");
 				}
 
-				await copyCode(
-					Array.from(new Set(fileUris.map((u) => u.toString()))).map((s) =>
-						vscode.Uri.parse(s),
-					),
-				);
+				const distinctUris = Array.from(
+					new Set(fileUris.map((u) => u.toString())),
+				).map((s) => vscode.Uri.parse(s));
+				await copyCode(distinctUris, outputChannel);
 				track("copy_code", {
 					command: "all_tabs",
 					file_count: fileUris.length,
@@ -93,7 +93,7 @@ export function activate(context: vscode.ExtensionContext) {
 		async (uri: vscode.Uri, uris?: vscode.Uri[]) => {
 			try {
 				const selected = uris && uris.length > 0 ? uris : [uri];
-				await copyStructure(selected);
+				await copyStructure(selected, outputChannel);
 				track("copy_structure");
 			} catch (error) {
 				track("error", { error, operation: "copy_structure" });
@@ -108,6 +108,7 @@ export function activate(context: vscode.ExtensionContext) {
 	context.subscriptions.push(copyCodeThisTab);
 	context.subscriptions.push(copyCodeAllTabs);
 	context.subscriptions.push(copyStructureCommand);
+	context.subscriptions.push(outputChannel);
 }
 
 export async function deactivate() {

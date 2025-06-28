@@ -23,7 +23,10 @@ interface FolderInfo {
 	totalNodes: number;
 }
 
-export async function copyStructure(uris: vscode.Uri[]) {
+export async function copyStructure(
+	uris: vscode.Uri[],
+	outputChannel: vscode.OutputChannel,
+) {
 	const folderFsPaths = new Set<string>();
 	for (let uri of uris) {
 		const stat = await vscode.workspace.fs.stat(uri);
@@ -90,7 +93,6 @@ export async function copyStructure(uris: vscode.Uri[]) {
 		3000,
 	);
 
-	const outputChannel = vscode.window.createOutputChannel("CopyStructure");
 	outputChannel.appendLine(
 		`Copied ${folderInfos.length} folder structure(s) successfully.`,
 	);

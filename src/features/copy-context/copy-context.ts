@@ -25,7 +25,10 @@ type File = {
 
 type Item = Directory | File;
 
-export async function copyCode(uris: vscode.Uri[]) {
+export async function copyCode(
+	uris: vscode.Uri[],
+	outputChannel: vscode.OutputChannel,
+) {
 	const filterContext = await makeFilterContext();
 	const { maxContentSize } = getSettings();
 	const visitedFiles = new Set<string>();
@@ -91,7 +94,6 @@ export async function copyCode(uris: vscode.Uri[]) {
 				);
 			}
 
-			const outputChannel = vscode.window.createOutputChannel("CopyContext");
 			outputChannel.appendLine(
 				`Copy Context: Finished processing ${totalFiles} files.`,
 			);
