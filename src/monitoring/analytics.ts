@@ -1,18 +1,15 @@
 import type { PostHog } from "posthog-node";
 import * as vscode from "vscode";
+import { getSettings } from "../config";
 
 const POSTHOG_API_KEY = "phc_aGLAZHuUP5ifMnNdd7AyVtAoCbLJCnEXgpvrmkKp3oJ"; // public API key
 const POSTHOG_HOST = "https://eu.i.posthog.com";
 
 let posthog: PostHog | null = null;
-let context: vscode.ExtensionContext | null = null;
+const settings = getSettings();
 
 export async function initAnalytics(extensionContext: vscode.ExtensionContext) {
-	context = extensionContext;
-
-	const config = vscode.workspace.getConfiguration("copyContext");
-	const enabled = config.get<boolean>("enableAnalytics", true);
-	if (!enabled) return;
+	if (!settings.enableAnalytics) return;
 
 	try {
 		const { PostHog } = await import("posthog-node");
@@ -25,6 +22,7 @@ export async function initAnalytics(extensionContext: vscode.ExtensionContext) {
 			properties: {
 				language: vscode.env.language,
 				platform: process.platform,
+				settings,
 			},
 		});
 
@@ -36,9 +34,7 @@ export async function initAnalytics(extensionContext: vscode.ExtensionContext) {
 }
 
 export function track(event: string, properties?: Record<string, unknown>) {
-	const config = vscode.workspace.getConfiguration("copyContext");
-	const enabled = config.get<boolean>("enableAnalytics", true);
-	if (!enabled || !posthog) return;
+	if (!settings.enableAnalytics || !posthog) return;
 
 	posthog.capture({
 		distinctId: vscode.env.machineId || "anonymous-user",

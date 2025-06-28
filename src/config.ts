@@ -3,6 +3,7 @@ import * as vscode from "vscode";
 export function getSettings() {
 	const config = vscode.workspace.getConfiguration("copyContext");
 	return {
+		enableAnalytics: config.get<boolean>("enableAnalytics", true),
 		excludeGlobs: config.get<string[]>("excludeGlobs", []),
 		includeGlobs: config.get<string[]>("includeGlobs", []),
 		maxContentSize: config.get<number>("maxContentSize", 500_000),
