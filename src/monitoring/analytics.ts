@@ -6,9 +6,9 @@ const POSTHOG_API_KEY = "phc_aGLAZHuUP5ifMnNdd7AyVtAoCbLJCnEXgpvrmkKp3oJ"; // pu
 const POSTHOG_HOST = "https://eu.i.posthog.com";
 
 let posthog: PostHog | null = null;
-const settings = getSettings();
 
 export async function initAnalytics(extensionContext: vscode.ExtensionContext) {
+	const settings = getSettings();
 	if (!settings.enableAnalytics) return;
 
 	try {
@@ -34,7 +34,7 @@ export async function initAnalytics(extensionContext: vscode.ExtensionContext) {
 }
 
 export function track(event: string, properties?: Record<string, unknown>) {
-	if (!settings.enableAnalytics || !posthog) return;
+	if (!getSettings().enableAnalytics || !posthog) return;
 
 	posthog.capture({
 		distinctId: vscode.env.machineId || "anonymous-user",

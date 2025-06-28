@@ -68,7 +68,7 @@ export async function copyStructure(uris: vscode.Uri[]) {
 					processed++;
 					progress.report({
 						increment: 100 / grandTotal,
-						message: `${processed} / ${grandTotal} nodes`,
+						message: `${processed} / ${Math.max(grandTotal, 1)} nodes`,
 					});
 				});
 
@@ -90,8 +90,8 @@ export async function copyStructure(uris: vscode.Uri[]) {
 		3000,
 	);
 
-	const oc = vscode.window.createOutputChannel("CopyStructure");
-	oc.appendLine(
+	const outputChannel = vscode.window.createOutputChannel("CopyStructure");
+	outputChannel.appendLine(
 		`Copied ${folderInfos.length} folder structure(s) successfully.`,
 	);
 }
