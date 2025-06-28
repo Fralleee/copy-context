@@ -212,7 +212,6 @@
 		"check:types": "tsc --noEmit",
 		"check:unused": "knip",
 		"esbuild-base": "node esbuild.js",
-		"knip": "knip",
 		"lint": "npm run check:lint && npm run check:types && npm run check:unused",
 		"test": "vitest run",
 		"test:coverage": "vitest run --coverage",

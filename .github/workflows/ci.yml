@@ -25,12 +25,6 @@ jobs:
       - name: Lint
         run: npm run lint
 
-      - name: Run knip
-        run: npm run knip
-
-      - name: Type Check
-        run: npm run check-types
-
       - name: Test with coverage
         run: npm run test:coverage
 
