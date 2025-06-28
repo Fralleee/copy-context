@@ -1,4 +1,3 @@
-import fs from "node:fs/promises";
 import { fromFile } from "file-type";
 
 export async function detectBinary(fullPath: string): Promise<boolean> {
@@ -8,5 +7,5 @@ export async function detectBinary(fullPath: string): Promise<boolean> {
 	}
 
 	const itb = await import("istextorbinary");
-	return !itb.isText(fullPath, await fs.readFile(fullPath));
+	return !itb.isText(fullPath, undefined);
 }
