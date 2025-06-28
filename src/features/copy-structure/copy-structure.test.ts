@@ -110,6 +110,6 @@ describe("copyStructure", () => {
 		].join("\n");
 
 		expect(vscode.env.clipboard.writeText).toHaveBeenCalledWith(expectedBlock);
-		expect(progress.report).toHaveBeenCalledTimes(5);
+		expect(progress.report).toHaveBeenCalledTimes(1);
 	});
 });
