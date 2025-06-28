@@ -29,22 +29,8 @@
 		"configuration": [
 			{
 				"additionalProperties": false,
-				"markdownDescription": "Settings that control the output of the copied content.",
-				"order": 0,
-				"properties": {
-					"copyContext.template": {
-						"default": "// {path}\\n{content}",
-						"markdownDescription": "**Markdown template** for text files. Available placeholders:\n\n- `{path}` – the file’s relative path\n- `{content}` – the file contents\n\n**Example:**\n```json\n\"// {path}\\n{content}\"\n```",
-						"title": "Markdown Template",
-						"type": "string"
-					}
-				},
-				"title": "Output"
-			},
-			{
-				"additionalProperties": false,
 				"markdownDescription": "Settings that control the filtering of the files.",
-				"order": 1,
+				"order": 0,
 				"properties": {
 					"copyContext.excludeGlobs": {
 						"default": [],
@@ -88,7 +74,7 @@
 			{
 				"additionalProperties": false,
 				"markdownDescription": "Settings for user analytics.",
-				"order": 2,
+				"order": 1,
 				"properties": {
 					"copyContext.enableAnalytics": {
 						"default": true,

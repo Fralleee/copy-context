@@ -55,7 +55,6 @@ const mockVscode = {
 					maxContentSize: 500000,
 					respectGitIgnore: false,
 					respectVSCodeExplorerExclude: true,
-					template: "// {path}\n{content}",
 				};
 				return defaults[key] ?? defaultValue;
 			}),

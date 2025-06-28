@@ -12,6 +12,5 @@ export function getSettings() {
 			"respectVSCodeExplorerExclude",
 			true,
 		),
-		template: config.get<string>("template") || "// {path}\\n{content}",
 	};
 }

@@ -1,6 +1,6 @@
 import path from "node:path";
-import { getSettings } from "../../config";
 import type { BinaryMetadata } from "./binary-metadata";
+import { type CommentStyle, commentStyles } from "./comment-styles";
 import { languageMap } from "./language-map";
 
 function guessLanguageFromExtension(ext: string): string {
@@ -42,11 +42,27 @@ export function applyTemplate(vars: {
 	path: string;
 	content: string;
 }) {
-	const template = getSettings().template.replace(/\\n/g, "\n");
-	const filled = template
-		.replace(/\{path\}/g, vars.path)
-		.replace(/\{content\}/g, vars.content);
-
-	const result = `\`\`\`${vars.language}\n${filled}\n\`\`\`\n\n`;
+	const header = headerForLanguage(vars.language, vars.path);
+	const result = `\`\`\`${vars.language}\n${header}\n${vars.content}\n\`\`\`\n\n`;
 	return result;
+}
+
+const defaultStyle: CommentStyle = { line: "//" };
+
+function headerForLanguage(language: string, filePath: string): string {
+	const style = commentStyles[language] || defaultStyle;
+
+	if (style.plain) {
+		return filePath;
+	}
+
+	if (style.line) {
+		return `${style.line} ${filePath}`;
+	}
+
+	if (style.block) {
+		return `${style.block[0]} ${filePath} ${style.block[1]}`;
+	}
+
+	return `// ${filePath}`;
 }
