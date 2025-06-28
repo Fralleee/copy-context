@@ -67,11 +67,17 @@ const mockVscode = {
 
 vi.mock("vscode", () => mockVscode);
 
-vi.mock("node:fs/promises", () => ({
-	readdir: vi.fn(),
-	readFile: vi.fn(),
-	stat: vi.fn(),
-}));
+vi.mock("node:fs/promises", () => {
+	const fsMock = {
+		readdir: vi.fn(),
+		readFile: vi.fn(),
+		stat: vi.fn(),
+	};
+	return {
+		...fsMock,
+		default: fsMock,
+	};
+});
 
 vi.mock("file-type", () => ({
 	fromFile: vi.fn(),
