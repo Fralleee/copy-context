@@ -1,3 +1,9 @@
+## [0.8.0](https://github.com/Fralleee/copy-context/compare/v0.7.1...v0.8.0) (2025-06-28)
+
+### Features
+
+* use language specific header ([fac64e7](https://github.com/Fralleee/copy-context/commit/fac64e7e164b68cc637ac04c3a320157def12c7e))
+
 ## [0.7.1](https://github.com/Fralleee/copy-context/compare/v0.7.0...v0.7.1) (2025-06-28)
 
 ### Features
