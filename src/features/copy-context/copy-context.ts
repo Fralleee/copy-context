@@ -27,7 +27,7 @@ type Item = Directory | File;
 
 export async function copyCode(
 	uris: vscode.Uri[],
-	outputChannel: vscode.OutputChannel,
+	outputChannel?: vscode.OutputChannel,
 ) {
 	const filterContext = await makeFilterContext();
 	const { maxContentSize } = getSettings();
@@ -94,7 +94,7 @@ export async function copyCode(
 				);
 			}
 
-			outputChannel.appendLine(
+			outputChannel?.appendLine(
 				`Copy Context: Finished processing ${totalFiles} files.`,
 			);
 
