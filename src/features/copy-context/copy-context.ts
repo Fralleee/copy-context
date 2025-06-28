@@ -25,6 +25,8 @@ type File = {
 
 type Item = Directory | File;
 
+const PROGRESS_CHUNK = 10;
+
 export async function copyCode(
 	uris: vscode.Uri[],
 	outputChannel?: vscode.OutputChannel,
@@ -44,11 +46,18 @@ export async function copyCode(
 			const { items, totalFiles } = await collectCopyItems(uris, filterContext);
 
 			let processedCount = 0;
-			const updateProgress = () =>
-				progress.report({
-					increment: (1 / totalFiles) * 100,
-					message: `${++processedCount} of ${totalFiles} files processed`,
-				});
+			let pending = 0;
+			const updateProgress = () => {
+				processedCount++;
+				pending++;
+				if (pending >= PROGRESS_CHUNK || processedCount === totalFiles) {
+					progress.report({
+						increment: (pending / totalFiles) * 100,
+						message: `${processedCount} of ${totalFiles} files processed`,
+					});
+					pending = 0;
+				}
+			};
 
 			let output = "";
 

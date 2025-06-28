@@ -4,6 +4,8 @@ import { type FileTreeNode, fileTree } from "../../shared/file-tree";
 import { makeFilterContext } from "../../shared/make-filter-context";
 import { buildAsciiLines } from "./build-ascii-lines";
 
+const PROGRESS_CHUNK = 10;
+
 function countNodes(nodes: FileTreeNode[]): number {
 	let count = 0;
 	for (const node of nodes) {
@@ -57,6 +59,7 @@ export async function copyStructure(
 		0,
 	);
 	let processed = 0;
+	let pending = 0;
 	const sections: string[] = [];
 
 	await vscode.window.withProgress(
@@ -69,10 +72,14 @@ export async function copyStructure(
 			for (const info of folderInfos) {
 				const lines = await buildAsciiLines(info.tree, "", token, () => {
 					processed++;
-					progress.report({
-						increment: 100 / grandTotal,
-						message: `${processed} / ${Math.max(grandTotal, 1)} nodes`,
-					});
+					pending++;
+					if (pending >= PROGRESS_CHUNK || processed === grandTotal) {
+						progress.report({
+							increment: (pending / grandTotal) * 100,
+							message: `${processed} / ${grandTotal} nodes`,
+						});
+						pending = 0;
+					}
 				});
 
 				const block = [
