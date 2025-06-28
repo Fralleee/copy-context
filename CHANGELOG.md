@@ -1,3 +1,16 @@
+## [0.7.1](https://github.com/Fralleee/copy-context/compare/v0.7.0...v0.7.1) (2025-06-28)
+
+### Bug Fixes
+
+* update structure test for progress batching ([222c97f](https://github.com/Fralleee/copy-context/commit/222c97f3c34abe941b32d6f0117e1dba4e03a68f))
+
+### Chores
+
+* add keybindings for tab copy commands ([9386378](https://github.com/Fralleee/copy-context/commit/9386378d913d504646bc00ed730cf68ef42671cc))
+* code cleanup ([2e4a319](https://github.com/Fralleee/copy-context/commit/2e4a319ab6e273598bb3d7c63364410b3cecb81c))
+* improve debug speed ([8037c79](https://github.com/Fralleee/copy-context/commit/8037c79a16e54f6befe7e5a1d2a0587126ae006c))
+* improve type safety ([ab335eb](https://github.com/Fralleee/copy-context/commit/ab335ebd03cf079c71232d7d0d24d2c62173e41f))
+
 ## [0.7.0](https://github.com/Fralleee/copy-context/compare/v0.6.5...v0.7.0) (2025-06-26)
 
 ### Features
