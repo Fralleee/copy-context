@@ -53,7 +53,7 @@ function headerForLanguage(language: string, filePath: string): string {
 	const style = commentStyles[language] || defaultStyle;
 
 	if (style.plain) {
-		return filePath;
+		return `// ${filePath}`;
 	}
 
 	if (style.line) {
