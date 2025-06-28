@@ -12,7 +12,6 @@ export function getSettings() {
 			"respectVSCodeExplorerExclude",
 			true,
 		),
-		// biome-ignore lint/style/noNonNullAssertion: settings uses default
-		template: config.get<string>("template")!,
+		template: config.get<string>("template") || "// {path}\\n{content}",
 	};
 }

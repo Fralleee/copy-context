@@ -7,7 +7,10 @@ const POSTHOG_HOST = "https://eu.i.posthog.com";
 
 let posthog: PostHog | null = null;
 
-export async function initAnalytics(extensionContext: vscode.ExtensionContext) {
+export async function initAnalytics(
+	extensionContext: vscode.ExtensionContext,
+	outputChannel: vscode.OutputChannel,
+) {
 	const settings = getSettings();
 	if (!settings.enableAnalytics) return;
 
@@ -30,7 +33,13 @@ export async function initAnalytics(extensionContext: vscode.ExtensionContext) {
 			version: extensionContext.extension.packageJSON.version,
 			vscode_version: vscode.version,
 		});
-	} catch {}
+	} catch (error) {
+		outputChannel.appendLine("Failed to initialize PostHog analytics");
+		outputChannel.appendLine(
+			`Error: ${error instanceof Error ? error.message : String(error)}`,
+		);
+		posthog = null;
+	}
 }
 
 export function track(event: string, properties?: Record<string, unknown>) {

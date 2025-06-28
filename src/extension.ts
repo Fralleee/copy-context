@@ -4,8 +4,8 @@ import { copyStructure } from "./features/copy-structure/copy-structure";
 import { initAnalytics, shutdown, track } from "./monitoring/analytics";
 
 export function activate(context: vscode.ExtensionContext) {
-	initAnalytics(context);
 	const outputChannel = vscode.window.createOutputChannel("CopyContext");
+	initAnalytics(context, outputChannel);
 
 	const copyCodeCommand = vscode.commands.registerCommand(
 		"extension.copyCode",
