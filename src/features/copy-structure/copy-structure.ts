@@ -37,20 +37,16 @@ async function buildFilteredTree(
 ): Promise<FileTreeNode[]> {
 	const fullTree = await fileTree(dirPath, rootPath, filterContext);
 
-	// Filter the tree to only include selected file paths
 	function filterNodes(nodes: FileTreeNode[]): FileTreeNode[] {
 		const filtered: FileTreeNode[] = [];
 
 		for (const node of nodes) {
 			if (node.isDirectory && node.children) {
-				// Recursively filter children
 				const filteredChildren = filterNodes(node.children);
-				// Include directory if it has any filtered children
 				if (filteredChildren.length > 0) {
 					filtered.push({ ...node, children: filteredChildren });
 				}
 			} else if (!node.isDirectory && selectedPaths.has(node.fullPath)) {
-				// Include file if it's in the selected paths
 				filtered.push(node);
 			}
 		}
@@ -67,21 +63,17 @@ export async function copyStructure(
 ) {
 	const filterContext = await makeFilterContext();
 	const folderInfos: FolderInfo[] = [];
-
-	// Group URIs by their root/parent folders
 	const itemsByFolder = new Map<string, vscode.Uri[]>();
 
 	for (const uri of uris) {
 		const stat = await vscode.workspace.fs.stat(uri);
 
 		if (stat.type === vscode.FileType.Directory) {
-			// For folders, use the folder itself as key
 			const key = uri.fsPath;
 			const items = itemsByFolder.get(key) ?? [];
 			items.push(uri);
 			itemsByFolder.set(key, items);
 		} else {
-			// For files, group them by parent directory
 			const parentDir = path.dirname(uri.fsPath);
 			const items = itemsByFolder.get(parentDir) ?? [];
 			items.push(uri);
@@ -89,13 +81,10 @@ export async function copyStructure(
 		}
 	}
 
-	// Build tree for each group
 	for (const [folderPath, items] of itemsByFolder) {
 		const folderUri = vscode.Uri.file(folderPath);
 		const wsFolder = vscode.workspace.getWorkspaceFolder(folderUri);
 		const rootPath = wsFolder?.uri.fsPath || folderPath;
-
-		// Check if all items in this group are directories
 		const allDirs = await Promise.all(
 			items.map(async (uri) => {
 				const stat = await vscode.workspace.fs.stat(uri);
@@ -105,10 +94,8 @@ export async function copyStructure(
 
 		let tree: FileTreeNode[];
 		if (allDirs.every((isDir) => isDir)) {
-			// If all are directories, build full tree for each
 			tree = await fileTree(folderPath, rootPath, filterContext);
 		} else {
-			// If there are files, build a filtered tree containing only selected items
 			const selectedPaths = new Set(items.map((uri) => uri.fsPath));
 			tree = await buildFilteredTree(
 				folderPath,
