@@ -11,19 +11,19 @@
 		"commands": [
 			{
 				"command": "extension.copyCode",
-				"title": "Copy Context"
+				"title": "Copy Content"
 			},
 			{
 				"command": "extension.copyCode.thisTab",
-				"title": "Copy Context (This Tab)"
+				"title": "Copy Content (This Tab)"
 			},
 			{
 				"command": "extension.copyCode.allTabs",
-				"title": "Copy Context (All Tabs)"
+				"title": "Copy Content (All Tabs)"
 			},
 			{
 				"command": "extension.copyStructure",
-				"title": "Copy Folder Structure"
+				"title": "Copy Paths"
 			}
 		],
 		"configuration": [
@@ -40,6 +40,12 @@
 						"markdownDescription": "**Always exclude** these glob patterns (highest priority). Even if they match your include list, they will be skipped.",
 						"title": "Exclude Globs",
 						"type": "array"
+					},
+					"copyContext.includeEmojis": {
+						"default": true,
+						"markdownDescription": "When **true**, includes emojis in the output (📁 for folders, 📄 for files).",
+						"title": "Include Emojis",
+						"type": "boolean"
 					},
 					"copyContext.includeGlobs": {
 						"default": [],
@@ -58,7 +64,7 @@
 					},
 					"copyContext.respectGitIgnore": {
 						"default": false,
-						"markdownDescription": "When **true**, skips files matching your project’s `.gitignore` (opt-in).",
+						"markdownDescription": "When **true**, skips files matching your project's `.gitignore` (opt-in).",
 						"title": "Respect .gitignore",
 						"type": "boolean"
 					},
