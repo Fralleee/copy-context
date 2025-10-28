@@ -1,6 +1,7 @@
 import * as vscode from "vscode";
 import { copyCode } from "./features/copy-content/copy-content";
 import { copyTree } from "./features/copy-tree/copy-tree";
+import { copySelection } from "./features/copy-content/copy-selection";
 import { initAnalytics, shutdown, track } from "./monitoring/analytics";
 
 export function activate(context: vscode.ExtensionContext) {
@@ -102,10 +103,23 @@ export function activate(context: vscode.ExtensionContext) {
 		},
 	);
 
+	const copySelectionCommand = vscode.commands.registerCommand(
+		"extension.copySelection",
+		async () => {
+			try {
+				await copySelection(outputChannel);
+			} catch (error) {
+				track("error", { error, operation: "copy_selection" });
+				vscode.window.showErrorMessage(`Failed to copy selection: ${error}`);
+			}
+		},
+	);
+
 	context.subscriptions.push(copyCodeCommand);
 	context.subscriptions.push(copyCodeThisTab);
 	context.subscriptions.push(copyCodeAllTabs);
 	context.subscriptions.push(copyTreeCommand);
+	context.subscriptions.push(copySelectionCommand);
 	context.subscriptions.push(outputChannel);
 }
 

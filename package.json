@@ -24,6 +24,10 @@
 			{
 				"command": "extension.copyTree",
 				"title": "Copy Tree"
+			},
+			{
+				"command": "extension.copySelection",
+				"title": "Copy Selection"
 			}
 		],
 		"configuration": [
@@ -159,6 +163,13 @@
 					"when": "false"
 				}
 			],
+			"editor/context": [
+				{
+					"command": "extension.copySelection",
+					"group": "1_copycode@3",
+					"when": "editorHasSelection"
+				}
+			],
 			"editor/title/context": [
 				{
 					"command": "extension.copyCode.thisTab",
@@ -255,5 +266,5 @@
 		"vscode:prepublish": "npm run esbuild-base -- --production",
 		"watch": "npm run esbuild-base -- --watch"
 	},
-	"version": "0.9.0"
+	"version": "0.8.0"
 }
