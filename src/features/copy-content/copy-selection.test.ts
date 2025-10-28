@@ -271,11 +271,11 @@ describe("copySelection", () => {
 		);
 	});
 
-	it("should normalize Windows paths to forward slashes", async () => {
+	it("should normalize paths to forward slashes", async () => {
 		const mockDocument = {
 			getText: vi.fn().mockReturnValue("export const Button = () => {}"),
 			isUntitled: false,
-			uri: vscode.Uri.file("C:\\project\\src\\components\\Button.tsx"),
+			uri: vscode.Uri.file("/project/src/components/Button.tsx"),
 		};
 
 		(vscode.window as any).activeTextEditor = {
@@ -288,13 +288,16 @@ describe("copySelection", () => {
 		};
 
 		mockGetWorkspaceFolder.mockReturnValue({
-			uri: vscode.Uri.file("C:\\project"),
+			uri: vscode.Uri.file("/project"),
 		});
 
 		await copySelection();
 
 		const call = mockClipboard.writeText.mock.calls[0][0];
+		// Verify the path uses forward slashes and includes line numbers
 		expect(call).toContain("src/components/Button.tsx:1-1");
+		// Verify it's properly formatted as TSX
+		expect(call).toMatch(/^```tsx\n\/\/ src\/components\/Button\.tsx:1-1\n/);
 	});
 
 	it("should use correct language mapping for extensions", async () => {
