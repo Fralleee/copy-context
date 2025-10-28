@@ -52,14 +52,35 @@ Copy files or folder trees into your clipboard as Markdown. Ready to paste into 
 
 ## 🔧 Settings
 
+### Global Settings
+
 | Setting                                   | Default    | Description                                                                                           |
 | ----------------------------------------- | ---------- | ----------------------------------------------------------------------------------------------------- |
-| `copyContext.excludeGlobs`                | `[]`       | **Always exclude** these glob patterns (highest priority). Applies to both Copy Content and Copy Tree. |
+| `copyContext.excludeGlobs`                | `[]`       | **Global exclude** patterns applied to all commands. Command-specific excludes will be merged with these. |
+| `copyContext.includeGlobs`                | `[]`       | **Global include** patterns applied to all commands. Command-specific includes will be merged with these. |
 | `copyContext.includeEmojis`               | `true`     | Include emojis in the output (📁 for folders, 📄 for files).                                          |
-| `copyContext.includeGlobs`                | `[]`       | **Always include** these glob patterns, even if Explorer or `.gitignore` would skip them.             |
 | `copyContext.maxContentSize`              | `500000`   | Max total size (bytes) of all file contents to copy.                                                  |
 | `copyContext.respectVSCodeExplorerExclude`| `true`     | Skip files/folders hidden by your VS Code `files.exclude` settings.                                    |
 | `copyContext.respectGitIgnore`            | `false`    | Skip files matching your project's `.gitignore` (opt-in).                                              |
+
+### Command-Specific Settings
+
+You can override filters for specific commands. These are **merged** with the global settings.
+
+| Setting                                   | Default    | Description                                                                                           |
+| ----------------------------------------- | ---------- | ----------------------------------------------------------------------------------------------------- |
+| `copyContext.copyContent.excludeGlobs`    | `[]`       | Additional exclude patterns for **Copy Content** only.                                                |
+| `copyContext.copyContent.includeGlobs`    | `[]`       | Additional include patterns for **Copy Content** only.                                                |
+| `copyContext.copyTree.excludeGlobs`       | `[]`       | Additional exclude patterns for **Copy Tree** only.                                                   |
+| `copyContext.copyTree.includeGlobs`       | `[]`       | Additional include patterns for **Copy Tree** only.                                                   |
+
+**Example:** Exclude test files globally, but include them when copying content:
+```json
+{
+  "copyContext.excludeGlobs": ["**/*.test.ts"],
+  "copyContext.copyContent.includeGlobs": ["**/*.test.ts"]
+}
+```
 
 ---
 

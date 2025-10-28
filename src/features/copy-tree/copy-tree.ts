@@ -61,7 +61,7 @@ export async function copyTree(
 	uris: vscode.Uri[],
 	outputChannel?: vscode.OutputChannel,
 ) {
-	const filterContext = await makeFilterContext();
+	const filterContext = await makeFilterContext("copyTree");
 	const folderInfos: FolderInfo[] = [];
 	const itemsByFolder = new Map<string, vscode.Uri[]>();
 

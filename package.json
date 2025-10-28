@@ -32,28 +32,72 @@
 				"markdownDescription": "Settings that control the filtering of the files.",
 				"order": 0,
 				"properties": {
-					"copyContext.excludeGlobs": {
-						"default": [],
-						"items": {
-							"type": "string"
-						},
-						"markdownDescription": "**Always exclude** these glob patterns (highest priority). Even if they match your include list, they will be skipped. Applies to both Copy Content and Copy Tree",
-						"title": "Exclude Globs",
-						"type": "array"
-					},
 					"copyContext.includeEmojis": {
 						"default": true,
 						"markdownDescription": "When **true**, includes emojis in the output (📁 for folders, 📄 for files).",
 						"title": "Include Emojis",
 						"type": "boolean"
+					}
+				},
+				"title": "Output"
+			},
+			{
+				"additionalProperties": false,
+				"markdownDescription": "Settings that control the filtering of the files.",
+				"order": 0,
+				"properties": {
+					"copyContext.copyContent.excludeGlobs": {
+						"default": [],
+						"items": {
+							"type": "string"
+						},
+						"markdownDescription": "**Copy Content only**: Additional exclude patterns (merged with global excludes).",
+						"title": "Copy Content - Exclude Globs",
+						"type": "array"
+					},
+					"copyContext.copyContent.includeGlobs": {
+						"default": [],
+						"items": {
+							"type": "string"
+						},
+						"markdownDescription": "**Copy Content only**: Additional include patterns (merged with global includes).",
+						"title": "Copy Content - Include Globs",
+						"type": "array"
+					},
+					"copyContext.copyTree.excludeGlobs": {
+						"default": [],
+						"items": {
+							"type": "string"
+						},
+						"markdownDescription": "**Copy Tree only**: Additional exclude patterns (merged with global excludes).",
+						"title": "Copy Tree - Exclude Globs",
+						"type": "array"
+					},
+					"copyContext.copyTree.includeGlobs": {
+						"default": [],
+						"items": {
+							"type": "string"
+						},
+						"markdownDescription": "**Copy Tree only**: Additional include patterns (merged with global includes).",
+						"title": "Copy Tree - Include Globs",
+						"type": "array"
+					},
+					"copyContext.excludeGlobs": {
+						"default": [],
+						"items": {
+							"type": "string"
+						},
+						"markdownDescription": "**Global exclude** patterns applied to all commands (highest priority). Command-specific excludes will be merged with these.",
+						"title": "Exclude Globs (Global)",
+						"type": "array"
 					},
 					"copyContext.includeGlobs": {
 						"default": [],
 						"items": {
 							"type": "string"
 						},
-						"markdownDescription": "**Always include** these glob patterns, overriding Explorer or gitignore exclusions.",
-						"title": "Include Globs",
+						"markdownDescription": "**Global include** patterns applied to all commands. Command-specific includes will be merged with these.",
+						"title": "Include Globs (Global)",
 						"type": "array"
 					},
 					"copyContext.maxContentSize": {

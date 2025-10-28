@@ -6,7 +6,7 @@ import * as vscode from "vscode";
 import type { FileTreeNode } from "../../shared/file-tree";
 import * as fileTreeModule from "../../shared/file-tree";
 import * as filterModule from "../../shared/make-filter-context";
-import { copyCode } from "./copy-context";
+import { copyCode } from "./copy-content";
 import * as detectBinaryModule from "./detect-binary";
 import { applyTemplate } from "./markdown";
 

@@ -2,7 +2,11 @@ import fs from "node:fs/promises";
 import path from "node:path";
 import ignore, { type Ignore } from "ignore";
 import { type WorkspaceFolder, workspace } from "vscode";
-import { getSettings } from "../config";
+import {
+	type CommandType,
+	getCommandSpecificGlobs,
+	getSettings,
+} from "../config";
 
 export interface FilterContext {
 	includeGlobs: string[];
@@ -11,13 +15,19 @@ export interface FilterContext {
 	vscodeExcludes: string[];
 }
 
-export async function makeFilterContext(): Promise<FilterContext> {
-	const {
-		includeGlobs,
-		excludeGlobs,
-		respectGitIgnore,
-		respectVSCodeExplorerExclude,
-	} = getSettings();
+export async function makeFilterContext(
+	command?: CommandType,
+): Promise<FilterContext> {
+	const { respectGitIgnore, respectVSCodeExplorerExclude } = getSettings();
+
+	// Get globs - either command-specific or global
+	const { includeGlobs, excludeGlobs } = command
+		? getCommandSpecificGlobs(command)
+		: {
+				excludeGlobs: getSettings().excludeGlobs,
+				includeGlobs: getSettings().includeGlobs,
+			};
+
 	const folder: WorkspaceFolder | undefined = workspace.workspaceFolders?.[0];
 	const filesConfig = workspace.getConfiguration("files", folder?.uri);
 	const allExcludes = filesConfig.get<Record<string, boolean>>("exclude", {});
