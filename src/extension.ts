@@ -1,6 +1,6 @@
 import * as vscode from "vscode";
-import { copyCode } from "./features/copy-context/copy-context";
-import { copyStructure } from "./features/copy-structure/copy-structure";
+import { copyCode } from "./features/copy-content/copy-content";
+import { copyTree } from "./features/copy-tree/copy-tree";
 import { initAnalytics, shutdown, track } from "./monitoring/analytics";
 
 export function activate(context: vscode.ExtensionContext) {
@@ -88,18 +88,16 @@ export function activate(context: vscode.ExtensionContext) {
 		},
 	);
 
-	const copyStructureCommand = vscode.commands.registerCommand(
-		"extension.copyStructure",
+	const copyTreeCommand = vscode.commands.registerCommand(
+		"extension.copyTree",
 		async (uri: vscode.Uri, uris?: vscode.Uri[]) => {
 			try {
 				const selected = uris && uris.length > 0 ? uris : [uri];
-				await copyStructure(selected, outputChannel);
-				track("copy_structure");
+				await copyTree(selected, outputChannel);
+				track("copy_tree");
 			} catch (error) {
-				track("error", { error, operation: "copy_structure" });
-				vscode.window.showErrorMessage(
-					`Failed to copy folder structure: ${error}`,
-				);
+				track("error", { error, operation: "copy_tree" });
+				vscode.window.showErrorMessage(`Failed to copy folder tree: ${error}`);
 			}
 		},
 	);
@@ -107,7 +105,7 @@ export function activate(context: vscode.ExtensionContext) {
 	context.subscriptions.push(copyCodeCommand);
 	context.subscriptions.push(copyCodeThisTab);
 	context.subscriptions.push(copyCodeAllTabs);
-	context.subscriptions.push(copyStructureCommand);
+	context.subscriptions.push(copyTreeCommand);
 	context.subscriptions.push(outputChannel);
 }
 

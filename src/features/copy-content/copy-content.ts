@@ -31,7 +31,7 @@ export async function copyCode(
 	uris: vscode.Uri[],
 	outputChannel?: vscode.OutputChannel,
 ) {
-	const filterContext = await makeFilterContext();
+	const filterContext = await makeFilterContext("copyContent");
 	const { maxContentSize } = getSettings();
 	const visitedFiles = new Set<string>();
 	let totalSize = 0;

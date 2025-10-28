@@ -1,4 +1,5 @@
 import type * as vscode from "vscode";
+import { getSettings } from "../../config";
 import type { FileTreeNode } from "../../shared/file-tree";
 
 export async function buildAsciiLines(
@@ -7,6 +8,7 @@ export async function buildAsciiLines(
 	token: vscode.CancellationToken,
 	progressCallback: () => void,
 ): Promise<string[]> {
+	const { includeEmojis } = getSettings();
 	const lines: string[] = [];
 	for (let i = 0; i < nodes.length; i++) {
 		if (token.isCancellationRequested) {
@@ -16,8 +18,9 @@ export async function buildAsciiLines(
 		const node = nodes[i];
 		const isLast = i === nodes.length - 1;
 		const branch = isLast ? "└──" : "├──";
-		const icon = node.isDirectory ? "📁" : "📄";
-		lines.push(`${prefix}${branch} ${icon} ${node.name}`);
+		const icon = includeEmojis ? (node.isDirectory ? "📁" : "📄") : "";
+		const iconSpace = includeEmojis ? " " : "";
+		lines.push(`${prefix}${branch}${iconSpace}${icon}${iconSpace}${node.name}`);
 		progressCallback();
 
 		if (node.isDirectory && node.children) {

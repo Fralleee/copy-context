@@ -11,19 +11,19 @@
 		"commands": [
 			{
 				"command": "extension.copyCode",
-				"title": "Copy Context"
+				"title": "Copy Content"
 			},
 			{
 				"command": "extension.copyCode.thisTab",
-				"title": "Copy Context (This Tab)"
+				"title": "Copy Content (This Tab)"
 			},
 			{
 				"command": "extension.copyCode.allTabs",
-				"title": "Copy Context (All Tabs)"
+				"title": "Copy Content (All Tabs)"
 			},
 			{
-				"command": "extension.copyStructure",
-				"title": "Copy Folder Structure"
+				"command": "extension.copyTree",
+				"title": "Copy Tree"
 			}
 		],
 		"configuration": [
@@ -32,13 +32,63 @@
 				"markdownDescription": "Settings that control the filtering of the files.",
 				"order": 0,
 				"properties": {
+					"copyContext.includeEmojis": {
+						"default": true,
+						"markdownDescription": "When **true**, includes emojis in the output (📁 for folders, 📄 for files).",
+						"title": "Include Emojis",
+						"type": "boolean"
+					}
+				},
+				"title": "Output"
+			},
+			{
+				"additionalProperties": false,
+				"markdownDescription": "Settings that control the filtering of the files.",
+				"order": 0,
+				"properties": {
+					"copyContext.copyContent.excludeGlobs": {
+						"default": [],
+						"items": {
+							"type": "string"
+						},
+						"markdownDescription": "**Copy Content only**: Additional exclude patterns (merged with global excludes).",
+						"title": "Copy Content - Exclude Globs",
+						"type": "array"
+					},
+					"copyContext.copyContent.includeGlobs": {
+						"default": [],
+						"items": {
+							"type": "string"
+						},
+						"markdownDescription": "**Copy Content only**: Additional include patterns (merged with global includes).",
+						"title": "Copy Content - Include Globs",
+						"type": "array"
+					},
+					"copyContext.copyTree.excludeGlobs": {
+						"default": [],
+						"items": {
+							"type": "string"
+						},
+						"markdownDescription": "**Copy Tree only**: Additional exclude patterns (merged with global excludes).",
+						"title": "Copy Tree - Exclude Globs",
+						"type": "array"
+					},
+					"copyContext.copyTree.includeGlobs": {
+						"default": [],
+						"items": {
+							"type": "string"
+						},
+						"markdownDescription": "**Copy Tree only**: Additional include patterns (merged with global includes).",
+						"title": "Copy Tree - Include Globs",
+						"type": "array"
+					},
 					"copyContext.excludeGlobs": {
 						"default": [],
 						"items": {
 							"type": "string"
 						},
-						"markdownDescription": "**Always exclude** these glob patterns (highest priority). Even if they match your include list, they will be skipped.",
-						"title": "Exclude Globs",
+						"markdownDescription": "**Global exclude** patterns applied to all commands (highest priority). Command-specific excludes will be merged with these.",
+						"title": "Exclude Globs (Global)",
 						"type": "array"
 					},
 					"copyContext.includeGlobs": {
@@ -46,8 +96,8 @@
 						"items": {
 							"type": "string"
 						},
-						"markdownDescription": "**Always include** these glob patterns, overriding Explorer or gitignore exclusions.",
-						"title": "Include Globs",
+						"markdownDescription": "**Global include** patterns applied to all commands. Command-specific includes will be merged with these.",
+						"title": "Include Globs (Global)",
 						"type": "array"
 					},
 					"copyContext.maxContentSize": {
@@ -58,7 +108,7 @@
 					},
 					"copyContext.respectGitIgnore": {
 						"default": false,
-						"markdownDescription": "When **true**, skips files matching your project’s `.gitignore` (opt-in).",
+						"markdownDescription": "When **true**, skips files matching your project's `.gitignore` (opt-in).",
 						"title": "Respect .gitignore",
 						"type": "boolean"
 					},
@@ -105,7 +155,7 @@
 					"when": "false"
 				},
 				{
-					"command": "extension.copyStructure",
+					"command": "extension.copyTree",
 					"when": "false"
 				}
 			],
@@ -125,7 +175,7 @@
 					"group": "6_copycodecontext@10"
 				},
 				{
-					"command": "extension.copyStructure",
+					"command": "extension.copyTree",
 					"group": "6_copycodecontext@10"
 				}
 			]
@@ -138,7 +188,7 @@
 		"minimatch": "^5.1.2",
 		"posthog-node": "^4.17.2"
 	},
-	"description": "Copies selected files/folders as Markdown code context or structure",
+	"description": "Copies selected files/folders as Markdown code content or tree",
 	"devDependencies": {
 		"@biomejs/biome": "^2.0.0",
 		"@semantic-release/changelog": "^6.0.3",
@@ -172,7 +222,7 @@
 		"markdown",
 		"files",
 		"folders",
-		"structure",
+		"tree",
 		"code",
 		"vscode",
 		"clipboard",
