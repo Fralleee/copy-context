@@ -1,3 +1,17 @@
+## [0.9.0](https://github.com/Fralleee/copy-context/compare/v0.8.0...v0.9.0) (2025-10-28)
+
+### Features
+
+* allow single file paths and better filtering options ([52a870d](https://github.com/Fralleee/copy-context/commit/52a870d9b08cd2262bb4edeea2ca0eca811a60f4))
+* copy paths to allow single file paths ([93450f3](https://github.com/Fralleee/copy-context/commit/93450f308c073982a7481992e2fcea296ed2ff28))
+
+### Chores
+
+* more rename ([5b659ac](https://github.com/Fralleee/copy-context/commit/5b659ac17ab6883126717d0cd81c1379b8f546c9))
+* remove comments ([3d30f12](https://github.com/Fralleee/copy-context/commit/3d30f12a1a5543ad734fe9a351cd4ee8def5165f))
+* rename copy structure to copy tree ([a9d670c](https://github.com/Fralleee/copy-context/commit/a9d670c65e31971fcb8359db3ac081841d75b648))
+* use JS comment syntax for header on plaintext ([6a63996](https://github.com/Fralleee/copy-context/commit/6a639969389ae0b67946791e2bb6a02c57b35f66))
+
 ## [0.8.0](https://github.com/Fralleee/copy-context/compare/v0.7.1...v0.8.0) (2025-06-28)
 
 ### Features
