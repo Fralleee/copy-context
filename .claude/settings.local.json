@@ -4,7 +4,8 @@
 			"Bash(npm test)",
 			"Bash(npm run check:types)",
 			"Bash(npm run check:lint)",
-			"Bash(npm run build)"
+			"Bash(npm run build)",
+			"Bash(npm test:*)"
 		],
 		"ask": [],
 		"deny": []

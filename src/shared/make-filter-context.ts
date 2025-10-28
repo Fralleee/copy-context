@@ -20,7 +20,6 @@ export async function makeFilterContext(
 ): Promise<FilterContext> {
 	const { respectGitIgnore, respectVSCodeExplorerExclude } = getSettings();
 
-	// Get globs - either command-specific or global
 	const { includeGlobs, excludeGlobs } = command
 		? getCommandSpecificGlobs(command)
 		: {

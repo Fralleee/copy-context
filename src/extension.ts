@@ -1,7 +1,7 @@
 import * as vscode from "vscode";
 import { copyCode } from "./features/copy-content/copy-content";
-import { copyTree } from "./features/copy-tree/copy-tree";
 import { copySelection } from "./features/copy-content/copy-selection";
+import { copyTree } from "./features/copy-tree/copy-tree";
 import { initAnalytics, shutdown, track } from "./monitoring/analytics";
 
 export function activate(context: vscode.ExtensionContext) {

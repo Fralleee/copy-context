@@ -49,7 +49,7 @@ export function applyTemplate(vars: {
 
 const defaultStyle: CommentStyle = { line: "//" };
 
-function headerForLanguage(language: string, filePath: string): string {
+export function headerForLanguage(language: string, filePath: string): string {
 	const style = commentStyles[language] || defaultStyle;
 
 	if (style.plain) {
