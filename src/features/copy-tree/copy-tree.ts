@@ -57,7 +57,7 @@ async function buildFilteredTree(
 	return filterNodes(fullTree);
 }
 
-export async function copyStructure(
+export async function copyTree(
 	uris: vscode.Uri[],
 	outputChannel?: vscode.OutputChannel,
 ) {

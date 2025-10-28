@@ -22,8 +22,8 @@
 				"title": "Copy Content (All Tabs)"
 			},
 			{
-				"command": "extension.copyStructure",
-				"title": "Copy Paths"
+				"command": "extension.copyTree",
+				"title": "Copy Tree"
 			}
 		],
 		"configuration": [
@@ -37,7 +37,7 @@
 						"items": {
 							"type": "string"
 						},
-						"markdownDescription": "**Always exclude** these glob patterns (highest priority). Even if they match your include list, they will be skipped.",
+						"markdownDescription": "**Always exclude** these glob patterns (highest priority). Even if they match your include list, they will be skipped. Applies to both Copy Content and Copy Tree",
 						"title": "Exclude Globs",
 						"type": "array"
 					},
@@ -111,7 +111,7 @@
 					"when": "false"
 				},
 				{
-					"command": "extension.copyStructure",
+					"command": "extension.copyTree",
 					"when": "false"
 				}
 			],
@@ -131,7 +131,7 @@
 					"group": "6_copycodecontext@10"
 				},
 				{
-					"command": "extension.copyStructure",
+					"command": "extension.copyTree",
 					"group": "6_copycodecontext@10"
 				}
 			]
@@ -144,7 +144,7 @@
 		"minimatch": "^5.1.2",
 		"posthog-node": "^4.17.2"
 	},
-	"description": "Copies selected files/folders as Markdown code context or structure",
+	"description": "Copies selected files/folders as Markdown code content or tree",
 	"devDependencies": {
 		"@biomejs/biome": "^2.0.0",
 		"@semantic-release/changelog": "^6.0.3",
@@ -178,7 +178,7 @@
 		"markdown",
 		"files",
 		"folders",
-		"structure",
+		"tree",
 		"code",
 		"vscode",
 		"clipboard",

@@ -5,7 +5,7 @@ import type { FileTreeNode } from "../../shared/file-tree";
 import * as fileTreeModule from "../../shared/file-tree";
 import * as filterModule from "../../shared/make-filter-context";
 import { buildAsciiLines } from "./build-ascii-lines";
-import { copyStructure } from "./copy-structure";
+import { copyTree } from "./copy-tree";
 
 vi.mock("../../shared/file-tree");
 vi.mock("../../shared/make-filter-context");
@@ -75,7 +75,7 @@ describe("buildAsciiLines", () => {
 	});
 });
 
-describe("copyStructure", () => {
+describe("copyTree", () => {
 	beforeEach(() => {
 		vi.clearAllMocks();
 		vi.mocked(filterModule.makeFilterContext).mockResolvedValue(filterContext);
@@ -96,7 +96,7 @@ describe("copyStructure", () => {
 			},
 		);
 
-		await copyStructure([vscode.Uri.file("/project")]);
+		await copyTree([vscode.Uri.file("/project")]);
 
 		const expectedBlock = [
 			"```plaintext",

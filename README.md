@@ -12,7 +12,7 @@ Copy files or folder trees into your clipboard as Markdown. Ready to paste into 
 
 1. **Explorer**
    - Select one or more **files or folders** → right-click → **Copy Content**
-   - Select one or more **files or folders** → right-click → **Copy Paths**
+   - Select one or more **files or folders** → right-click → **Copy Tree**
 
 2. **Editor Tab**
    - Right-click a tab title → **Copy Content (This Tab)** or **… (All Open Tabs)**.
@@ -37,16 +37,16 @@ Copy files or folder trees into your clipboard as Markdown. Ready to paste into 
 
 ![copy-context-tabs](https://github.com/user-attachments/assets/2483793c-b0ec-4c96-a633-74c5a5fcea8f)
 
-### Copy Paths
+### Copy Tree
 
 - Generates a Markdown tree of your selected files/folders
 - If you select specific files, only those file paths are included
-- If you select folders, the full folder structure and contents are included
+- If you select folders, the full folder tree and contents are included
 - Respects the same filters (globs, Explorer excludes, `.gitignore`)
 
-**Copy Paths**
+**Copy Tree**
 
-![copy-structure](https://github.com/user-attachments/assets/d30c0f79-c978-4e4d-980d-ca55fa2e0fda)
+![copy-tree](https://github.com/user-attachments/assets/d30c0f79-c978-4e4d-980d-ca55fa2e0fda)
 
 ---
 
@@ -54,7 +54,7 @@ Copy files or folder trees into your clipboard as Markdown. Ready to paste into 
 
 | Setting                                   | Default    | Description                                                                                           |
 | ----------------------------------------- | ---------- | ----------------------------------------------------------------------------------------------------- |
-| `copyContext.excludeGlobs`                | `[]`       | **Always exclude** these glob patterns (highest priority). Applies to both Copy Content and Copy Paths. |
+| `copyContext.excludeGlobs`                | `[]`       | **Always exclude** these glob patterns (highest priority). Applies to both Copy Content and Copy Tree. |
 | `copyContext.includeEmojis`               | `true`     | Include emojis in the output (📁 for folders, 📄 for files).                                          |
 | `copyContext.includeGlobs`                | `[]`       | **Always include** these glob patterns, even if Explorer or `.gitignore` would skip them.             |
 | `copyContext.maxContentSize`              | `500000`   | Max total size (bytes) of all file contents to copy.                                                  |
