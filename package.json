@@ -24,6 +24,11 @@
 			{
 				"command": "extension.copyTree",
 				"title": "Copy Tree"
+			},
+			{
+				"category": "Copy Context",
+				"command": "extension.copySelection",
+				"title": "Copy Selection as Context"
 			}
 		],
 		"configuration": [
@@ -159,7 +164,7 @@
 					"when": "false"
 				}
 			],
-			"editor/title/context": [
+			"editor/context": [
 				{
 					"command": "extension.copyCode.thisTab",
 					"group": "1_copycode@1"
@@ -167,8 +172,14 @@
 				{
 					"command": "extension.copyCode.allTabs",
 					"group": "1_copycode@2"
+				},
+				{
+					"command": "extension.copySelection",
+					"group": "1_copycode@3",
+					"when": "editorHasSelection"
 				}
 			],
+			"editor/title/context": [],
 			"explorer/context": [
 				{
 					"command": "extension.copyCode",
