@@ -1,3 +1,19 @@
+## [0.10.0](https://github.com/Fralleee/copy-context/compare/v0.9.0...v0.10.0) (2025-10-28)
+
+### Features
+
+* add copy selection as context feature ([3fd2a99](https://github.com/Fralleee/copy-context/commit/3fd2a995f3a65dc282d3877f3f2091f88d371666))
+* add copy selection as context feature ([4189051](https://github.com/Fralleee/copy-context/commit/4189051a18ee2fa65f6cb5ffb080e87c97fbd20d))
+
+### Bug Fixes
+
+* address reviewer feedback on package.json ([dda551c](https://github.com/Fralleee/copy-context/commit/dda551c14f12491ad223d39087a63ebd8d5f576c))
+
+### Chores
+
+* some code cleanup and improve tests ([d7d3e0c](https://github.com/Fralleee/copy-context/commit/d7d3e0c27a4c3615aef269522624916b56b64db5))
+* some code cleanup and improve tests ([d73d12e](https://github.com/Fralleee/copy-context/commit/d73d12e9a1f745648139244308b8e8db3f757d32))
+
 ## [0.9.0](https://github.com/Fralleee/copy-context/compare/v0.8.0...v0.9.0) (2025-10-28)
 
 ### Features
