@@ -3,14 +3,12 @@
 ### Bug Fixes
 
 * tests on CI ([6799dc1](https://github.com/Fralleee/copy-context/commit/6799dc197418746bd12bb77dd5ea6bf86652cd7a))
-* tests on CI ([e57b027](https://github.com/Fralleee/copy-context/commit/e57b0275e2f71b809cde4eebe009eab57978394c))
 
 ## [0.10.0](https://github.com/Fralleee/copy-context/compare/v0.9.0...v0.10.0) (2025-10-28)
 
 ### Features
 
 * add copy selection as context feature ([3fd2a99](https://github.com/Fralleee/copy-context/commit/3fd2a995f3a65dc282d3877f3f2091f88d371666))
-* add copy selection as context feature ([4189051](https://github.com/Fralleee/copy-context/commit/4189051a18ee2fa65f6cb5ffb080e87c97fbd20d))
 
 ### Bug Fixes
 
@@ -18,8 +16,7 @@
 
 ### Chores
 
-* some code cleanup and improve tests ([d7d3e0c](https://github.com/Fralleee/copy-context/commit/d7d3e0c27a4c3615aef269522624916b56b64db5))
-* some code cleanup and improve tests ([d73d12e](https://github.com/Fralleee/copy-context/commit/d73d12e9a1f745648139244308b8e8db3f757d32))
+* code cleanup and improved tests ([d7d3e0c](https://github.com/Fralleee/copy-context/commit/d7d3e0c27a4c3615aef269522624916b56b64db5))
 
 ## [0.9.0](https://github.com/Fralleee/copy-context/compare/v0.8.0...v0.9.0) (2025-10-28)
 
@@ -30,8 +27,7 @@
 
 ### Chores
 
-* more rename ([5b659ac](https://github.com/Fralleee/copy-context/commit/5b659ac17ab6883126717d0cd81c1379b8f546c9))
-* remove comments ([3d30f12](https://github.com/Fralleee/copy-context/commit/3d30f12a1a5543ad734fe9a351cd4ee8def5165f))
+* rename copy context to copy content ([5b659ac](https://github.com/Fralleee/copy-context/commit/5b659ac17ab6883126717d0cd81c1379b8f546c9))
 * rename copy structure to copy tree ([a9d670c](https://github.com/Fralleee/copy-context/commit/a9d670c65e31971fcb8359db3ac081841d75b648))
 * use JS comment syntax for header on plaintext ([6a63996](https://github.com/Fralleee/copy-context/commit/6a639969389ae0b67946791e2bb6a02c57b35f66))
 
