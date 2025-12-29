@@ -55,6 +55,7 @@ Copy files or folder trees into your clipboard as Markdown. Ready to paste into 
 | `copyContext.excludeGlobs`                | `[]`       | **Global exclude** patterns applied to all commands. Command-specific excludes will be merged with these. |
 | `copyContext.includeGlobs`                | `[]`       | **Global include** patterns applied to all commands. Command-specific includes will be merged with these. |
 | `copyContext.includeEmojis`               | `true`     | Include emojis in the output (📁 for folders, 📄 for files).                                          |
+| `copyContext.pathOutsideCodeBlock`        | `false`    | Place the file path above the fenced code block (applies to Copy Content and Copy Selection; Copy Tree always keeps the path inside). |
 | `copyContext.maxContentSize`              | `500000`   | Max total size (bytes) of all file contents to copy.                                                  |
 | `copyContext.respectVSCodeExplorerExclude`| `true`     | Skip files/folders hidden by your VS Code `files.exclude` settings.                                    |
 | `copyContext.respectGitIgnore`            | `false`    | Skip files matching your project's `.gitignore` (opt-in).                                              |
@@ -77,6 +78,28 @@ You can override filters for specific commands. These are **merged** with the gl
   "copyContext.copyContent.includeGlobs": ["**/*.test.ts"]
 }
 ```
+
+#### Path placement
+
+Default placement keeps the path inside the fenced block:
+
+```markdown
+```ts
+// src/app.ts
+const foo = "bar";
+```
+```
+
+Enable `copyContext.pathOutsideCodeBlock` to move the path above the fence (helps AI prompts avoid echoing the path):
+
+```markdown
+src/app.ts
+```ts
+const foo = "bar";
+```
+```
+
+This applies to Copy Content and Copy Selection (with line numbers). Copy Tree always keeps the path inside the plaintext fence.
 
 ---
 

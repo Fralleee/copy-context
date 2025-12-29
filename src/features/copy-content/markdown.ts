@@ -10,16 +10,23 @@ function guessLanguageFromExtension(ext: string): string {
 export function formatCodeAsMarkdown(
 	relativePath: string,
 	content: string,
+	pathOutsideCodeBlock = false,
 ): string {
 	const ext = path.extname(relativePath).replace(".", "").toLowerCase();
 	const language = guessLanguageFromExtension(ext);
 
-	return applyTemplate({ content, language, path: relativePath });
+	return applyTemplate({
+		content,
+		language,
+		path: relativePath,
+		pathOutsideCodeBlock,
+	});
 }
 
 export function formatBinaryAsMarkdown(
 	relativePath: string,
 	meta: BinaryMetadata,
+	pathOutsideCodeBlock = false,
 ): string {
 	const lines: string[] = [];
 
@@ -34,6 +41,7 @@ export function formatBinaryAsMarkdown(
 		content: lines.join("\n"),
 		language: "plaintext",
 		path: relativePath,
+		pathOutsideCodeBlock,
 	});
 }
 
@@ -41,9 +49,15 @@ export function applyTemplate(vars: {
 	language: string;
 	path: string;
 	content: string;
+	pathOutsideCodeBlock?: boolean;
 }) {
-	const header = headerForLanguage(vars.language, vars.path);
-	const result = `\`\`\`${vars.language}\n${header}\n${vars.content}\n\`\`\`\n\n`;
+	const pathOutsideCodeBlock = vars.pathOutsideCodeBlock ?? false;
+	const header = pathOutsideCodeBlock
+		? ""
+		: `${headerForLanguage(vars.language, vars.path)}\n`;
+
+	const pathLine = pathOutsideCodeBlock ? `${vars.path}\n` : "";
+	const result = `${pathLine}\`\`\`${vars.language}\n${header}${vars.content}\n\`\`\`\n\n`;
 	return result;
 }
 

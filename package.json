@@ -41,6 +41,12 @@
 						"markdownDescription": "When **true**, includes emojis in the output (📁 for folders, 📄 for files).",
 						"title": "Include Emojis",
 						"type": "boolean"
+					},
+					"copyContext.pathOutsideCodeBlock": {
+						"default": false,
+						"markdownDescription": "When **true**, places the file path above the fenced code block instead of inside it (Copy Content & Copy Selection only; Copy Tree always keeps paths inside).",
+						"title": "Path Outside Code Block",
+						"type": "boolean"
 					}
 				},
 				"title": "Output"

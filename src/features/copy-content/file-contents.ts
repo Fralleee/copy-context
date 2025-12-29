@@ -28,6 +28,7 @@ export async function fileContents(
 	nodes: FileTreeNode[],
 	visitedFiles: Set<string>,
 	maxContentSize: number,
+	pathOutsideCodeBlock: boolean,
 	addSizeCallback: (size: number) => void,
 	token: vscode.CancellationToken,
 	progressCallback: () => void,
@@ -43,6 +44,7 @@ export async function fileContents(
 				node.children,
 				visitedFiles,
 				maxContentSize,
+				pathOutsideCodeBlock,
 				addSizeCallback,
 				token,
 				progressCallback,
@@ -55,11 +57,19 @@ export async function fileContents(
 					const isBinary = await detectBinary(node.fullPath);
 					if (isBinary) {
 						const { size, mime } = await getFileMetadata(node.fullPath);
-						result += formatBinaryAsMarkdown(node.relativePath, { mime, size });
+						result += formatBinaryAsMarkdown(
+							node.relativePath,
+							{ mime, size },
+							pathOutsideCodeBlock,
+						);
 					} else {
 						const content = await fs.readFile(node.fullPath, "utf-8");
 						addSizeCallback(Buffer.byteLength(content, "utf-8"));
-						result += formatCodeAsMarkdown(node.relativePath, content);
+						result += formatCodeAsMarkdown(
+							node.relativePath,
+							content,
+							pathOutsideCodeBlock,
+						);
 					}
 				} catch (err) {
 					const content = `- Failed reading file metadata: ${err}`;
@@ -67,6 +77,7 @@ export async function fileContents(
 						content,
 						language: "plaintext",
 						path: node.relativePath,
+						pathOutsideCodeBlock,
 					});
 				}
 

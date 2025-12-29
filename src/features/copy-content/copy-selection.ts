@@ -38,7 +38,7 @@ export async function copySelection(outputChannel?: vscode.OutputChannel) {
 		relPath = path.relative(root, doc.uri.fsPath).split(path.sep).join("/");
 	}
 
-	const { maxContentSize } = getSettings();
+	const { maxContentSize, pathOutsideCodeBlock = false } = getSettings();
 	if (Buffer.byteLength(selectedText, "utf8") > maxContentSize) {
 		throw new Error(`Exceeded maximum content size of ${maxContentSize} bytes`);
 	}
@@ -47,7 +47,11 @@ export async function copySelection(outputChannel?: vscode.OutputChannel) {
 	const language = languageMap[ext] || "plaintext";
 	const pathWithLines = `${relPath}:${startLine}-${endLine}`;
 	const header = headerForLanguage(language, pathWithLines);
-	const snippet = `\`\`\`${language}\n${header}\n${selectedText}\n\`\`\`\n`;
+	const content = pathOutsideCodeBlock
+		? selectedText
+		: `${header}\n${selectedText}`;
+	const prefix = pathOutsideCodeBlock ? `${pathWithLines}\n` : "";
+	const snippet = `${prefix}\`\`\`${language}\n${content}\n\`\`\`\n`;
 
 	await vscode.env.clipboard.writeText(snippet);
 	outputChannel?.appendLine(

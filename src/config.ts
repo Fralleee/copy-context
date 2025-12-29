@@ -18,6 +18,10 @@ export function getSettings() {
 		includeEmojis: config.get<boolean>("includeEmojis", true),
 		includeGlobs: config.get<string[]>("includeGlobs", []),
 		maxContentSize: config.get<number>("maxContentSize", 500_000),
+		pathOutsideCodeBlock: config.get<boolean>(
+			"pathOutsideCodeBlock",
+			false,
+		),
 		respectGitIgnore: config.get<boolean>("respectGitIgnore", false),
 		respectVSCodeExplorerExclude: config.get<boolean>(
 			"respectVSCodeExplorerExclude",

@@ -55,6 +55,18 @@ describe("Markdown Formatting", () => {
 		expect(result).toContain("Some content");
 	});
 
+	it("should allow path outside the code fence", () => {
+		const result = formatCodeAsMarkdown(
+			"src/app.ts",
+			"const foo = 'bar';",
+			true,
+		);
+
+		expect(result.startsWith("src/app.ts\n```ts\n")).toBe(true);
+		expect(result).toContain("const foo = 'bar';");
+		expect(result).not.toContain("// src/app.ts");
+	});
+
 	it("should detect language from various extensions", () => {
 		const testCases = [
 			{ expectedLang: "python", file: "test.py" },
@@ -97,6 +109,14 @@ describe("formatBinaryAsMarkdown", () => {
 
 		expect(result).toContain("- size: 0.5 KB");
 	});
+
+	it("should place binary path outside the code fence", () => {
+		const meta = { size: 1024 };
+		const result = formatBinaryAsMarkdown("data.bin", meta, true);
+
+		expect(result.startsWith("data.bin\n```plaintext\n")).toBe(true);
+		expect(result).not.toContain("// data.bin");
+	});
 });
 
 describe("applyTemplate", () => {
@@ -113,5 +133,17 @@ describe("applyTemplate", () => {
 		expect(result).toContain("// src/test.js");
 		expect(result).toContain('console.log("test");');
 		expect(result).toContain("```");
+	});
+
+	it("should place path above the code fence when requested", () => {
+		const result = applyTemplate({
+			content: "body",
+			language: "js",
+			path: "src/test.js",
+			pathOutsideCodeBlock: true,
+		});
+
+		expect(result.startsWith("src/test.js\n```js\n")).toBe(true);
+		expect(result).not.toContain("// src/test.js");
 	});
 });

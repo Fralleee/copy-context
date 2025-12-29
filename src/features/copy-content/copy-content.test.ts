@@ -8,11 +8,12 @@ import * as fileTreeModule from "../../shared/file-tree";
 import * as filterModule from "../../shared/make-filter-context";
 import { copyCode } from "./copy-content";
 import * as detectBinaryModule from "./detect-binary";
-import { applyTemplate } from "./markdown";
+import { applyTemplate, formatCodeAsMarkdown } from "./markdown";
 
 vi.mock("../../shared/file-tree");
 vi.mock("../../shared/make-filter-context");
 vi.mock("./detect-binary");
+vi.mock("../../config");
 
 const mockTree: FileTreeNode[] = [
 	{
@@ -57,11 +58,16 @@ const fileContents: Record<string, string> = {
 };
 
 describe("copyCode integration", () => {
-	beforeEach(() => {
+	beforeEach(async () => {
 		vi.clearAllMocks();
 		vi.mocked(filterModule.makeFilterContext).mockResolvedValue(filterContext);
 		vi.mocked(fileTreeModule.fileTree).mockResolvedValue(mockTree);
 		vi.mocked(detectBinaryModule.detectBinary).mockResolvedValue(false as any);
+		const { getSettings } = await import("../../config");
+		vi.mocked(getSettings).mockReturnValue({
+			maxContentSize: 500_000,
+			pathOutsideCodeBlock: false,
+		} as any);
 
 		(fs.readFile as any).mockImplementation((p: string) =>
 			Promise.resolve(fileContents[p]),
@@ -109,5 +115,32 @@ describe("copyCode integration", () => {
 
 		expect(vscode.env.clipboard.writeText).toHaveBeenCalledWith(expected);
 		expect(progress.report).toHaveBeenCalledTimes(1);
+	});
+
+	it("respects pathOutsideCodeBlock setting", async () => {
+		const progress = { report: vi.fn() };
+		const { getSettings } = await import("../../config");
+		vi.mocked(getSettings).mockReturnValue({
+			maxContentSize: 500_000,
+			pathOutsideCodeBlock: true,
+		} as any);
+
+		vi.mocked(vscode.window.withProgress).mockImplementation(
+			async (_opts, cb) =>
+				cb(
+					progress as any,
+					{ isCancellationRequested: false } as vscode.CancellationToken,
+				),
+		);
+
+		await copyCode([vscode.Uri.file("/project")]);
+
+		const expected = (
+			formatCodeAsMarkdown("src/index.ts", fileContents["/project/src/index.ts"], true) +
+			formatCodeAsMarkdown("src/utils.ts", fileContents["/project/src/utils.ts"], true) +
+			formatCodeAsMarkdown("README.md", fileContents["/project/README.md"], true)
+		).trim();
+
+		expect(vscode.env.clipboard.writeText).toHaveBeenCalledWith(expected);
 	});
 });

@@ -1,3 +1,9 @@
+## Unreleased
+
+### Features
+
+* add option to place copied paths outside fenced code blocks for content and selection outputs (Copy Tree unchanged)
+
 ## [0.10.1](https://github.com/Fralleee/copy-context/compare/v0.10.0...v0.10.1) (2025-10-28)
 
 ### Bug Fixes

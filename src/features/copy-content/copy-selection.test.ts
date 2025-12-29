@@ -31,6 +31,7 @@ describe("copySelection", () => {
 
 		vi.mocked((await import("../../config")).getSettings).mockReturnValue({
 			maxContentSize: 10000,
+			pathOutsideCodeBlock: false,
 		} as any);
 	});
 
@@ -111,6 +112,39 @@ describe("copySelection", () => {
 		);
 		expect(mockOutputChannel.appendLine).toHaveBeenCalledWith(
 			"Copy Selection: src/test.ts:5-5",
+		);
+	});
+
+	it("should place path outside the code block when configured", async () => {
+		const mockDocument = {
+			getText: vi.fn().mockReturnValue("const x = 1;"),
+			isUntitled: false,
+			uri: vscode.Uri.file("/project/src/test.ts"),
+		};
+
+		(vscode.window as any).activeTextEditor = {
+			document: mockDocument,
+			selection: {
+				end: { line: 4 },
+				isEmpty: false,
+				start: { line: 4 },
+			},
+		};
+
+		mockGetWorkspaceFolder.mockReturnValue({
+			uri: vscode.Uri.file("/project"),
+		});
+
+		const { getSettings } = await import("../../config");
+		vi.mocked(getSettings).mockReturnValue({
+			maxContentSize: 10000,
+			pathOutsideCodeBlock: true,
+		} as any);
+
+		await copySelection();
+
+		expect(mockClipboard.writeText).toHaveBeenCalledWith(
+			"src/test.ts:5-5\n```ts\nconst x = 1;\n```\n",
 		);
 	});
 
