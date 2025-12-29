@@ -1,3 +1,9 @@
+## [1.0.1](https://github.com/Fralleee/copy-context/compare/v1.0.0...v1.0.1) (2025-12-29)
+
+### Chores
+
+* update log ([cd003b2](https://github.com/Fralleee/copy-context/commit/cd003b222f352eacbac6da809d04558705e14061))
+
 ## [0.11.0](https://github.com/Fralleee/copy-context/compare/v0.10.1...v0.11.0) (2025-12-29)
 
 ### Features
