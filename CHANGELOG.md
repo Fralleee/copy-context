@@ -10,12 +10,6 @@
 
 * add option to place copied paths outside fenced code blocks for content and selection outputs (Copy Tree unchanged)
 
-## [0.10.1](https://github.com/Fralleee/copy-context/compare/v0.10.0...v0.10.1) (2025-10-28)
-
-### Bug Fixes
-
-* tests on CI ([6799dc1](https://github.com/Fralleee/copy-context/commit/6799dc197418746bd12bb77dd5ea6bf86652cd7a))
-
 ## [0.10.0](https://github.com/Fralleee/copy-context/compare/v0.9.0...v0.10.0) (2025-10-28)
 
 ### Features
