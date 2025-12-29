@@ -1,3 +1,9 @@
+## [0.11.0](https://github.com/Fralleee/copy-context/compare/v0.10.1...v0.11.0) (2025-12-29)
+
+### Features
+
+* pathOutsideCodeBlock allows user to place the file path above the fenced code block ([0bd2722](https://github.com/Fralleee/copy-context/commit/0bd27223fb407d610e22e99e3261fb51676bb8b8))
+
 ## Unreleased
 
 ### Features
