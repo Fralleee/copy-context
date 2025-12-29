@@ -4,8 +4,6 @@
 
 * pathOutsideCodeBlock allows user to place the file path above the fenced code block ([0bd2722](https://github.com/Fralleee/copy-context/commit/0bd27223fb407d610e22e99e3261fb51676bb8b8))
 
-## Unreleased
-
 ### Features
 
 * add option to place copied paths outside fenced code blocks for content and selection outputs (Copy Tree unchanged)
