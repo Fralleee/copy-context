@@ -1,3 +1,10 @@
+## [1.0.2](https://github.com/Fralleee/copy-context/compare/v1.0.1...v1.0.2) (2026-01-16)
+
+### Bug Fixes
+
+* improve binary file detection for text files ([6a78ed2](https://github.com/Fralleee/copy-context/commit/6a78ed28b4b3874ecae564aa0b6a33ef9c69944d))
+* improve binary file detection for text files ([6c2747b](https://github.com/Fralleee/copy-context/commit/6c2747b14066a556bb5b768bb0a87f04fc00c5ef))
+
 ## [1.0.1](https://github.com/Fralleee/copy-context/compare/v1.0.0...v1.0.1) (2025-12-29)
 
 ### Chores

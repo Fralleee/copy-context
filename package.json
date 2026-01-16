@@ -281,5 +281,5 @@
 		"vscode:prepublish": "npm run esbuild-base -- --production",
 		"watch": "npm run esbuild-base -- --watch"
 	},
-	"version": "1.0.1"
+	"version": "1.0.2"
 }
