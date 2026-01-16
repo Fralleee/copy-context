@@ -36,6 +36,15 @@
 				"markdownDescription": "Settings that control the filtering of the files.",
 				"order": 0,
 				"properties": {
+					"copyContext.additionalTextExtensions": {
+						"default": [],
+						"items": {
+							"type": "string"
+						},
+						"markdownDescription": "Additional file extensions to treat as text (without the dot). Useful for custom or newer file types not recognized by default. Example: `[\"zmodel\", \"prisma\"]`",
+						"title": "Additional Text Extensions",
+						"type": "array"
+					},
 					"copyContext.includeEmojis": {
 						"default": true,
 						"markdownDescription": "When **true**, includes emojis in the output (📁 for folders, 📄 for files).",

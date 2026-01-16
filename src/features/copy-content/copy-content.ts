@@ -32,7 +32,11 @@ export async function copyCode(
 	outputChannel?: vscode.OutputChannel,
 ) {
 	const filterContext = await makeFilterContext("copyContent");
-	const { maxContentSize, pathOutsideCodeBlock = false } = getSettings();
+	const {
+		additionalTextExtensions = [],
+		maxContentSize,
+		pathOutsideCodeBlock = false,
+	} = getSettings();
 	const visitedFiles = new Set<string>();
 	let totalSize = 0;
 
@@ -90,6 +94,7 @@ export async function copyCode(
 					visitedFiles,
 					maxContentSize,
 					pathOutsideCodeBlock,
+					additionalTextExtensions,
 					(sz) => {
 						totalSize += sz;
 						if (totalSize > maxContentSize) {

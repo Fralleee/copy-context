@@ -29,6 +29,7 @@ export async function fileContents(
 	visitedFiles: Set<string>,
 	maxContentSize: number,
 	pathOutsideCodeBlock: boolean,
+	additionalTextExtensions: string[],
 	addSizeCallback: (size: number) => void,
 	token: vscode.CancellationToken,
 	progressCallback: () => void,
@@ -45,6 +46,7 @@ export async function fileContents(
 				visitedFiles,
 				maxContentSize,
 				pathOutsideCodeBlock,
+				additionalTextExtensions,
 				addSizeCallback,
 				token,
 				progressCallback,
@@ -54,7 +56,10 @@ export async function fileContents(
 				visitedFiles.add(node.relativePath);
 
 				try {
-					const isBinary = await detectBinary(node.fullPath);
+					const isBinary = await detectBinary(
+						node.fullPath,
+						additionalTextExtensions,
+					);
 					if (isBinary) {
 						const { size, mime } = await getFileMetadata(node.fullPath);
 						result += formatBinaryAsMarkdown(
