@@ -5,6 +5,10 @@ export type CommandType = "copyContent" | "copyTree";
 export function getSettings() {
 	const config = vscode.workspace.getConfiguration("copyContext");
 	return {
+		additionalTextExtensions: config.get<string[]>(
+			"additionalTextExtensions",
+			[],
+		),
 		copyContent: {
 			excludeGlobs: config.get<string[]>("copyContent.excludeGlobs", []),
 			includeGlobs: config.get<string[]>("copyContent.includeGlobs", []),

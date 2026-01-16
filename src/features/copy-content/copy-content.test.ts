@@ -65,6 +65,7 @@ describe("copyCode integration", () => {
 		vi.mocked(detectBinaryModule.detectBinary).mockResolvedValue(false as any);
 		const { getSettings } = await import("../../config");
 		vi.mocked(getSettings).mockReturnValue({
+			additionalTextExtensions: [],
 			maxContentSize: 500_000,
 			pathOutsideCodeBlock: false,
 		} as any);
@@ -121,6 +122,7 @@ describe("copyCode integration", () => {
 		const progress = { report: vi.fn() };
 		const { getSettings } = await import("../../config");
 		vi.mocked(getSettings).mockReturnValue({
+			additionalTextExtensions: [],
 			maxContentSize: 500_000,
 			pathOutsideCodeBlock: true,
 		} as any);

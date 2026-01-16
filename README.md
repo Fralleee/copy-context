@@ -58,7 +58,8 @@ Copy files or folder trees into your clipboard as Markdown. Ready to paste into 
 | `copyContext.pathOutsideCodeBlock`        | `false`    | Place the file path above the fenced code block (applies to Copy Content and Copy Selection; Copy Tree always keeps the path inside). |
 | `copyContext.maxContentSize`              | `500000`   | Max total size (bytes) of all file contents to copy.                                                  |
 | `copyContext.respectVSCodeExplorerExclude`| `true`     | Skip files/folders hidden by your VS Code `files.exclude` settings.                                    |
-| `copyContext.respectGitIgnore`            | `false`    | Skip files matching your project's `.gitignore` (opt-in).                                              |
+| `copyContext.respectGitIgnore`            | `false`    | Skip files matching your project's `.gitignore` 
+| `copyContext.additionalTextExtensions`    | `[]`       | Additional file extensions to treat as text (without the dot). Useful for custom or newer file types not recognized by default. |(opt-in).                                              |
 
 ### Command-Specific Settings
 
@@ -76,6 +77,13 @@ You can override filters for specific commands. These are **merged** with the gl
 {
   "copyContext.excludeGlobs": ["**/*.test.ts"],
   "copyContext.copyContent.includeGlobs": ["**/*.test.ts"]
+}
+```
+
+**Example:** Treat custom file extensions as text files:
+```json
+{
+  "copyContext.additionalTextExtensions": ["myext", "custom"]
 }
 ```
 
